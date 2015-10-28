@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue">#ff2196f3</color>
+    <color name="itemDrawerSelected">#4285f4</color>
+    <color name="itemDrawerDeselected">#ff404040</color>
+    <color name="primary">#ff2196f3</color>
+    <color name="primary_dark">#025d89</color>
+    <color name="accent">#ff2196f3</color>
+    <color name="FABnormal">#e71d62</color>
+    <color name="FABripple">#c0144e</color>
+
+    <color name="black">#000000</color>
+    <color name="light_gray">#ffeeeeee</color>
+    <color name="light_blue" >#97d2ff</color>
+    <color name="gray">#757575</color>
+    <color name="Solight_gray">#fff6f6f6</color>
+    <color name="orange">#FF9900</color>
+    <color name="green">#009900</color>
+    <color name="bluedark">#000099</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="Item_color_1" >#e0368c</color>
+    <color name="Item_color_2" >#f6a118</color>
+    <color name="Item_color_3" >#ec6764</color>
+    <color name="Item_color_4" >#3a95d2</color>
+    <color name="Item_color_5" >#63a937</color>
+    <color name="Item_color_6" >#36ad9b</color>
+    <color name="Item_color_7" >#ed6f26</color>
+    <color name="Item_color_8" >#b0328a</color>
+    <color name="Item_color_9" >#e42513</color>
+</resources>

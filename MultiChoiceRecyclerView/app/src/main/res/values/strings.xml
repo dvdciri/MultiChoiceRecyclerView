@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MultiChoiceRecyclerView</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="get_next" >Next</string>
+
+    <string name="Items_1">One</string>
+    <string name="Items_2">Two</string>
+    <string name="Items_3">Three</string>
+    <string name="Items_4">Four</string>
+    <string name="Items_5">Five</string>
+    <string name="Items_6">Six</string>
+    <string name="Items_7">Seven</string>
+    <string name="Items_8">Eight</string>
+    <string name="Items_9">Nine</string>
+</resources>
