@@ -98,8 +98,8 @@ public class Item {
     }
 
     /*
-    * @function setActive: function that active or disactive the view of the item
-    * @param state: true for activation/false for disactivation
+    * @function setActive: function that active or inactive the view of the item
+    * @param state: true for activation/false for deactivation
     */
     public void setActive(boolean state) {
 
