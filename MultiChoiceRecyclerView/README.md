@@ -1,5 +1,7 @@
 # Multichoice RecylerView
 
+![Example](https://raw.githubusercontent.com/dvdciri/Android-Projects-Components/master/MultiChoiceRecyclerView/example.png)
+
 ##Description
 This project show how to implement a simple Multi Choice selection on a RecyclerVeiew using the StaggeredGridLayoutManager.
 
