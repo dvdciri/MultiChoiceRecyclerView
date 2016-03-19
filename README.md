@@ -1,7 +1,7 @@
 # Multichoice RecylerView
 
 ##Preview
-![Example](https://raw.githubusercontent.com/dvdciri/Android-Projects-Components/master/MultiChoiceRecyclerView/example.png)
+![Example](https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example.png)
 
 ##Description
 This library has been created to deal with a multi-choice selection mode implemented with the RecyclerView
