@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MultiChoiceRecyclerView.iml" filepath="$PROJECT_DIR$/MultiChoiceRecyclerView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/multichoicerecyclerview/multichoicerecyclerview.iml" filepath="$PROJECT_DIR$/multichoicerecyclerview/multichoicerecyclerview.iml" />
     </modules>
   </component>
 </project>
