@@ -4,58 +4,65 @@
 ![Example](https://raw.githubusercontent.com/dvdciri/Android-Projects-Components/master/MultiChoiceRecyclerView/example.png)
 
 ##Description
-This project show how to implement a simple Multi Choice selection on a RecyclerVeiew using the StaggeredGridLayoutManager.
+This library help when you have to deal with a multi-choice selection mode for RecyclerView
 
-##Integration
-We just need these dependencies
+##Implementation
+The integration with Gradle is very easy, you just need the jcenter repository and the library:
 
 ```
-    compile 'com.android.support:appcompat-v7:23.0.1'
-    compile 'com.android.support:support-v4:22.2.0'
-    compile 'com.android.support:recyclerview-v7:23.0.1'
-    compile 'com.android.support:cardview-v7:23.1.0'
+    repositories {
+        jcenter()
+    }
+    ...
+    
+    dependencies {
+        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:1.0.0'
+    }
 ```
+
 
 ##Main steps for usage
-- Create the list of customizable items and add all your item
+- Add the MultiChoiceRecyclerView to your xml file
 ```
-    List<Item> items;
-    items = new ArrayList<>();
-    items.add(0,new Item(getResources().getString(R.string.Items_1), R.color.Item_color_1));
-    items.add(1,new Item(getResources().getString(R.string.Items_2), R.color.Item_color_2));
-    items.add(2,new Item(getResources().getString(R.string.Items_3), R.color.Item_color_3));
-    items.add(3,new Item(getResources().getString(R.string.Items_4), R.color.Item_color_4));
-    items.add(4,new Item(getResources().getString(R.string.Items_5), R.color.Item_color_5));  
-    items.add(5,new Item(getResources().getString(R.string.Items_6), R.color.Item_color_6));
-    items.add(6,new Item(getResources().getString(R.string.Items_7), R.color.Item_color_7));
-    items.add(7,new Item(getResources().getString(R.string.Items_8), R.color.Item_color_8));
-    items.add(8, new Item(getResources().getString(R.string.Items_9), R.color.Item_color_9));
+    <com.davidecirillo.multichoicesample.MultiChoiceRecyclerView
+        android:id="@+id/multiChoiceRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 ```
 
 
-- Create the StaggeredGridLayoutManager object and add it to the LayoutManager of the RecyclerView
+- Instanciate you object and connect the view
 ```
-    private StaggeredGridLayoutManager gaggeredGridLayoutManager;
-    gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
-    rw.setLayoutManager(gaggeredGridLayoutManager);
+    MultiChoiceRecyclerView mMultiChoiceRecyclerView = (MultiChoiceRecyclerView) findViewById(R.id.multiChoiceRecyclerView);
 ```
 
 
-- Create your adapter and add to the RecyclerView
+- Extend you adapter to the MultiChoiceAdapter and add it to the RecyclerView as per normal usage
 ```
-    MultiChoice_adapter rcAdapter = new MultiChoice_adapter(MultiChoiceActivity.this, items);
-    rw.setAdapter(rcAdapter);
+    public class MyAdapter extends MultiChoiceAdapter<MyViewHolder> {
+    
+        public MyAdapter(ArrayList<String> stringList, Context context) {
+            this.mList = stringList;
+            this.mContext = context;
+        }
+        
+        ...
+    }
+```
+```
+    MyAdapter myAdapter = new MyAdapter(mList, getApplicationContext());
+    mMultiChoiceRecyclerView.setAdapter(myAdapter);
 ```
 
 ##Customize
-You can customize the activation or deactivation of each item in the setActive(boolean) method of Item class.
-For exmple this just change the alpha on the item view
+You can customize the activation or deactivation just overriding the setActive(View view, boolean state) method of the MultiChoiceAdapter
 ```
-    public void setActive(boolean state) {
-        if (state) {
-            view.setAlpha(0.25f);
-        } else {
-            view.setAlpha(1f);
+    @Override
+    public void setActive(View view, boolean state) {
+        if(state){
+            //do your changes
+        }else{
+            //reset the changes
         }
     }
 ```
