@@ -2,25 +2,25 @@
 <items version="2" >
 
     <item
-        jar="/Users/davidecirillo/Davide/StudioProjects/Project and Components/MultiChoiceRecyclerView/sample/build/intermediates/transforms/instantRunSlicer/debug/jars/1/5/main_sliceb.jar"
+        jar="/Users/davidecirillo/Davide/StudioProjects/MultiChoiceRecyclerView/sample/build/intermediates/transforms/instantRunSlicer/debug/jars/1/5/main_slice.jar"
         jumboMode="true"
         revision="23.0.2"
-        sha1="caa8efa2f6ca83e91e4ba2d5d11180cdb8e6c8ae">
-        <dex dex="/Users/davidecirillo/Davide/StudioProjects/Project and Components/MultiChoiceRecyclerView/sample/build/intermediates/transforms/dex/debug/folders/1000/5/main_sliceb_aaa6b25fb7b01050436c07d2349e03a3cb295367/classes.dex" />
+        sha1="1eb7a70b283dcc8019cf708cc05ee0f574b98b5f">
+        <dex dex="/Users/davidecirillo/Davide/StudioProjects/MultiChoiceRecyclerView/sample/build/intermediates/transforms/dex/debug/folders/1000/5/main_slice_ee4d1c453b8172a16d2391390fa3b0bae08bd3a0/classes.dex" />
     </item>
     <item
-        jar="/Users/davidecirillo/Davide/StudioProjects/Project and Components/MultiChoiceRecyclerView/sample/build/intermediates/transforms/instantRunSlicer/debug/jars/1/5/main_slice.jar"
+        jar="/Users/davidecirillo/Davide/StudioProjects/MultiChoiceRecyclerView/sample/build/intermediates/transforms/instantRunSlicer/debug/jars/1/5/main_sliceb.jar"
         jumboMode="true"
         revision="23.0.2"
-        sha1="e05b8142b3f441280e1a7d7b85fcd17a4fd59cde">
-        <dex dex="/Users/davidecirillo/Davide/StudioProjects/Project and Components/MultiChoiceRecyclerView/sample/build/intermediates/transforms/dex/debug/folders/1000/5/main_slice_6ce31cad5de09c31e452a2bd86df5f97eb942ffb/classes.dex" />
+        sha1="7d77da28d8e233327a256941c20408afcbf5e830">
+        <dex dex="/Users/davidecirillo/Davide/StudioProjects/MultiChoiceRecyclerView/sample/build/intermediates/transforms/dex/debug/folders/1000/5/main_sliceb_5b2bfe7c2eed406749c8c1b0923f5c9f20ae8e40/classes.dex" />
     </item>
     <item
-        jar="/Users/davidecirillo/Davide/StudioProjects/Project and Components/MultiChoiceRecyclerView/sample/build/intermediates/transforms/instantRunSlicer/debug/jars/1/1a/dependencies.jar"
+        jar="/Users/davidecirillo/Davide/StudioProjects/MultiChoiceRecyclerView/sample/build/intermediates/transforms/instantRunSlicer/debug/jars/1/1a/dependencies.jar"
         jumboMode="true"
         revision="23.0.2"
-        sha1="36e42f23ff83c3473ccb52eb6def80b989743670">
-        <dex dex="/Users/davidecirillo/Davide/StudioProjects/Project and Components/MultiChoiceRecyclerView/sample/build/intermediates/transforms/dex/debug/folders/1000/1a/dependencies_dc6eee99e503c6ea5c3ab09b198dfcef431e710e/classes.dex" />
+        sha1="77b447d8e286ba579936cac27247db9dd6d49329">
+        <dex dex="/Users/davidecirillo/Davide/StudioProjects/MultiChoiceRecyclerView/sample/build/intermediates/transforms/dex/debug/folders/1000/1a/dependencies_7bda809d0829cbcdd0c23d7daed8e1c6abc04a98/classes.dex" />
     </item>
 
 </items>
