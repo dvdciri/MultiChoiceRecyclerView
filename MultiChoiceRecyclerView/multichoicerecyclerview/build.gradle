@@ -39,7 +39,7 @@ ext {
     siteUrl = 'https://github.com/dvdciri/Android-Projects-Components/tree/master/MultiChoiceRecyclerView'
     gitUrl = 'https://github.com/dvdciri/Android-Projects-Components/tree/master/MultiChoiceRecyclerView'
 
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.0.1'
 
     developerId = 'dvd-ciri'
     developerName = 'Davide Cirillo'

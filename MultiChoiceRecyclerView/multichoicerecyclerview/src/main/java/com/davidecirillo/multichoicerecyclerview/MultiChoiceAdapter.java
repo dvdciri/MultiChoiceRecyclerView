@@ -1,7 +1,9 @@
-package com.davidecirillo.multichoicesample;
+package com.davidecirillo.multichoicerecyclerview;
 
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.davidecirillo.multichoicesample.MultiChoiceListener;
 
 /**
  * Created by davidecirillo on 12/03/16.
