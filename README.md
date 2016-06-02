@@ -21,7 +21,7 @@ The integration with Gradle is very easy, you just need the jcenter repository a
 ```
 
 
-##Main steps for usage
+##Set Up
 - Add the MultiChoiceRecyclerView to your xml file
 ```
     <com.davidecirillo.multichoicesample.MultiChoiceRecyclerView
