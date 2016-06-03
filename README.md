@@ -11,21 +11,21 @@ This library has been created to help the integration of a multi-choice selectio
 ##Implementation
 The integration with Gradle is very easy, you just need the jcenter repository and the library:
 
-```
+```java
     repositories {
         jcenter()
     }
     ...
     
     dependencies {
-        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:1.0.1'
+        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:1.1.0'
     }
 ```
 
 
 ##Set Up
 - Add the MultiChoiceRecyclerView to your xml file
-```
+```java
     <com.davidecirillo.multichoicesample.MultiChoiceRecyclerView
         android:id="@+id/multiChoiceRecyclerView"
         android:layout_width="match_parent"
@@ -34,13 +34,13 @@ The integration with Gradle is very easy, you just need the jcenter repository a
 
 
 - Instanciate you object and connect the view
-```
+```java
     MultiChoiceRecyclerView mMultiChoiceRecyclerView = (MultiChoiceRecyclerView) findViewById(R.id.multiChoiceRecyclerView);
 ```
 
 
 - Extend you adapter to the MultiChoiceAdapter and add it to the RecyclerView as per normal usage
-```
+```java
     public class MyAdapter extends MultiChoiceAdapter<MyViewHolder> {
     
         public MyAdapter(ArrayList<String> stringList, Context context) {
@@ -51,14 +51,13 @@ The integration with Gradle is very easy, you just need the jcenter repository a
         ...
     }
 ```
-```
+```java
     MyAdapter myAdapter = new MyAdapter(mList, getApplicationContext());
     mMultiChoiceRecyclerView.setAdapter(myAdapter);
 ```
 
-##Customize
-You can customize the activation or deactivation just overriding the setActive(View view, boolean state) method of the MultiChoiceAdapter
-```
+- You can customize the activation or deactivation just overriding the setActive(View view, boolean state) method of the MultiChoiceAdapter
+```java
     @Override
     public void setActive(View view, boolean state) {
         if(state){
@@ -68,6 +67,44 @@ You can customize the activation or deactivation just overriding the setActive(V
         }
     }
 ```
+
+##Advanced
+- Set a MultiChoiceSelectionListener in order to have a callback wether an action is performed on the recyclerView
+```java
+    mMultiChoiceRecyclerView.setMultiChoiceSelectionListener(new MultiChoiceSelectionListener() {
+            @Override
+            public void OnItemSelected(int selectedPosition, int itemSelectedCount, int allItemCount) {
+                
+            }
+
+            @Override
+            public void OnItemDeselected(int deselectedPosition, int itemSelectedCount, int allItemCount) {
+
+            }
+
+            @Override
+            public void OnSelectAll(int itemSelectedCount, int allItemCount) {
+
+            }
+
+            @Override
+            public void OnDeselectAll(int itemSelectedCount, int allItemCount) {
+
+            }
+    });
+```
+###Other Methods
+- public int getAllItemCount()
+- public int getSelectedItemCount()
+- public Collection<Integer> getSelectedItemList()
+- public boolean select(int position)
+- public boolean selectAll()
+- public boolean deselectAll()
+- public void setRecyclerRowNumber(int rowNumber)
+- public void setRecyclerColumnNumber(int columnNumber)
+
+##Customize
+
 
 ##License
 ```
