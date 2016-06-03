@@ -1,3 +1,5 @@
+[ ![Download](https://api.bintray.com/packages/dvd-ciri/maven/MultiChoiceRecyclerView/images/download.svg) ](https://bintray.com/dvd-ciri/maven/MultiChoiceRecyclerView/_latestVersion)
+
 # Multichoice RecylerView
 
 ##Preview
