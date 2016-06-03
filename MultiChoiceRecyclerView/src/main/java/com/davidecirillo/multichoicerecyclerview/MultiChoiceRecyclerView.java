@@ -24,9 +24,9 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.davidecirillo.multichoicerecyclerview.MultiChoiceAdapter;
+import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceAdapterListener;
+import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceSelectionListener;
 import com.davidecirillo.multichoicesample.MultiChoiceAdapterNotFoundException;
-import com.davidecirillo.multichoicesample.MultiChoiceListener;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -37,14 +37,15 @@ import java.util.Map;
  * Created by davidecirillo on 12/03/16.
  */
 
-public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoiceListener {
+public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoiceAdapterListener {
 
-    String EXCEPTION_MESSAGE_ADAPTER = "The adapter of this RecyclerView is not extending the MultiChoiceAdapter class";
+    private String EXCEPTION_MESSAGE_ADAPTER = "The adapter of this RecyclerView is not extending the MultiChoiceAdapter class";
 
-    StaggeredGridLayoutManager mStaggeredGridLayoutManager;
-    HashMap<Integer, View> mSelectedList = new HashMap<>();
-    HashMap<Integer, View> mAllList = new HashMap<>();
-    MultiChoiceAdapter mMultiChoiceAdapter = null;
+    private StaggeredGridLayoutManager mStaggeredGridLayoutManager;
+    private HashMap<Integer, View> mSelectedList = new HashMap<>();
+    private HashMap<Integer, View> mAllList = new HashMap<>();
+    private MultiChoiceAdapter mMultiChoiceAdapter = null;
+    private MultiChoiceSelectionListener multiChoiceSelectionListener = null;
 
     public MultiChoiceRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -57,6 +58,10 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
         if (adapter instanceof MultiChoiceAdapter) {
             mMultiChoiceAdapter = ((MultiChoiceAdapter) adapter);
             mMultiChoiceAdapter.setMultiChoiceListener(this);
+
+            for(int i = 0; i < mMultiChoiceAdapter.getItemCount(); i++){
+                mAllList.put(i, null);
+            }
         } else
             try {
                 throw new MultiChoiceAdapterNotFoundException(EXCEPTION_MESSAGE_ADAPTER);
@@ -71,9 +76,15 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
             if (mSelectedList.containsKey(position)) {
                 mMultiChoiceAdapter.setActive(view, false);
                 mSelectedList.remove(position);
+
+                if (multiChoiceSelectionListener != null)
+                    multiChoiceSelectionListener.OnItemDeselected(position, mSelectedList.size(), mAllList.size());
             } else {
                 mMultiChoiceAdapter.setActive(view, true);
                 mSelectedList.put(position, view);
+
+                if (multiChoiceSelectionListener != null)
+                    multiChoiceSelectionListener.OnItemSelected(position, mSelectedList.size(), mAllList.size());
             }
         }
     }
@@ -90,14 +101,12 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     }
 
 
-    /**
-     * Get the list of selected item
-     *
-     * @return Collection of all the selected position in the adapter
-     */
-    public Collection<Integer> getSelectedItemList() {
-        return mSelectedList.keySet();
-    }
+
+
+    /*
+    *
+    * MultiChoice methods ************************************
+    * */
 
 
     /**
@@ -131,12 +140,16 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
      */
     public boolean deselectAll() {
         if (mMultiChoiceAdapter != null) {
-            Iterator it = mSelectedList.entrySet().iterator();
+            //select all the the view
+            Iterator it = mAllList.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry<Integer, View> pair = (Map.Entry<Integer, View>) it.next();
                 mMultiChoiceAdapter.setActive(pair.getValue(), false);
-                it.remove();
             }
+            mSelectedList.clear();
+
+            if (multiChoiceSelectionListener != null)
+                multiChoiceSelectionListener.OnSelectAll(mSelectedList.size(), mAllList.size());
             return true;
         }
         return false;
@@ -155,10 +168,8 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
                 mSelectedList.put(pair.getKey(), pair.getValue());
             }
 
-            //update the selected list
-            for (int i = 0; i < mMultiChoiceAdapter.getItemCount(); i++) {
-                mSelectedList.put(i, null);
-            }
+            if (multiChoiceSelectionListener != null)
+                multiChoiceSelectionListener.OnSelectAll(mSelectedList.size(), mAllList.size());
             return true;
         }
         return false;
@@ -179,4 +190,34 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
         return false;
     }
 
+    /**
+     * Method to get the number of item in the adapter
+     *
+     * @return number of all item in the adapter
+     */
+    public int getAllItemCount() {
+        return mMultiChoiceAdapter.getItemCount();
+    }
+
+    /**
+     * Method to get the number of selected items
+     *
+     * @return number of selected items
+     */
+    public int getSelectedItemCount() {
+        return mSelectedList.size();
+    }
+
+    /**
+     * Get the list of selected item
+     *
+     * @return Collection of all the selected position in the adapter
+     */
+    public Collection<Integer> getSelectedItemList() {
+        return mSelectedList.keySet();
+    }
+
+    public void setMultiChoiceSelectionListener(MultiChoiceSelectionListener multiChoiceSelectionListener) {
+        this.multiChoiceSelectionListener = multiChoiceSelectionListener;
+    }
 }

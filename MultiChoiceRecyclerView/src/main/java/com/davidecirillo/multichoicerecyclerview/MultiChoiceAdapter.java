@@ -3,14 +3,15 @@ package com.davidecirillo.multichoicerecyclerview;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.davidecirillo.multichoicesample.MultiChoiceListener;
+import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceAdapterListener;
+
 
 /**
  * Created by davidecirillo on 12/03/16.
  */
 public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.ViewHolder> extends MultiChoiceRecyclerView.Adapter<VH> {
 
-    MultiChoiceListener mMultiChoiceListener;
+    private MultiChoiceAdapterListener mMultiChoiceListener;
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -18,23 +19,23 @@ public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.View
     }
 
     @Override
-    public void onBindViewHolder(VH holder, final int position) {
+    public void onBindViewHolder(final VH holder, final int position) {
         final View mCurrentView = holder.itemView;
 
         if (mMultiChoiceListener != null) {
             mCurrentView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mMultiChoiceListener.onSingleItemClickListener(mCurrentView, position);
+                    mMultiChoiceListener.onSingleItemClickListener(mCurrentView, holder.getAdapterPosition());
                 }
             });
 
-            mMultiChoiceListener.onUpdateItemListener(mCurrentView, position);
+            mMultiChoiceListener.onUpdateItemListener(mCurrentView, holder.getAdapterPosition());
         }
     }
 
-    public void setMultiChoiceListener(MultiChoiceListener multiChoiceListener) {
-        mMultiChoiceListener = multiChoiceListener;
+    public void setMultiChoiceListener(MultiChoiceAdapterListener multiChoiceListener) {
+        this.mMultiChoiceListener = multiChoiceListener;
     }
 
     /**
