@@ -1,10 +1,12 @@
+[ ![Download](https://api.bintray.com/packages/dvd-ciri/maven/MultiChoiceRecyclerView/images/download.svg) ](https://bintray.com/dvd-ciri/maven/MultiChoiceRecyclerView/_latestVersion)
+
 # Multichoice RecylerView
 
 ##Preview
 ![Example](https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example.png)
 
 ##Description
-This library has been created to deal with a multi-choice selection mode implemented with the RecyclerView
+This library has been created to help the integration of a multi-choice selection to the RecyclerView
 
 ##Implementation
 The integration with Gradle is very easy, you just need the jcenter repository and the library:
@@ -21,7 +23,7 @@ The integration with Gradle is very easy, you just need the jcenter repository a
 ```
 
 
-##Main steps for usage
+##Set Up
 - Add the MultiChoiceRecyclerView to your xml file
 ```
     <com.davidecirillo.multichoicesample.MultiChoiceRecyclerView
