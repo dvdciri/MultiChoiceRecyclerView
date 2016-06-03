@@ -69,7 +69,7 @@ The integration with Gradle is very easy, you just need the jcenter repository a
 ```
 
 ##Advanced
-- Set a MultiChoiceSelectionListener in order to have a callback wether an action is performed on the recyclerView
+- Set a MultiChoiceSelectionListener in order to have a callback whether an action is performed on the recyclerView
 ```java
     mMultiChoiceRecyclerView.setMultiChoiceSelectionListener(new MultiChoiceSelectionListener() {
             @Override
