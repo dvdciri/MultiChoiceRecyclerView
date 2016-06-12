@@ -18,7 +18,7 @@ The integration with Gradle is very easy, you just need the jcenter repository a
     ...
     
     dependencies {
-        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:1.1.0'
+        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:1.1.1'
     }
 ```
 
