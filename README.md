@@ -1,9 +1,13 @@
 [ ![Download](https://api.bintray.com/packages/dvd-ciri/maven/MultiChoiceRecyclerView/images/download.svg) ](https://bintray.com/dvd-ciri/maven/MultiChoiceRecyclerView/_latestVersion)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser)
+
 
 # Multichoice RecylerView
 
 ##Preview
-![Example](https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example.png)
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png" width="250">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="250">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example.png" width="250">
 
 ##Description
 This library has been created to help the integration of a multi-choice selection to the RecyclerView
@@ -68,6 +72,8 @@ The integration with Gradle is very easy, you just need the jcenter repository a
     }
 ```
 
+
+
 ##Advanced
 - Set a MultiChoiceSelectionListener in order to have a callback whether an action is performed on the recyclerView
 ```java
@@ -93,6 +99,16 @@ The integration with Gradle is very easy, you just need the jcenter repository a
             }
     });
 ```
+
+- Activate and customise the multi choice toolbar provided by the library (only if using setSupportActionBar with Toolbar)
+```java
+    mMultiChoiceRecyclerView.setMultiChoiceToolbar(this,
+                toolbar,
+                getString(R.string.app_name),
+                "item selected");
+```
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="150">
+
 ###Other Methods
 - public int getAllItemCount()
 - public int getSelectedItemCount()
@@ -102,6 +118,12 @@ The integration with Gradle is very easy, you just need the jcenter repository a
 - public boolean deselectAll()
 - public void setRecyclerRowNumber(int rowNumber)
 - public void setRecyclerColumnNumber(int columnNumber)
+- public void setMultiChoiceToolbar(AppCompatActivity appCompatActivity,
+                                      Toolbar toolbar,
+                                      String defaultToolbarTitle,
+                                      String selectionToolbarTitle,
+                                      int selectedPrimaryColor,
+                                      int selectedPrimaryColorDark)
 
 
 ##License
