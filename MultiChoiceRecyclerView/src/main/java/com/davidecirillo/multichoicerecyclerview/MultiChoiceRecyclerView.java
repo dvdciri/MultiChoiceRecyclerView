@@ -18,12 +18,16 @@
 package com.davidecirillo.multichoicerecyclerview;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.davidecirillo.multichoicerecyclerview.helpers.MultiChoiceToolbarHelper;
 import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceAdapterListener;
 import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceSelectionListener;
 import com.davidecirillo.multichoicesample.MultiChoiceAdapterNotFoundException;
@@ -47,9 +51,13 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     private MultiChoiceAdapter mMultiChoiceAdapter = null;
     private MultiChoiceSelectionListener multiChoiceSelectionListener = null;
 
+    private MultiChoiceToolbarHelper multiChoiceToolbarHelper;
+    private boolean isToolbarMultiChoice = false;
+
     public MultiChoiceRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
+
 
     @Override
     public void setAdapter(Adapter adapter) {
@@ -59,7 +67,7 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
             mMultiChoiceAdapter = ((MultiChoiceAdapter) adapter);
             mMultiChoiceAdapter.setMultiChoiceListener(this);
 
-            for(int i = 0; i < mMultiChoiceAdapter.getItemCount(); i++){
+            for (int i = 0; i < mMultiChoiceAdapter.getItemCount(); i++) {
                 mAllList.put(i, null);
             }
         } else
@@ -70,32 +78,36 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
             }
     }
 
+
     @Override
     public void onSingleItemClickListener(View view, int position) {
         if (mMultiChoiceAdapter != null) {
             if (mSelectedList.containsKey(position)) {
-                mMultiChoiceAdapter.setActive(view, false);
+                mMultiChoiceAdapter.performActivation(view, false);
                 mSelectedList.remove(position);
 
                 if (multiChoiceSelectionListener != null)
                     multiChoiceSelectionListener.OnItemDeselected(position, mSelectedList.size(), mAllList.size());
             } else {
-                mMultiChoiceAdapter.setActive(view, true);
+                mMultiChoiceAdapter.performActivation(view, true);
                 mSelectedList.put(position, view);
 
                 if (multiChoiceSelectionListener != null)
                     multiChoiceSelectionListener.OnItemSelected(position, mSelectedList.size(), mAllList.size());
             }
+
+            updateToolbarIfInMultiChoiceMode(mSelectedList.size());
         }
     }
+
 
     @Override
     public void onUpdateItemListener(View view, int position) {
         if (mMultiChoiceAdapter != null) {
             if (mSelectedList.containsKey(position))
-                mMultiChoiceAdapter.setActive(view, true);
+                mMultiChoiceAdapter.performActivation(view, true);
             else
-                mMultiChoiceAdapter.setActive(view, false);
+                mMultiChoiceAdapter.performActivation(view, false);
         }
         mAllList.put(position, view);
     }
@@ -103,12 +115,88 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /*
     *
-    * MultiChoice methods ************************************
+    * *********************************** MULTICHOICE METHODS **********************************
     * */
 
+    /**
+     * Deselect all the selected items in the adapter
+     */
+    public boolean deselectAll() {
+        if (mMultiChoiceAdapter != null) {
+            //select all the the view
+            Iterator it = mAllList.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<Integer, View> pair = (Map.Entry<Integer, View>) it.next();
+                mMultiChoiceAdapter.performActivation(pair.getValue(), false);
+            }
+            mSelectedList.clear();
 
+            if (multiChoiceSelectionListener != null)
+                multiChoiceSelectionListener.OnSelectAll(mSelectedList.size(), mAllList.size());
+
+            updateToolbarIfInMultiChoiceMode(mSelectedList.size());
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Select all the view in the adapter
+     */
+    public boolean selectAll() {
+        if (mMultiChoiceAdapter != null) {
+            //select all the the view
+            Iterator it = mAllList.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<Integer, View> pair = (Map.Entry<Integer, View>) it.next();
+                mMultiChoiceAdapter.performActivation(pair.getValue(), true);
+                mSelectedList.put(pair.getKey(), pair.getValue());
+            }
+
+            if (multiChoiceSelectionListener != null)
+                multiChoiceSelectionListener.OnSelectAll(mSelectedList.size(), mAllList.size());
+
+            updateToolbarIfInMultiChoiceMode(mSelectedList.size());
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Select a view from position in the adapter
+     *
+     * @param position the position of the view in the adapter
+     */
+    public boolean select(int position) {
+        View v = mAllList.get(position);
+        if (mMultiChoiceAdapter != null) {
+            mMultiChoiceAdapter.performActivation(v, true);
+            mSelectedList.put(position, v);
+            return true;
+        }
+        return false;
+    }
+
+
+    /*********************************** SETTERS ********************************** */
     /**
      * Set the number of column with a VERTICAL layout.
      * <p/>
@@ -134,62 +222,13 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
         setLayoutManager(mStaggeredGridLayoutManager);
     }
 
-
-    /**
-     * Deselect all the selected items in the adapter
-     */
-    public boolean deselectAll() {
-        if (mMultiChoiceAdapter != null) {
-            //select all the the view
-            Iterator it = mAllList.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry<Integer, View> pair = (Map.Entry<Integer, View>) it.next();
-                mMultiChoiceAdapter.setActive(pair.getValue(), false);
-            }
-            mSelectedList.clear();
-
-            if (multiChoiceSelectionListener != null)
-                multiChoiceSelectionListener.OnSelectAll(mSelectedList.size(), mAllList.size());
-            return true;
-        }
-        return false;
+    private void updateToolbarIfInMultiChoiceMode(int number) {
+        if (isToolbarMultiChoice && multiChoiceToolbarHelper != null)
+            multiChoiceToolbarHelper.updateToolbar(number);
     }
 
-    /**
-     * Select all the view in the adapter
-     */
-    public boolean selectAll() {
-        if (mMultiChoiceAdapter != null) {
-            //select all the the view
-            Iterator it = mAllList.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry<Integer, View> pair = (Map.Entry<Integer, View>) it.next();
-                mMultiChoiceAdapter.setActive(pair.getValue(), true);
-                mSelectedList.put(pair.getKey(), pair.getValue());
-            }
 
-            if (multiChoiceSelectionListener != null)
-                multiChoiceSelectionListener.OnSelectAll(mSelectedList.size(), mAllList.size());
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Select a view from position in the adapter
-     *
-     * @param position the position of the view in the adapter
-     */
-    public boolean select(int position) {
-        View v = mAllList.get(position);
-        if (mMultiChoiceAdapter != null) {
-            mMultiChoiceAdapter.setActive(v, true);
-            mSelectedList.put(position, v);
-            return true;
-        }
-        return false;
-    }
-
+    /*********************************** GETTERS ********************************** */
     /**
      * Method to get the number of item in the adapter
      *
@@ -199,6 +238,7 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
         return mMultiChoiceAdapter.getItemCount();
     }
 
+
     /**
      * Method to get the number of selected items
      *
@@ -207,6 +247,7 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     public int getSelectedItemCount() {
         return mSelectedList.size();
     }
+
 
     /**
      * Get the list of selected item
@@ -220,4 +261,98 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     public void setMultiChoiceSelectionListener(MultiChoiceSelectionListener multiChoiceSelectionListener) {
         this.multiChoiceSelectionListener = multiChoiceSelectionListener;
     }
+
+
+    /*********************************** MULTI CHOICE TOOLBAR ********************************** */
+
+    /**
+     * Enable the multi choice custom app compact toolbar.
+     * <p>
+     * NB: Enable this feature only if providing a custom toolbar via setSupportActionBar in your application.
+     *
+     * @param appCompatActivity Activity that extends AppCompatActivity
+     * @param toolbar           Custom toolbar implementd via setSupportActionBar method
+     */
+    public void setMultiChoiceToolbar(AppCompatActivity appCompatActivity, Toolbar toolbar) {
+        multiChoiceToolbarHelper = new MultiChoiceToolbarHelper(appCompatActivity, this, toolbar);
+        isToolbarMultiChoice = true;
+    }
+
+    /**
+     * Enable the multi choice custom app compact toolbar.
+     * <p>
+     * NB: Enable this feature only if providing a custom toolbar via setSupportActionBar in your application.
+     *
+     * @param appCompatActivity     Activity that extends AppCompatActivity
+     * @param toolbar               Custom toolbar implementd via setSupportActionBar method
+     * @param defaultToolbarTitle   Title to show when no item are selected
+     * @param selectionToolbarTitle Title to show where some item are selected i.e. "5 selected items" (without any spaces)
+     */
+    public void setMultiChoiceToolbar(AppCompatActivity appCompatActivity,
+                                      Toolbar toolbar,
+                                      String defaultToolbarTitle,
+                                      String selectionToolbarTitle) {
+        multiChoiceToolbarHelper = new MultiChoiceToolbarHelper(appCompatActivity, this, toolbar, defaultToolbarTitle, selectionToolbarTitle);
+        isToolbarMultiChoice = true;
+    }
+
+    /**
+     * Enable the multi choice custom app compact toolbar.
+     * <p>
+     * NB: Enable this feature only if providing a custom toolbar via setSupportActionBar in your application.
+     *
+     * @param appCompatActivity        Activity that extends AppCompatActivity
+     * @param toolbar                  Custom toolbar implementd via setSupportActionBar method
+     * @param defaultToolbarTitle      Title to show when no item are selected
+     * @param selectionToolbarTitle    Title to show where some item are selected i.e. "5 selected items" (without any spaces)
+     * @param selectedPrimaryColor     PrimaryColor of the toolbar background when in selection mode
+     * @param selectedPrimaryColorDark PrimaryColorDark of the status bar when in selection mode
+     */
+    public void setMultiChoiceToolbar(AppCompatActivity appCompatActivity,
+                                      Toolbar toolbar,
+                                      String defaultToolbarTitle,
+                                      String selectionToolbarTitle,
+                                      int selectedPrimaryColor,
+                                      int selectedPrimaryColorDark) {
+
+        multiChoiceToolbarHelper = new MultiChoiceToolbarHelper(appCompatActivity, this, toolbar, defaultToolbarTitle, selectionToolbarTitle, selectedPrimaryColor, selectedPrimaryColorDark);
+        isToolbarMultiChoice = true;
+    }
+
+    /**
+     * Enable the multi choice custom app compact toolbar.
+     * <p>
+     * NB: Enable this feature only if providing a custom toolbar via setSupportActionBar in your application.
+     *
+     * @param appCompatActivity        Activity that extends AppCompatActivity
+     * @param toolbar                  Custom toolbar implementd via setSupportActionBar method
+     * @param defaultToolbarTitle      Title to show when no item are selected
+     * @param selectionToolbarTitle    Title to show where some item are selected i.e. "5 selected items" (without any spaces)
+     * @param selectedPrimaryColor     PrimaryColor of the toolbar background when in selection mode
+     * @param selectedPrimaryColorDark PrimaryColorDark of the status bar when in selection mode
+     * @param defaultPrimaryColor      PrimaryColor of the toolbar background when default
+     * @param defaultPrimaryColorDark  PrimaryColorDark of the status bar when default
+     */
+    public void setMultiChoiceToolbar(AppCompatActivity appCompatActivity,
+                                      Toolbar toolbar,
+                                      String defaultToolbarTitle,
+                                      String selectionToolbarTitle,
+                                      int selectedPrimaryColor,
+                                      int selectedPrimaryColorDark,
+                                      int defaultPrimaryColor,
+                                      int defaultPrimaryColorDark) {
+
+        multiChoiceToolbarHelper = new MultiChoiceToolbarHelper(appCompatActivity,
+                this,
+                toolbar,
+                defaultToolbarTitle,
+                selectionToolbarTitle,
+                selectedPrimaryColor,
+                selectedPrimaryColorDark,
+                defaultPrimaryColor,
+                defaultPrimaryColorDark);
+        isToolbarMultiChoice = true;
+    }
+
+
 }

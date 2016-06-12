@@ -38,18 +38,22 @@ public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.View
         this.mMultiChoiceListener = multiChoiceListener;
     }
 
+    public void performActivation(View view, boolean state){
+        if(view != null){
+            setActive(view, state);
+        }
+    }
+
     /**
      * Override this method to customise the active item
      *
      * @param state true if the state is active/selected
      */
-    public void setActive(View view, boolean state) {
-        if(view != null) {
-            if (state) {
-                view.setAlpha(0.25f);
-            } else {
-                view.setAlpha(1f);
-            }
+    protected void setActive(View view, boolean state) {
+        if (state) {
+            view.setAlpha(0.25f);
+        } else {
+            view.setAlpha(1f);
         }
     }
 }

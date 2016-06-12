@@ -8,7 +8,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
-        versionName "1.1.0"
+        versionName "1.1.1"
     }
     buildTypes {
         release {
@@ -39,7 +39,7 @@ ext {
     siteUrl = 'https://github.com/dvdciri/Android-Projects-Components/tree/master/MultiChoiceRecyclerView'
     gitUrl = 'https://github.com/dvdciri/Android-Projects-Components/tree/master/MultiChoiceRecyclerView'
 
-    libraryVersion = '1.1.0'
+    libraryVersion = '1.1.1'
 
     developerId = 'dvd-ciri'
     developerName = 'Davide Cirillo'

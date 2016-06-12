@@ -1,13 +1,11 @@
 package com.davidecirillo.multichoicesample;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView;
 import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceSelectionListener;
@@ -18,9 +16,10 @@ public class MainActivity extends AppCompatActivity implements MultiChoiceSelect
 
     MultiChoiceRecyclerView mMultiChoiceRecyclerView;
     Button next, deselect_all, select_all;
-    TextView all_item_count, select_item_count;
 
     ArrayList<String> mList;
+
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +29,9 @@ public class MainActivity extends AppCompatActivity implements MultiChoiceSelect
         next = (Button) findViewById(R.id.result);
         deselect_all = (Button) findViewById(R.id.deselect_all);
         select_all = (Button) findViewById(R.id.select_all);
-        all_item_count = (TextView) findViewById(R.id.all_item_count);
-        select_item_count = (TextView) findViewById(R.id.selecte_item_count);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
 
         setUpMultiChoiceRecyclerView();
     }
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements MultiChoiceSelect
             @Override
             public void onClick(View v) {
                 mMultiChoiceRecyclerView.selectAll();
+
             }
         });
     }
@@ -73,6 +74,12 @@ public class MainActivity extends AppCompatActivity implements MultiChoiceSelect
         mMultiChoiceRecyclerView = (MultiChoiceRecyclerView) findViewById(R.id.multiChoiceRecyclerView);
         mMultiChoiceRecyclerView.setRecyclerColumnNumber(3);
         mMultiChoiceRecyclerView.setMultiChoiceSelectionListener(this);
+
+        mMultiChoiceRecyclerView.setMultiChoiceToolbar(this,
+                toolbar,
+                getString(R.string.app_name),
+                "item selected",
+                R.color.colorPrimaryMulti, R.color.colorPrimaryDarkMulti);
 
         mList = new ArrayList<>();
         for(int i = 0; i<100; i++){
@@ -85,25 +92,21 @@ public class MainActivity extends AppCompatActivity implements MultiChoiceSelect
 
     @Override
     public void OnItemSelected(int selectedPosition, int itemSelectedCount, int allItemCount) {
-        all_item_count.setText("All item count: "+allItemCount);
-        select_item_count.setText("Selected item count: "+itemSelectedCount);
+        //implement
     }
 
     @Override
     public void OnItemDeselected(int deselectedPosition, int itemSelectedCount, int allItemCount) {
-        all_item_count.setText("All item count: "+allItemCount);
-        select_item_count.setText("Selected item count: "+itemSelectedCount);
+        //implement
     }
 
     @Override
     public void OnSelectAll(int itemSelectedCount, int allItemCount) {
-        all_item_count.setText("All item count: "+allItemCount);
-        select_item_count.setText("Selected item count: "+itemSelectedCount);
+        //implement
     }
 
     @Override
     public void OnDeselectAll(int itemSelectedCount, int allItemCount) {
-        all_item_count.setText("All item count: "+allItemCount);
-        select_item_count.setText("Selected item count: "+itemSelectedCount);
+        //implement
     }
 }
