@@ -107,7 +107,7 @@ The integration with Gradle is very easy, you just need the jcenter repository a
                 getString(R.string.app_name),
                 "item selected");
 ```
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="150">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example_toolbar.png" width="300">
 
 ###Other Methods
 - public int getAllItemCount()
