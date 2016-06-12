@@ -3,6 +3,8 @@
 # Multichoice RecylerView
 
 ##Preview
+![Example](https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png)
+![Example](https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png)
 ![Example](https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example.png)
 
 ##Description
