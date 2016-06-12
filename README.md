@@ -3,9 +3,9 @@
 # Multichoice RecylerView
 
 ##Preview
-![Example](https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png =250x)
-![Example](https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png =250x)
-![Example](https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example.png =250x)
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png" width="300">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="300">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example.png" width="300">
 
 ##Description
 This library has been created to help the integration of a multi-choice selection to the RecyclerView
