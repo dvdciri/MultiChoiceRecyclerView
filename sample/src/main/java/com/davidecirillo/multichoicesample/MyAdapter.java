@@ -19,13 +19,10 @@ package com.davidecirillo.multichoicesample;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceAdapter;
 
@@ -63,7 +60,7 @@ public class MyAdapter extends MultiChoiceAdapter<MyViewHolder> {
     @Override
     public void setActive(View view, boolean state) {
 
-        RelativeLayout relativeLayout = (RelativeLayout) findViewByClass(view, Class.RELATIVE_LAYOUT);
+        RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.get_started_relative_layout);
 
         if(relativeLayout != null){
             if(state){
@@ -72,29 +69,6 @@ public class MyAdapter extends MultiChoiceAdapter<MyViewHolder> {
                 relativeLayout.setBackgroundColor(Color.WHITE);
             }
         }
-    }
-
-    private View findViewByClass(View rootView, Class clazz){
-        for (int i = 0; i< ((ViewGroup) rootView).getChildCount(); i++){
-            View view = ((ViewGroup)rootView).getChildAt(i);
-
-            switch (clazz){
-                case RELATIVE_LAYOUT:
-                    if(view instanceof RelativeLayout)
-                        return view;
-                    break;
-                case TEXT_VIEW:
-                    if(view instanceof TextView)
-                        return view;
-                    break;
-            }
-        }
-        return null;
-    }
-
-    private enum Class{
-        RELATIVE_LAYOUT,
-        TEXT_VIEW
     }
 
     @Override
