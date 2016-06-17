@@ -71,6 +71,7 @@ The integration with Gradle is very easy, you just need the jcenter repository a
         }
     }
 ```
+You could then use method such as **View.findViewById(int id)** to customize your layout as you need*
 
 
 
