@@ -55,7 +55,7 @@ The integration with Gradle is very easy, you just need the jcenter repository a
         ...
     }
 ```
-Don't forget to call **super.onBindViewHolder(holder, position);** when binging the view holde
+Don't forget to call **super.onBindViewHolder(holder, position);** when binging the view holder
 ```java
     MyAdapter myAdapter = new MyAdapter(mList, getApplicationContext());
     mMultiChoiceRecyclerView.setAdapter(myAdapter);
