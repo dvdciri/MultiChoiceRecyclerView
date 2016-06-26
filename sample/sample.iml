@@ -124,7 +124,7 @@
     <orderEntry type="library" exported="" scope="TEST" name="junit-4.12" level="project" />
     <orderEntry type="library" exported="" name="support-vector-drawable-23.4.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.4.0" level="project" />
-    <orderEntry type="module" module-name="multichoicerecyclerview" exported="" />
+    <orderEntry type="module" module-name="MultiChoiceRecyclerView" exported="" />
     <orderEntry type="library" exported="" name="effects-android-23" level="project" />
     <orderEntry type="library" exported="" name="usb-android-23" level="project" />
     <orderEntry type="library" exported="" name="maps-android-23" level="project" />
