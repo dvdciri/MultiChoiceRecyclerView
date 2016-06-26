@@ -7,7 +7,6 @@
 ##Preview
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png" width="250">
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="250">
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example.png" width="250">
 
 ##Description
 This library has been created to help the integration of a multi-choice selection to the RecyclerView
