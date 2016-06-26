@@ -13,4 +13,16 @@
         android:title="Deselect All"
         app:showAsAction="never"
         />
+
+    <item
+        android:id="@+id/select_3"
+        android:title="Select Third Item"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/single_click_mode"
+        android:title="Single Click Mode"
+        app:showAsAction="never"
+        />
 </menu>

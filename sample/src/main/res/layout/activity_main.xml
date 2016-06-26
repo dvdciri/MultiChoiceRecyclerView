@@ -31,14 +31,14 @@
                 android:id="@+id/sample_toolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sample Toolbar"/>
+                android:text="Toolbar + Controls"/>
 
             <Button
                 style="@android:style/Widget.Material.Button.Colored"
                 android:id="@+id/sample_custom_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sample Custom View"/>
+                android:text="Custom View"/>
 
         </LinearLayout>
         <RelativeLayout

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView;
 import com.davidecirillo.multichoicesample.BaseActivity;
@@ -115,8 +116,17 @@ public class SampleToolbarActivity extends BaseActivity {
             case R.id.deselect_all:
                 mMultiChoiceRecyclerView.deselectAll();
                 return true;
+            case R.id.select_3:
+                mMultiChoiceRecyclerView.select(2);
+                return true;
+            case R.id.single_click_mode:
+
+                mMultiChoiceRecyclerView.setSingleClickMode(!mMultiChoiceRecyclerView.isInSingleClickMode());
+                Toast.makeText(getApplicationContext(), "Always Single Click Mode ["+mMultiChoiceRecyclerView.isInSingleClickMode()+"]", Toast.LENGTH_SHORT).show();
+                return true;
         }
 
         return false;
     }
+
 }
