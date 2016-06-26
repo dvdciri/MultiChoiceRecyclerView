@@ -11,10 +11,10 @@
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="250">
 
 ##Description
-This library has been created to help the integration of a multi-choice selection to the RecyclerView
+This libray make life easy when you have to deal with a multi choice selection on recycler view.
 
 ##Implementation
-The integration with Gradle is very easy, you just need the jcenter repository and the library:
+The integration with Gradle is really quick, you just need the jcenter repository and the library dependecy:
 
 ```java
     repositories {
