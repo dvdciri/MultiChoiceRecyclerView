@@ -16,6 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ResultActivity" />
+        <activity android:name=".sampleToolbar.SampleToolbarActivity" />
+        <activity android:name=".sampleCustomView.SampleCustomActivity" />
     </application>
 
 </manifest>

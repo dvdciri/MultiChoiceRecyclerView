@@ -6,4 +6,6 @@
 
     <color name="colorPrimaryMulti">#689F38</color>
     <color name="colorPrimaryDarkMulti">#436724</color>
+
+    <color name="colorBackgroundLight">#5599ccff</color>
 </resources>

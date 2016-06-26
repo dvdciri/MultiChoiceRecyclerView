@@ -15,40 +15,66 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
-        android:paddingTop="10dp"
-        android:layout_below="@+id/multiChoiceRecyclerView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <Button
-            style="@android:style/Widget.Material.Button.Colored"
-            android:id="@+id/select_all"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <Button
+                style="@android:style/Widget.Material.Button.Colored"
+                android:id="@+id/sample_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sample Toolbar"/>
+
+            <Button
+                style="@android:style/Widget.Material.Button.Colored"
+                android:id="@+id/sample_custom_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sample Custom View"/>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/github_button"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select All"/>
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:clickable="true"
+            >
 
-        <Button
-            style="@android:style/Widget.Material.Button.Colored"
-            android:id="@+id/deselect_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Deselect All"/>
+            <TextView
+                android:layout_toStartOf="@+id/githubimage"
+                android:layout_toLeftOf="@+id/githubimage"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_centerVertical="true"
+                android:textSize="20dp"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FORK ME ON GITHUB"/>
 
-        <Button
-            style="@android:style/Widget.Material.Button.Colored"
-            android:id="@+id/result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Result"/>
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/githubimage"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:layout_width="40dp"
+                android:src="@drawable/github"
+                android:layout_height="40dp" />
 
-    <com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView
-        android:layout_below="@id/title"
-        android:scrollbars="vertical"
-        android:id="@+id/multiChoiceRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
 
 </LinearLayout>

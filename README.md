@@ -56,8 +56,8 @@ The integration with Gradle is very easy, you just need the jcenter repository a
     }
 ```
 ```java
-    MyAdapter myAdapter = new MyAdapter(mList, getApplicationContext());
-    mMultiChoiceRecyclerView.setAdapter(myAdapter);
+    MyAdapter mySampleToolbarAdapter = new MyAdapter(mList, getApplicationContext());
+    mMultiChoiceRecyclerView.setAdapter(mySampleToolbarAdapter);
 ```
 
 - You can customize the activation or deactivation just overriding the setActive(View view, boolean state) method of the MultiChoiceAdapter
