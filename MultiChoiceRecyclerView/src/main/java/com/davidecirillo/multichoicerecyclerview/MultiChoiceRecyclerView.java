@@ -18,7 +18,7 @@
 package com.davidecirillo.multichoicerecyclerview;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -54,6 +54,8 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     private MultiChoiceToolbarHelper multiChoiceToolbarHelper;
     private boolean isToolbarMultiChoice = false;
 
+    private boolean isInSingleClickMode = false;
+
     public MultiChoiceRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
@@ -81,22 +83,19 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
 
     @Override
     public void onSingleItemClickListener(View view, int position) {
-        if (mMultiChoiceAdapter != null) {
-            if (mSelectedList.containsKey(position)) {
-                mMultiChoiceAdapter.performActivation(view, false);
-                mSelectedList.remove(position);
+        //Check if it's in a single mode of if there is at least one item in the selected list, before processing the click
+        if (mSelectedList.size() >= 1 || isInSingleClickMode) {
+            performSingleClick(view, position);
+        }
+    }
 
-                if (multiChoiceSelectionListener != null)
-                    multiChoiceSelectionListener.OnItemDeselected(position, mSelectedList.size(), mAllList.size());
-            } else {
-                mMultiChoiceAdapter.performActivation(view, true);
-                mSelectedList.put(position, view);
+    @Override
+    public void onSingleItemLongClickListener(View view, int position) {
+        if (mSelectedList.size() == 0) {
+            performSingleClick(view, position);
 
-                if (multiChoiceSelectionListener != null)
-                    multiChoiceSelectionListener.OnItemSelected(position, mSelectedList.size(), mAllList.size());
-            }
-
-            updateToolbarIfInMultiChoiceMode(mSelectedList.size());
+            Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(300);
         }
     }
 
@@ -190,6 +189,11 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
         if (mMultiChoiceAdapter != null) {
             mMultiChoiceAdapter.performActivation(v, true);
             mSelectedList.put(position, v);
+
+            if (multiChoiceSelectionListener != null)
+                multiChoiceSelectionListener.OnItemSelected(position, mSelectedList.size(), mAllList.size());
+
+            updateToolbarIfInMultiChoiceMode(mSelectedList.size());
             return true;
         }
         return false;
@@ -222,10 +226,53 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
         setLayoutManager(mStaggeredGridLayoutManager);
     }
 
+
+    /**
+     * Set the selection of the RecyclerView to always single click (instead of first long click and then single click)
+     *
+     * @param set
+     */
+    public void setSingleClickMode(boolean set) {
+        this.isInSingleClickMode = set;
+    }
+
+
+    /************************************
+     * PRIVATE METHODS **********************************
+     */
+
     private void updateToolbarIfInMultiChoiceMode(int number) {
         if (isToolbarMultiChoice && multiChoiceToolbarHelper != null)
             multiChoiceToolbarHelper.updateToolbar(number);
     }
+
+    private void performSingleClick(View view, int position) {
+
+        if (mMultiChoiceAdapter != null) {
+            if (mSelectedList.containsKey(position)) {
+                mMultiChoiceAdapter.performActivation(view, false);
+                mSelectedList.remove(position);
+
+                if (multiChoiceSelectionListener != null)
+                    multiChoiceSelectionListener.OnItemDeselected(position, mSelectedList.size(), mAllList.size());
+            } else {
+                mMultiChoiceAdapter.performActivation(view, true);
+                mSelectedList.put(position, view);
+
+                if (multiChoiceSelectionListener != null)
+                    multiChoiceSelectionListener.OnItemSelected(position, mSelectedList.size(), mAllList.size());
+            }
+
+            updateToolbarIfInMultiChoiceMode(mSelectedList.size());
+        }
+
+    }
+
+
+
+
+
+
 
 
     /*********************************** GETTERS ********************************** */
@@ -262,6 +309,9 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
         this.multiChoiceSelectionListener = multiChoiceSelectionListener;
     }
 
+    public boolean isInSingleClickMode() {
+        return isInSingleClickMode;
+    }
 
     /*********************************** MULTI CHOICE TOOLBAR ********************************** */
 

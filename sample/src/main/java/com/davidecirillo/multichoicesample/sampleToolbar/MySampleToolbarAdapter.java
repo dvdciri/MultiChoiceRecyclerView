@@ -15,40 +15,42 @@
  *     Come on, don't tell me you read that.
  */
 
-package com.davidecirillo.multichoicesample;
+package com.davidecirillo.multichoicesample.sampleToolbar;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceAdapter;
+import com.davidecirillo.multichoicesample.R;
 
 import java.util.ArrayList;
 
 /**
  * Created by davidecirillo on 13/03/16.
  */
-public class MyAdapter extends MultiChoiceAdapter<MyViewHolder> {
+public class MySampleToolbarAdapter extends MultiChoiceAdapter<MySampleToolbarViewHolder> {
 
     ArrayList<String> mList;
     Context mContext;
 
-    public MyAdapter(ArrayList<String> stringList, Context context) {
+    public MySampleToolbarAdapter(ArrayList<String> stringList, Context context) {
         this.mList = stringList;
         this.mContext = context;
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.multichoice_grid_layout_item, parent, false));
+    public MySampleToolbarViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new MySampleToolbarViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sample_toolbar, parent, false));
     }
 
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MySampleToolbarViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         holder.mTextView.setText(mList.get(position));
     }
@@ -64,7 +66,7 @@ public class MyAdapter extends MultiChoiceAdapter<MyViewHolder> {
 
         if(relativeLayout != null){
             if(state){
-                relativeLayout.setBackgroundColor(Color.GREEN);
+                relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
             }else{
                 relativeLayout.setBackgroundColor(Color.WHITE);
             }

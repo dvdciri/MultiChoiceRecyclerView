@@ -15,22 +15,28 @@
  *     Come on, don't tell me you read that.
  */
 
-package com.davidecirillo.multichoicesample;
+package com.davidecirillo.multichoicesample.sampleToolbar;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.davidecirillo.multichoicesample.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by davidecirillo on 13/03/16.
  */
-public class MyViewHolder extends RecyclerView.ViewHolder {
+public class MySampleToolbarViewHolder extends RecyclerView.ViewHolder {
 
+    @BindView(R.id.Item_category_name)
     public TextView mTextView;
 
-    public MyViewHolder(View itemView) {
+    public MySampleToolbarViewHolder(View itemView) {
         super(itemView);
 
-        mTextView = (TextView) itemView.findViewById(R.id.Item_category_name);
+        ButterKnife.bind(this, itemView);
     }
 }

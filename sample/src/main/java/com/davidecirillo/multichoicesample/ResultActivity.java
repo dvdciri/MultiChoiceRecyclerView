@@ -17,31 +17,40 @@
 
 package com.davidecirillo.multichoicesample;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import com.davidecirillo.multichoicesample.BaseActivity;
+import com.davidecirillo.multichoicesample.R;
 
 import java.util.ArrayList;
 
-public class ResultActivity extends AppCompatActivity {
+import butterknife.BindView;
 
+public class ResultActivity extends BaseActivity {
+
+    @BindView(R.id.result)
     TextView result;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
-
-        result = (TextView) findViewById(R.id.result);
+    protected void onStart() {
+        super.onStart();
         updateList();
+    }
+
+    @Override
+    protected int setActivityIdentifier() {
+        return R.layout.activity_result;
     }
 
     private void updateList() {
 
-        ArrayList<String> selectedItems = (ArrayList<String>) getIntent().getSerializableExtra("selectedItems");
-        for (String string : selectedItems){
-            result.setText(result.getText() + "\n"+ string);
-        }
+        if(getIntent().hasExtra("selectedItems")) {
+            ArrayList<String> selectedItems = (ArrayList<String>) getIntent().getSerializableExtra("selectedItems");
+            for (String string : selectedItems) {
+                result.setText(result.getText() + "\n" + string);
+            }
+        }else
+            finish();
     }
 
 }

@@ -57,8 +57,8 @@ The integration with Gradle is very easy, you just need the jcenter repository a
 ```
 Don't forget to call **super.onBindViewHolder(holder, position);** when binging the view holder
 ```java
-    MyAdapter myAdapter = new MyAdapter(mList, getApplicationContext());
-    mMultiChoiceRecyclerView.setAdapter(myAdapter);
+    MyAdapter mySampleToolbarAdapter = new MyAdapter(mList, getApplicationContext());
+    mMultiChoiceRecyclerView.setAdapter(mySampleToolbarAdapter);
 ```
 
 - You can customize the activation or deactivation just overriding the setActive(View view, boolean state) method of the MultiChoiceAdapter
@@ -76,8 +76,26 @@ You could then use method such as **View.findViewById(int id)** to customize you
 
 
 
-##Advanced
-- Set a MultiChoiceSelectionListener in order to have a callback whether an action is performed on the recyclerView
+##Fetures
+- **Multi Choice Toolbar**
+Activate and customise the multi choice toolbar provided by the library (only if using setSupportActionBar with Toolbar)
+```java
+    mMultiChoiceRecyclerView.setMultiChoiceToolbar(this,
+                toolbar,
+                getString(R.string.app_name),
+                "item selected");
+```
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example_toolbar.png" width="300">
+
+- **Single Click Mode **
+Use always single click mode (by default, to activate the multi selection mode you need a long click on the first item)
+```java
+    /*Setting single click mode true, the user will be able to select the first item just with a single click*/
+    mMultiChoiceRecyclerView.setSingleClickMode(true);
+```
+
+- **Event Callbacks**
+Set a MultiChoiceSelectionListener in order to have a callback whether an action is performed on the recyclerView
 ```java
     mMultiChoiceRecyclerView.setMultiChoiceSelectionListener(new MultiChoiceSelectionListener() {
             @Override
@@ -102,21 +120,13 @@ You could then use method such as **View.findViewById(int id)** to customize you
     });
 ```
 
-- Activate and customise the multi choice toolbar provided by the library (only if using setSupportActionBar with Toolbar)
-```java
-    mMultiChoiceRecyclerView.setMultiChoiceToolbar(this,
-                toolbar,
-                getString(R.string.app_name),
-                "item selected");
-```
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example_toolbar.png" width="300">
 
 ###Other Methods
 - public int getAllItemCount()
 - public int getSelectedItemCount()
-- public Collection<Integer> getSelectedItemList()
+- **public Collection<Integer> getSelectedItemList()**
 - public boolean select(int position)
-- public boolean selectAll()
+- **public boolean selectAll()**
 - public boolean deselectAll()
 - public void setRecyclerRowNumber(int rowNumber)
 - public void setRecyclerColumnNumber(int columnNumber)
@@ -126,6 +136,7 @@ You could then use method such as **View.findViewById(int id)** to customize you
                                       String selectionToolbarTitle,
                                       int selectedPrimaryColor,
                                       int selectedPrimaryColorDark)
+- public void setSingleClickMode(boolean set)
 
 
 ##License

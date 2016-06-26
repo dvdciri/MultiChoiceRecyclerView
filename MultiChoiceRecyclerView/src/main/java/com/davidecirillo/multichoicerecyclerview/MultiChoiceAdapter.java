@@ -30,6 +30,15 @@ public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.View
                 }
             });
 
+            mCurrentView.setOnLongClickListener(new View.OnLongClickListener() {
+
+                @Override
+                public boolean onLongClick(View v) {
+                    mMultiChoiceListener.onSingleItemLongClickListener(mCurrentView, holder.getAdapterPosition());
+                    return true;
+                }
+            });
+
             mMultiChoiceListener.onUpdateItemListener(mCurrentView, holder.getAdapterPosition());
         }
     }

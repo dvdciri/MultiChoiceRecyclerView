@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 'Google Inc.:Google APIs:23'
@@ -29,4 +30,11 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile project(':multichoicerecyclerview')
     testCompile 'junit:junit:4.12'
+
+    compile 'com.jakewharton:butterknife:8.1.0'
+    apt 'com.jakewharton:butterknife-compiler:8.1.0'
+
+    // RxAndroid - asynchronous operations
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'io.reactivex:rxjava:1.0.14'
 }
