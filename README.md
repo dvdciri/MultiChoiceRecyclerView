@@ -84,18 +84,27 @@ Activate and customise the multi choice toolbar provided by the library (only if
                 toolbar,
                 getString(R.string.app_name),
                 "item selected");
+                
+    //you can set the selected color of the toolbar and status bar as well
+    mMultiChoiceRecyclerView.setMultiChoiceToolbar(this,
+                toolbar,
+                getString(R.string.app_name),
+                "item selected",
+                R.color.colorPrimaryMulti, R.color.colorPrimaryDarkMulti);
 ```
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example_toolbar.png" width="300">
 
-- **Single Click Mode **
+
+- **Single Click Mode**
 Use always single click mode (by default, to activate the multi selection mode you need a long click on the first item)
 ```java
     /*Setting single click mode true, the user will be able to select the first item just with a single click*/
     mMultiChoiceRecyclerView.setSingleClickMode(true);
 ```
 
+
 - **Event Callbacks**
-Set a MultiChoiceSelectionListener in order to have a callback whether an action is performed on the recyclerView
+Use the MultiChoiceSelectionListener in order to have a callback whether an action is performed on the recyclerView
 ```java
     mMultiChoiceRecyclerView.setMultiChoiceSelectionListener(new MultiChoiceSelectionListener() {
             @Override
@@ -124,19 +133,19 @@ Set a MultiChoiceSelectionListener in order to have a callback whether an action
 ###Other Methods
 - public int getAllItemCount()
 - public int getSelectedItemCount()
-- **public Collection<Integer> getSelectedItemList()**
+- public Collection<Integer> **getSelectedItemList()**
 - public boolean select(int position)
-- **public boolean selectAll()**
+- public boolean **selectAll()**
 - public boolean deselectAll()
 - public void setRecyclerRowNumber(int rowNumber)
-- public void setRecyclerColumnNumber(int columnNumber)
-- public void setMultiChoiceToolbar(AppCompatActivity appCompatActivity,
+- public void **setRecyclerColumnNumber(int columnNumber)**
+- public void **setMultiChoiceToolbar(AppCompatActivity appCompatActivity,
                                       Toolbar toolbar,
                                       String defaultToolbarTitle,
                                       String selectionToolbarTitle,
                                       int selectedPrimaryColor,
-                                      int selectedPrimaryColorDark)
-- public void setSingleClickMode(boolean set)
+                                      int selectedPrimaryColorDark)**
+- public void **setSingleClickMode(boolean set)**
 
 
 ##License
