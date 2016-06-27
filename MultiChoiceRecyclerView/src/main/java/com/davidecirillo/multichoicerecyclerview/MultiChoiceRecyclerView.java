@@ -30,7 +30,6 @@ import android.view.View;
 import com.davidecirillo.multichoicerecyclerview.helpers.MultiChoiceToolbarHelper;
 import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceAdapterListener;
 import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceSelectionListener;
-import com.davidecirillo.multichoicesample.MultiChoiceAdapterNotFoundException;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -42,8 +41,6 @@ import java.util.Map;
  */
 
 public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoiceAdapterListener {
-
-    private String EXCEPTION_MESSAGE_ADAPTER = "The adapter of this RecyclerView is not extending the MultiChoiceAdapter class";
 
     private StaggeredGridLayoutManager mStaggeredGridLayoutManager;
     private HashMap<Integer, View> mSelectedList = new HashMap<>();
@@ -74,13 +71,14 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
             }
         } else
             try {
-                throw new MultiChoiceAdapterNotFoundException(EXCEPTION_MESSAGE_ADAPTER);
+                throw new MultiChoiceAdapterNotFoundException();
             } catch (MultiChoiceAdapterNotFoundException e) {
                 e.printStackTrace();
             }
     }
 
 
+    //region MultiChoiceAdapterListener interface implementation
     @Override
     public void onSingleItemClickListener(View view, int position) {
         //Check if it's in a single mode of if there is at least one item in the selected list, before processing the click
@@ -103,7 +101,7 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
 
     @Override
     public void onUpdateItemListener(View view, int position) {
-        if (mMultiChoiceAdapter != null) {
+        if (mMultiChoiceAdapter != null && isMultiChoiceActive()) {
             if (mSelectedList.containsKey(position))
                 performSelect(view, position, false);
             else
@@ -111,26 +109,11 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
         }
         mAllList.put(position, view);
     }
+    //endregion
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-    *
-    * *********************************** MULTICHOICE METHODS **********************************
-    * */
-
+    //region Select/Deselect public methods
     /**
      * Deselect all the selected items in the adapter
      */
@@ -198,9 +181,11 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
         }
         return false;
     }
+    //endregion
 
 
-    /*********************************** SETTERS ********************************** */
+
+    //region Public Setters
     /**
      * Set the number of column with a VERTICAL layout.
      * <p/>
@@ -235,14 +220,11 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     public void setSingleClickMode(boolean set) {
         this.isInSingleClickMode = set;
     }
+    //endregion
 
 
 
-
-
-    /************************************* PRIVATE METHODS **********************************
-     */
-
+    //region Private method for internal use only
     private void updateToolbarIfInMultiChoiceMode(int number) {
         if (isToolbarMultiChoice && multiChoiceToolbarHelper != null)
             multiChoiceToolbarHelper.updateToolbar(number);
@@ -263,12 +245,12 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     }
 
     /**
-     * Remeber to call this method before selecting or deselection something otherwise it wont vibrate
+     * Remember to call this method before selecting or deselection something otherwise it wont vibrate
      */
     private void performVibrate(){
         if(mSelectedList.size() == 0) {
             Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
-            v.vibrate(100);
+            v.vibrate(10);
         }
     }
 
@@ -291,13 +273,11 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
         if (multiChoiceSelectionListener != null && withCallback)
             multiChoiceSelectionListener.OnItemDeselected(position, mSelectedList.size(), mAllList.size());
     }
+    //endregion
 
 
 
-
-
-
-    /*********************************** GETTERS ********************************** */
+    //region Public getters
     /**
      * Method to get the number of item in the adapter
      *
@@ -331,12 +311,26 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
         this.multiChoiceSelectionListener = multiChoiceSelectionListener;
     }
 
+    /**
+     *
+     * @return true if the single click mode is active
+     */
     public boolean isInSingleClickMode() {
         return isInSingleClickMode;
     }
 
-    /*********************************** MULTI CHOICE TOOLBAR ********************************** */
+    /**
+     *
+     * @return true if some item are selected and the multi choice selection is active
+     */
+    public boolean isMultiChoiceActive() {
+        return mSelectedList.size() > 0;
+    }
+    //endregion
 
+
+
+    //region Multic choice toolbar methods
     /**
      * Enable the multi choice custom app compact toolbar.
      * <p>
@@ -424,6 +418,12 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
                 defaultPrimaryColor,
                 defaultPrimaryColorDark);
         isToolbarMultiChoice = true;
+    }
+    //endregion
+
+
+    public void setMultiChoiceOptionMenu(){
+
     }
 
 

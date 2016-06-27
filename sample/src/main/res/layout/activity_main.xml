@@ -20,27 +20,61 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:layout_width="match_parent"
+            android:padding="10dp"
             android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
-                style="@android:style/Widget.Material.Button.Colored"
-                android:id="@+id/sample_toolbar"
-                android:layout_width="wrap_content"
+            <TextView
+                android:padding="15dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Toolbar + Controls"/>
+                android:textSize="20dp"
+                android:textStyle="italic"
+                android:text="@string/description"/>
 
-            <Button
-                style="@android:style/Widget.Material.Button.Colored"
-                android:id="@+id/sample_custom_view"
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/sampleText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Custom View"/>
+                android:text="Samples"
+                android:textStyle="bold"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:layout_below="@+id/sampleText"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <Button
+                    style="@android:style/Widget.Material.Button.Colored"
+                    android:id="@+id/sample_toolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Toolbar + Controls"/>
+
+                <Button
+                    style="@android:style/Widget.Material.Button.Colored"
+                    android:id="@+id/sample_custom_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Custom Selection View"/>
+
+                <Button
+                    style="@android:style/Widget.Material.Button.Colored"
+                    android:id="@+id/sample_gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Image Gallery"/>
+
+            </LinearLayout>
 
         </LinearLayout>
+
+
         <RelativeLayout
             android:id="@+id/github_button"
             android:background="@color/colorPrimary"

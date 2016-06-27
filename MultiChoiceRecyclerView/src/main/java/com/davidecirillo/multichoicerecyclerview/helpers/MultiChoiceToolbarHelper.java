@@ -1,7 +1,6 @@
 package com.davidecirillo.multichoicerecyclerview.helpers;
 
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
@@ -34,7 +33,11 @@ public class MultiChoiceToolbarHelper {
     private int multi_primaryColor = 0;
     private int multi_primaryColorDark = 0;
 
+    private boolean isMCToolbarVisible = false;
 
+
+
+    /*Constructors*/
     public MultiChoiceToolbarHelper(AppCompatActivity appCompatActivity,
                                     MultiChoiceRecyclerView multiChoiceRecyclerView,
                                     Toolbar toolbar) {
@@ -107,10 +110,19 @@ public class MultiChoiceToolbarHelper {
     }
 
 
+
+
+
+
+
+
+    /*Main helper methods*/
     public void updateToolbar(int itemNumber) {
         try {
 
-            if (itemNumber > 0) {
+            if (itemNumber > 0 && isMCToolbarVisible) {
+                updateMultiSelectionToolbar(itemNumber);
+            }else if(itemNumber > 0){
                 showMultiSelectionToolbar(itemNumber);
             } else {
                 showDefaultToolbar();
@@ -143,7 +155,7 @@ public class MultiChoiceToolbarHelper {
             if (selectedToolbarTitle != null)
                 appCompatActivity.getSupportActionBar().setTitle(itemNumber + " " + selectedToolbarTitle);
             else
-                appCompatActivity.getSupportActionBar().setTitle(itemNumber + " selected");
+                appCompatActivity.getSupportActionBar().setTitle(itemNumber);
 
             mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
@@ -153,8 +165,11 @@ public class MultiChoiceToolbarHelper {
                 }
             });
 
+            isMCToolbarVisible = true;
+
         } else throw new Exception("Toolbar not implemented via getSupportActionBar method");
     }
+
 
     private void showDefaultToolbar() throws Exception {
 
@@ -174,10 +189,27 @@ public class MultiChoiceToolbarHelper {
             else
                 appCompatActivity.getSupportActionBar().setTitle(appCompatActivity.getTitle());
 
+            isMCToolbarVisible = false;
 
         } else throw new Exception("Toolbar not implemented via getSupportActionBar method");
     }
 
+
+    private void updateMultiSelectionToolbar(int itemNumber) throws Exception{
+
+        if (appCompatActivity.getSupportActionBar() != null) {
+
+            if (selectedToolbarTitle != null)
+                appCompatActivity.getSupportActionBar().setTitle(itemNumber + " " + selectedToolbarTitle);
+            else
+                appCompatActivity.getSupportActionBar().setTitle(itemNumber);
+
+        } else throw new Exception("Toolbar not implemented via getSupportActionBar method");
+    }
+
+
+
+    /*Helper methods*/
     private int getDefaultColorFromContext(int[] colorRes) {
         TypedValue typedValue = new TypedValue();
 
