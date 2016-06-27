@@ -85,6 +85,8 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     public void onSingleItemClickListener(View view, int position) {
         //Check if it's in a single mode of if there is at least one item in the selected list, before processing the click
         if (mSelectedList.size() >= 1 || isInSingleClickMode) {
+            performVibrate();
+
             performSingleClick(view, position);
         }
     }
@@ -92,10 +94,9 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     @Override
     public void onSingleItemLongClickListener(View view, int position) {
         if (mSelectedList.size() == 0) {
-            performSingleClick(view, position);
+            performVibrate();
 
-            Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
-            v.vibrate(300);
+            performSingleClick(view, position);
         }
     }
 
@@ -104,15 +105,12 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     public void onUpdateItemListener(View view, int position) {
         if (mMultiChoiceAdapter != null) {
             if (mSelectedList.containsKey(position))
-                mMultiChoiceAdapter.performActivation(view, true);
+                performSelect(view, position, false);
             else
-                mMultiChoiceAdapter.performActivation(view, false);
+                performDeselect(view, position, false);
         }
         mAllList.put(position, view);
     }
-
-
-
 
 
 
@@ -138,18 +136,20 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
      */
     public boolean deselectAll() {
         if (mMultiChoiceAdapter != null) {
+
+            performVibrate();
+
             //select all the the view
             Iterator it = mAllList.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry<Integer, View> pair = (Map.Entry<Integer, View>) it.next();
-                mMultiChoiceAdapter.performActivation(pair.getValue(), false);
+
+                performDeselect(pair.getValue(), pair.getKey(), false);
             }
-            mSelectedList.clear();
 
             if (multiChoiceSelectionListener != null)
                 multiChoiceSelectionListener.OnSelectAll(mSelectedList.size(), mAllList.size());
 
-            updateToolbarIfInMultiChoiceMode(mSelectedList.size());
             return true;
         }
         return false;
@@ -161,18 +161,20 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
      */
     public boolean selectAll() {
         if (mMultiChoiceAdapter != null) {
+
+            performVibrate();
+
             //select all the the view
             Iterator it = mAllList.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry<Integer, View> pair = (Map.Entry<Integer, View>) it.next();
-                mMultiChoiceAdapter.performActivation(pair.getValue(), true);
-                mSelectedList.put(pair.getKey(), pair.getValue());
+
+                performSelect(pair.getValue(), pair.getKey(), false);
             }
 
             if (multiChoiceSelectionListener != null)
                 multiChoiceSelectionListener.OnSelectAll(mSelectedList.size(), mAllList.size());
 
-            updateToolbarIfInMultiChoiceMode(mSelectedList.size());
             return true;
         }
         return false;
@@ -187,13 +189,11 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     public boolean select(int position) {
         View v = mAllList.get(position);
         if (mMultiChoiceAdapter != null) {
-            mMultiChoiceAdapter.performActivation(v, true);
-            mSelectedList.put(position, v);
 
-            if (multiChoiceSelectionListener != null)
-                multiChoiceSelectionListener.OnItemSelected(position, mSelectedList.size(), mAllList.size());
+            performVibrate();
 
-            updateToolbarIfInMultiChoiceMode(mSelectedList.size());
+            performSelect(v, position, true);
+
             return true;
         }
         return false;
@@ -237,8 +237,10 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     }
 
 
-    /************************************
-     * PRIVATE METHODS **********************************
+
+
+
+    /************************************* PRIVATE METHODS **********************************
      */
 
     private void updateToolbarIfInMultiChoiceMode(int number) {
@@ -250,25 +252,45 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
 
         if (mMultiChoiceAdapter != null) {
             if (mSelectedList.containsKey(position)) {
-                mMultiChoiceAdapter.performActivation(view, false);
-                mSelectedList.remove(position);
 
-                if (multiChoiceSelectionListener != null)
-                    multiChoiceSelectionListener.OnItemDeselected(position, mSelectedList.size(), mAllList.size());
+                performDeselect(view, position, true);
             } else {
-                mMultiChoiceAdapter.performActivation(view, true);
-                mSelectedList.put(position, view);
 
-                if (multiChoiceSelectionListener != null)
-                    multiChoiceSelectionListener.OnItemSelected(position, mSelectedList.size(), mAllList.size());
+                performSelect(view, position, true);
             }
-
-            updateToolbarIfInMultiChoiceMode(mSelectedList.size());
         }
 
     }
 
+    /**
+     * Remeber to call this method before selecting or deselection something otherwise it wont vibrate
+     */
+    private void performVibrate(){
+        if(mSelectedList.size() == 0) {
+            Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(100);
+        }
+    }
 
+    private void performSelect(View v, int position, boolean withCallback){
+        mMultiChoiceAdapter.performActivation(v, true);
+        mSelectedList.put(position, v);
+
+        updateToolbarIfInMultiChoiceMode(mSelectedList.size());
+
+        if (multiChoiceSelectionListener != null && withCallback)
+            multiChoiceSelectionListener.OnItemSelected(position, mSelectedList.size(), mAllList.size());
+    }
+
+    private void performDeselect(View v, int position, boolean withCallback){
+        mMultiChoiceAdapter.performActivation(v, false);
+        mSelectedList.remove(position);
+
+        updateToolbarIfInMultiChoiceMode(mSelectedList.size());
+
+        if (multiChoiceSelectionListener != null && withCallback)
+            multiChoiceSelectionListener.OnItemDeselected(position, mSelectedList.size(), mAllList.size());
+    }
 
 
 
