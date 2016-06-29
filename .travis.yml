@@ -37,6 +37,9 @@ install:
 
 script: ./gradlew clean build -i --continue
 
+notifications:
+  email: false
+
 
 
 
