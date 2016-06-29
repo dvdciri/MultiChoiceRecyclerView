@@ -1,5 +1,5 @@
 language: android
-sudo: false
+sudo: require
 android:
   components:
     # Uncomment the lines below if you want to
