@@ -5,6 +5,9 @@ env:
   global:
     - ANDROID_TARGET=android-15
     - ANDROID_ABI=armeabi-v7a
+    - ANDROID_HOME=${TRAVIS_BUILD_DIR}/android-sdk
+    - PATH=${ANDROID_HOME}/:${ANDROID_HOME}/tools/:${ANDROID_HOME}/platform-tools/:${PATH}
+
 
 # Turn off caching to avoid any caching problems
 cache: false
@@ -23,9 +26,13 @@ android:
 
 before_install:
   - chmod +x gradlew
+  - cp -R /usr/local/android-sdk-23.0.2 ./android-sdk
 
 install:
   - true
+
+script:
+  - ./gradlew build connectedCheck
 
 notifications:
   email:
