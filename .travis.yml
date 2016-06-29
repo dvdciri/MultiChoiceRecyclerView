@@ -1,13 +1,6 @@
 language: android
 
 jdk: oraclejdk8
-env:
-  global:
-    - ANDROID_TARGET=android-15
-    - ANDROID_ABI=armeabi-v7a
-    - ANDROID_HOME=${TRAVIS_BUILD_DIR}/android-sdk
-    - PATH=${ANDROID_HOME}/:${ANDROID_HOME}/tools/:${ANDROID_HOME}/platform-tools/:${PATH}
-
 
 # Turn off caching to avoid any caching problems
 cache: false
@@ -16,23 +9,15 @@ cache: false
 sudo: require
 android:
   components:
-    - tools
-    - platform-tools
     - build-tools-23.0.3
     - android-23
+    - extra-google-m2repository
     - extra-android-m2repository
-    - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
-
+    - sys-img-armeabi-v7a-addon-google_apis-google-21
 
 before_install:
-  - chmod +x gradlew
-  - cp -R /usr/local/android-sdk-23.0.2 ./android-sdk
-
-install:
-  - true
-
-script:
-  - ./gradlew build connectedCheck
+  - echo no | android create avd --force -n test -t "Google Inc.:Google APIs:21" --abi google_apis/armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
 
 notifications:
   email:
