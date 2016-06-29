@@ -33,15 +33,15 @@ install:
   - true
 
 before_script:
-  - echo no | android create avd --force --name test --target $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &amp;
+  #- echo no | android create avd --force --name test --target $ANDROID_TARGET --abi $ANDROID_ABI
+  #- emulator -avd test -no-skin -no-audio -no-window &amp;
 
 script:
-  - ./gradlew check -PdisablePreDex --continue --stacktrace
-  - android-wait-for-emulator
-  - adb devices
-  - adb shell input keyevent 82 &amp;
-  - ./gradlew connectedAndroidTest -PdisablePreDex --continue --stacktrace
+  #- ./gradlew check -PdisablePreDex --continue --stacktrace
+  #- android-wait-for-emulator
+  #- adb devices
+  #- adb shell input keyevent 82 &amp;
+  #- ./gradlew connectedAndroidTest -PdisablePreDex --continue --stacktrace
 
 notifications:
   email: false
