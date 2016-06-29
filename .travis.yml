@@ -1,4 +1,7 @@
 language: android
+
+jdk: oraclejdk7
+
 # Turn off caching to avoid any caching problems
 cache: false
 # Use the Travis Container-Based Infrastructure
@@ -19,11 +22,21 @@ android:
     # Support library
     - extra-android-support
     - extra-android-m2repository
-    
+
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
     - sys-img-armeabi-v7a-android-19
     - sys-img-x86-android-17
+
+
+before_install:
+  - chmod +x gradlew
+
+install:
+  - true
+
+script: ./gradlew clean build -i --continue
+
 
 
 
