@@ -1,4 +1,7 @@
 language: android
+# Turn off caching to avoid any caching problems
+cache: false
+# Use the Travis Container-Based Infrastructure
 sudo: require
 android:
   components:
@@ -13,7 +16,14 @@ android:
     # The SDK version used to compile your project
     - android-23
 
+    # Support library
+    - extra-android-support
+    - extra-android-m2repository
+    
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
     - sys-img-armeabi-v7a-android-19
     - sys-img-x86-android-17
+
+
+
