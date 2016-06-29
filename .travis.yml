@@ -5,11 +5,6 @@ jdk: oraclejdk7
 # Turn off caching to avoid any caching problems
 cache: false
 
-env:
-  matrix:
-    - ANDROID_TARGET=android-23 ANDROID_ABI=armeabi-v7a
-
-
 # Use the Travis Container-Based Infrastructure
 sudo: require
 android:
@@ -50,6 +45,19 @@ script:
 
 notifications:
   email: false
+
+
+env:
+  matrix:
+    - ANDROID_SDKS=android-15 ANDROID_TARGET=android-15 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-16 ANDROID_TARGET=android-16 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-17 ANDROID_TARGET=android-17 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-18 ANDROID_TARGET=android-18 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-19 ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-20 ANDROID_TARGET=android-20 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-21 ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-22 ANDROID_TARGET=android-22 ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-23 ANDROID_TARGET=android-23 ANDROID_ABI=armeabi-v7a
 
 
 
