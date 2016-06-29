@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MultiChoiceRecyclerView</string>
+
+    <string name="description">\"This library helps dealing with multi choice selection using the Android RecyclerView..\"</string>
 </resources>

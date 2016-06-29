@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.davidecirillo.multichoicesample.sampleCustomView.SampleCustomActivity;
+import com.davidecirillo.multichoicesample.sampleImageGallery.GalleryActivity;
 import com.davidecirillo.multichoicesample.sampleToolbar.SampleToolbarActivity;
 
 import butterknife.OnClick;
@@ -26,6 +27,12 @@ public class MainActivity extends BaseActivity {
     public void toolbar(){
 
         startActivity(new Intent(this, SampleToolbarActivity.class));
+    }
+
+    @OnClick(R.id.sample_gallery)
+    public void gallery(){
+
+        startActivity(new Intent(this, GalleryActivity.class));
     }
 
     @OnClick(R.id.github_button)

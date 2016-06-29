@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
 android {
-    compileSdkVersion 'Google Inc.:Google APIs:23'
+    compileSdkVersion 23
     buildToolsVersion "23.0.3"
     enforceUniquePackageName = false
 
@@ -15,6 +15,11 @@ android {
 
         multiDexEnabled true
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -37,4 +42,6 @@ dependencies {
     // RxAndroid - asynchronous operations
     compile 'io.reactivex:rxandroid:1.0.1'
     compile 'io.reactivex:rxjava:1.0.14'
+
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

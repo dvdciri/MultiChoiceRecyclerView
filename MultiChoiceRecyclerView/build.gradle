@@ -8,7 +8,7 @@ checkstyle {
 }
 
 android {
-    compileSdkVersion 'Google Inc.:Google APIs:23'
+    compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
     defaultConfig {

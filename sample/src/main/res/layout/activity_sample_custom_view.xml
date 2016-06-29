@@ -6,10 +6,18 @@
 
     <include layout="@layout/toolbar" />
 
-    <com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView
-        android:scrollbars="vertical"
-        android:id="@+id/multiChoiceRecyclerView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:padding="5dp"
+        android:layout_height="match_parent">
+
+        <com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView
+            android:scrollbars="vertical"
+            android:id="@+id/multiChoiceRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

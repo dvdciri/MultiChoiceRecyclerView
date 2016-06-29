@@ -19,9 +19,6 @@ package com.davidecirillo.multichoicesample;
 
 import android.widget.TextView;
 
-import com.davidecirillo.multichoicesample.BaseActivity;
-import com.davidecirillo.multichoicesample.R;
-
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -29,7 +26,7 @@ import butterknife.BindView;
 public class ResultActivity extends BaseActivity {
 
     @BindView(R.id.result)
-    TextView result;
+    public TextView result;
 
     @Override
     protected void onStart() {
