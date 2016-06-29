@@ -24,7 +24,7 @@ import rx.schedulers.Schedulers;
 public class SampleCustomActivity extends BaseActivity {
 
     @BindView(R.id.multiChoiceRecyclerView)
-    MultiChoiceRecyclerView multiChoiceRecyclerView;
+    public MultiChoiceRecyclerView multiChoiceRecyclerView;
 
     @Override
     protected int setActivityIdentifier() {

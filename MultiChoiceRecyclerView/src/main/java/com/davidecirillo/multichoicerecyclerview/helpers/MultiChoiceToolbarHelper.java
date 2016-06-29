@@ -20,9 +20,9 @@ import com.davidecirillo.multichoicerecyclerview.R;
 
 public class MultiChoiceToolbarHelper {
 
-    private AppCompatActivity appCompatActivity;
-    private MultiChoiceRecyclerView multiChoiceRecyclerView;
-    private Toolbar mToolbar;
+    private final AppCompatActivity appCompatActivity;
+    private final MultiChoiceRecyclerView multiChoiceRecyclerView;
+    private final Toolbar mToolbar;
 
     private String defaultToolbarTitle;
     private String selectedToolbarTitle;

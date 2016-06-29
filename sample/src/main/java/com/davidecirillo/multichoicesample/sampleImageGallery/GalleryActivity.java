@@ -16,7 +16,7 @@ import butterknife.BindView;
 public class GalleryActivity extends BaseActivity {
 
     @BindView(R.id.multiChoiceRecyclerView)
-    MultiChoiceRecyclerView mMultiChoiceRecyclerView;
+    public MultiChoiceRecyclerView mMultiChoiceRecyclerView;
 
     @Override
     protected int setActivityIdentifier() {

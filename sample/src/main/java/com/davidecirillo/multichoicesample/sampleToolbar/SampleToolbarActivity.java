@@ -46,7 +46,7 @@ public class SampleToolbarActivity extends BaseActivity {
 
         if (stringList != null) {
 
-            ArrayList<String> resultItems = new ArrayList<String>();
+            ArrayList<String> resultItems = new ArrayList<>();
             for (int i : mMultiChoiceRecyclerView.getSelectedItemList()) {
                 resultItems.add(stringList.get(i));
             }
@@ -80,7 +80,7 @@ public class SampleToolbarActivity extends BaseActivity {
 
                     @Override
                     public void onNext(List<String> strings) {
-                        stringList = new ArrayList<String>(strings);
+                        stringList = new ArrayList<>(strings);
 
                         MySampleToolbarAdapter mySampleToolbarAdapter = new MySampleToolbarAdapter(stringList, getApplicationContext());
                         mMultiChoiceRecyclerView.setAdapter(mySampleToolbarAdapter);

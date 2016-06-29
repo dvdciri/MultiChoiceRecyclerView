@@ -20,11 +20,11 @@ import butterknife.ButterKnife;
  * Created by davidecirillo on 27/06/2016.
  */
 
-public class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.SampleGalleryViewHolder> {
+class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.SampleGalleryViewHolder> {
 
-    private Context mContext;
+    private final Context mContext;
 
-    public SampleGalleryAdapter(Context mContext) {
+    SampleGalleryAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
@@ -103,12 +103,12 @@ public class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapte
         }
     }
 
-    public class SampleGalleryViewHolder extends RecyclerView.ViewHolder{
+    class SampleGalleryViewHolder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.image_view)
         ImageView mImageView;
 
-        public SampleGalleryViewHolder(View itemView) {
+        SampleGalleryViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

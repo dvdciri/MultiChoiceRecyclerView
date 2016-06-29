@@ -22,12 +22,12 @@ import butterknife.ButterKnife;
  * Created by davidecirillo on 24/06/2016.
  */
 
-public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomViewAdapter.SampleCustomViewHolder> {
+class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomViewAdapter.SampleCustomViewHolder> {
 
-    ArrayList<MessageV0> messageV0s;
-    Context mContext;
+    private final ArrayList<MessageV0> messageV0s;
+    private final Context mContext;
 
-    public SampleCustomViewAdapter(ArrayList<MessageV0> messageV0s, Context context) {
+    SampleCustomViewAdapter(ArrayList<MessageV0> messageV0s, Context context) {
         this.messageV0s = messageV0s;
         this.mContext = context;
     }
@@ -67,7 +67,7 @@ public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomView
         }
     }
 
-    public class SampleCustomViewHolder extends RecyclerView.ViewHolder{
+    class SampleCustomViewHolder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.title)
         public TextView title;
@@ -75,7 +75,7 @@ public class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomView
         @BindView(R.id.summary)
         public TextView summary;
 
-        public SampleCustomViewHolder(View itemView) {
+        SampleCustomViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

@@ -33,12 +33,12 @@ import java.util.ArrayList;
 /**
  * Created by davidecirillo on 13/03/16.
  */
-public class MySampleToolbarAdapter extends MultiChoiceAdapter<MySampleToolbarViewHolder> {
+class MySampleToolbarAdapter extends MultiChoiceAdapter<MySampleToolbarViewHolder> {
 
-    ArrayList<String> mList;
-    Context mContext;
+    private final ArrayList<String> mList;
+    private final Context mContext;
 
-    public MySampleToolbarAdapter(ArrayList<String> stringList, Context context) {
+    MySampleToolbarAdapter(ArrayList<String> stringList, Context context) {
         this.mList = stringList;
         this.mContext = context;
     }

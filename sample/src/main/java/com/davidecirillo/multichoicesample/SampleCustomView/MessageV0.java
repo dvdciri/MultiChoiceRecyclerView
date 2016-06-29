@@ -4,21 +4,21 @@ package com.davidecirillo.multichoicesample.sampleCustomView;
  * Created by davidecirillo on 24/06/2016.
  */
 
-public class MessageV0 {
+class MessageV0 {
 
-    public String messageTitle;
-    public String messageContent;
+    private final String messageTitle;
+    private final String messageContent;
 
-    public MessageV0(String messageTitle, String messageContent) {
+    MessageV0(String messageTitle, String messageContent) {
         this.messageTitle = messageTitle;
         this.messageContent = messageContent;
     }
 
-    public String getMessageTitle() {
+     String getMessageTitle() {
         return messageTitle;
     }
 
-    public String getMessageContent() {
+    String getMessageContent() {
         return messageContent;
     }
 }

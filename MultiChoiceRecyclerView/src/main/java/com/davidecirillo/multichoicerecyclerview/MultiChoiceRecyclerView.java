@@ -43,8 +43,8 @@ import java.util.Map;
 public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoiceAdapterListener {
 
     private StaggeredGridLayoutManager mStaggeredGridLayoutManager;
-    private HashMap<Integer, View> mSelectedList = new HashMap<>();
-    private HashMap<Integer, View> mAllList = new HashMap<>();
+    private final HashMap<Integer, View> mSelectedList = new HashMap<>();
+    private final HashMap<Integer, View> mAllList = new HashMap<>();
     private MultiChoiceAdapter mMultiChoiceAdapter = null;
     private MultiChoiceSelectionListener multiChoiceSelectionListener = null;
 
@@ -215,7 +215,7 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     /**
      * Set the selection of the RecyclerView to always single click (instead of first long click and then single click)
      *
-     * @param set
+     * @param set true if single click sctivated
      */
     public void setSingleClickMode(boolean set) {
         this.isInSingleClickMode = set;
@@ -323,7 +323,7 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
      *
      * @return true if some item are selected and the multi choice selection is active
      */
-    public boolean isMultiChoiceActive() {
+    private boolean isMultiChoiceActive() {
         return mSelectedList.size() > 0;
     }
     //endregion
@@ -420,11 +420,4 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
         isToolbarMultiChoice = true;
     }
     //endregion
-
-
-    public void setMultiChoiceOptionMenu(){
-
-    }
-
-
 }

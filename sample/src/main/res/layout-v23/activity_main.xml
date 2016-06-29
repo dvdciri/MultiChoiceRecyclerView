@@ -86,9 +86,7 @@
 
             <TextView
                 android:layout_toStartOf="@+id/githubimage"
-                android:layout_toLeftOf="@+id/githubimage"
                 android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
                 android:layout_centerVertical="true"
                 android:textSize="16sp"
                 android:textColor="@android:color/white"
@@ -99,7 +97,6 @@
             <ImageView
                 android:id="@+id/githubimage"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:layout_gravity="end"
                 android:layout_width="35dp"
                 android:src="@drawable/github"
