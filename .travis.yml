@@ -1,6 +1,10 @@
 language: android
 
-jdk: oraclejdk7
+jdk: oraclejdk8
+env:
+  global:
+    - ANDROID_TARGET=android-15
+    - ANDROID_ABI=armeabi-v7a
 
 # Turn off caching to avoid any caching problems
 cache: false
@@ -9,17 +13,12 @@ cache: false
 sudo: require
 android:
   components:
-
-    # The BuildTools version used by your project
+    - tools
+    - platform-tools
     - build-tools-23.0.3
-
-    # The SDK version used to compile your project
     - android-23
-
-    # Specify at least one system image,
-    # if you need to run emulator(s) during your tests
-    - sys-img-armeabi-v7a-android-19
-    - sys-img-x86-android-17
+    - extra-android-m2repository
+    - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
 
 
 before_install:
@@ -28,22 +27,10 @@ before_install:
 install:
   - true
 
-before_script:
-  #- echo no | android create avd --force --name test --target $ANDROID_TARGET --abi $ANDROID_ABI
-  #- emulator -avd test -no-skin -no-audio -no-window &amp;
-
-script:
-  #- ./gradlew check -PdisablePreDex --continue --stacktrace
-  #- android-wait-for-emulator
-  #- adb devices
-  #- adb shell input keyevent 82 &amp;
-  #- ./gradlew connectedAndroidTest -PdisablePreDex --continue --stacktrace
-
 notifications:
   email:
     on_success: change # default: change
     on_failure: always # default: always
-
 
 
 
