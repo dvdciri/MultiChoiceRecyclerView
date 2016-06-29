@@ -1,4 +1,4 @@
-package com.davidecirillo.multichoicesample;
+package com.davidecirillo.multichoicerecyclerview;
 
 /**
  * Created by davidecirillo on 13/03/16.

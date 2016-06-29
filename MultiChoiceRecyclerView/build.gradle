@@ -1,4 +1,11 @@
 apply plugin: 'com.android.library'
+apply plugin: 'checkstyle'
+
+
+checkstyle {
+    configFile rootProject.file('checkstyle.xml')
+    showViolations true
+}
 
 android {
     compileSdkVersion 'Google Inc.:Google APIs:23'
@@ -10,6 +17,16 @@ android {
         versionCode 5
         versionName "1.1.3"
     }
+
+    lintOptions {
+        // set to true to turn off analysis progress reporting by lint
+        quiet true
+        // if true, stop the gradle build if errors are found
+        abortOnError true
+        // if true, only report errors
+        ignoreWarnings true
+    }
+
     buildTypes {
         release {
             minifyEnabled false

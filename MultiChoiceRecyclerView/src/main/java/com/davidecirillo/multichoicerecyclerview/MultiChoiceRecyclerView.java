@@ -30,7 +30,6 @@ import android.view.View;
 import com.davidecirillo.multichoicerecyclerview.helpers.MultiChoiceToolbarHelper;
 import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceAdapterListener;
 import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceSelectionListener;
-import com.davidecirillo.multichoicesample.MultiChoiceAdapterNotFoundException;
 
 import java.util.Collection;
 import java.util.HashMap;
