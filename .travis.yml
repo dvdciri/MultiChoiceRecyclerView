@@ -1,6 +1,10 @@
 language: android
 
 jdk: oraclejdk8
+env:
+  global:
+    - ANDROID_TARGET=android-15
+    - ANDROID_ABI=armeabi-v7a
 
 # Turn off caching to avoid any caching problems
 cache: false
@@ -9,12 +13,16 @@ cache: false
 sudo: require
 android:
   components:
-    - build-tools-21.1.2
-    - android-21
-    - addon-google_apis-google-21
-    - extra-google-m2repository
+    - tools
+    - platform-tools
+    - build-tools-23.0.3
+    - android-23
     - extra-android-m2repository
-    - sys-img-armeabi-v7a-addon-google_apis-google-21
+    - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
+
+
+before_install:
+  - chmod +x gradlew
 
 notifications:
   email:
