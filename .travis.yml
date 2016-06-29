@@ -16,10 +16,6 @@ android:
     - extra-android-m2repository
     - sys-img-armeabi-v7a-addon-google_apis-google-21
 
-before_install:
-  - echo no | android create avd --force -n test -t "Google Inc.:Google APIs:21" --abi google_apis/armeabi-v7a
-  - emulator -avd test -no-skin -no-audio -no-window &
-
 notifications:
   email:
     on_success: change # default: change
