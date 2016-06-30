@@ -2,13 +2,14 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MultiChoiceRecyclerView-green.svg?style=true)](https://android-arsenal.com/details/1/3755)
 
-
 # Multichoice RecylerView
 
 ##Preview
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example0.png" width="250">
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png" width="250">
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="250">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example0.png" width="210">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png" width="210">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="210">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example4.png" width="210">
+
 
 ##Description
 This libray make life easy when you have to deal with a multi choice selection on recycler view.
@@ -53,10 +54,18 @@ The integration with Gradle is really quick, you just need the jcenter repositor
             this.mContext = context;
         }
         
-        ...
+         @Override
+         public void onBindViewHolder(MySampleToolbarViewHolder holder, int position) {
+            super.onBindViewHolder(holder, position);
+            
+            ...
+         }
     }
 ```
-Don't forget to call **super.onBindViewHolder(holder, position);** when binging the view holder
+**N.B.**
+- Do not forget to call **super.onBindViewHolder(holder, position);** when binging the view holder
+- Do not call View.OnClickListener on the "holder.itemView", override **defaultItemViewClickListener(...)** method and provide the implementation that you want
+
 ```java
     MyAdapter mySampleToolbarAdapter = new MyAdapter(mList, getApplicationContext());
     mMultiChoiceRecyclerView.setAdapter(mySampleToolbarAdapter);
