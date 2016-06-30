@@ -29,8 +29,8 @@ before_script:
   - adb shell input keyevent &
 
 script:
-  - ./gradlew test --continue
-  - ./gradlew connectedAndroidTest
+  - ./gradlew test --continue --debug
+  - ./gradlew connectedAndroidTest --debug
    #instrumental testing
    #unit testing
 
