@@ -7,6 +7,7 @@
     app:titleTextColor="@android:color/white"
     android:background="@color/colorPrimary"
     android:theme="@style/ThemeToolbar"
+    android:contentDescription="@string/cd_main_toolbar"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 </android.support.v7.widget.Toolbar>
