@@ -280,6 +280,6 @@ public class SampleToolbarActivityTest extends BaseMultiChoiceActivityTest {
     protected boolean isSelected(View view) {
         RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.get_started_relative_layout);
 
-        return relativeLayout != null && ((ColorDrawable) relativeLayout.getBackground()).getColor() == ContextCompat.getColor(mActivity, R.color.colorPrimaryDark);
+        return !(relativeLayout == null || relativeLayout.getBackground() == null) && ((ColorDrawable) relativeLayout.getBackground()).getColor() == ContextCompat.getColor(mActivity, R.color.colorPrimaryDark);
     }
 }
