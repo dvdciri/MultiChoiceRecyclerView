@@ -29,16 +29,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.davidecirillo.multichoicesample.api.BaseMultiChoiceActivityTest;
-import com.davidecirillo.multichoicesample.sampleToolbar.SampleToolbarActivity;
+import com.davidecirillo.multichoicesample.sampleCustomView.SampleCustomActivity;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -51,13 +49,13 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.core.StringContains.containsString;
 
 @RunWith(AndroidJUnit4.class)
-public class SampleToolbarActivityTest extends BaseMultiChoiceActivityTest {
+public class SampleCustomViewTest extends BaseMultiChoiceActivityTest {
 
-    public SampleToolbarActivity mActivity;
+    public SampleCustomActivity mActivity;
 
     @Rule
-    public ActivityTestRule<SampleToolbarActivity> mActivityRule = new ActivityTestRule<>(
-            SampleToolbarActivity.class);
+    public ActivityTestRule<SampleCustomActivity> mActivityRule = new ActivityTestRule<>(
+            SampleCustomActivity.class);
 
     @Before
     public void setUp() {
@@ -158,122 +156,6 @@ public class SampleToolbarActivityTest extends BaseMultiChoiceActivityTest {
         onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
                 .check(matches(withText(R.string.app_name)));
     }
-
-    /**
-     * #6 testSelectAllOptionMenu
-     *
-     * Find and Click on the Select All option menu item and check that all the items in the
-     * MultiChoiceRecyclerView are selected
-     */
-    @Test
-    public void testSelectAllOptionMenu() {
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-
-        onView(withText("Select All"))
-                .perform(click());
-
-        onView(withId(R.id.multiChoiceRecyclerView))
-                .check(matches(areAllSelected()));
-    }
-
-    /**
-     * #7 testDeselectAllOptionMenu
-     *
-     * Run the testSelectAllOptionMenu test + click on the Deselect all the check that all the item will be deselected
-     */
-    @Test
-    public void testDeselectAllOptionMenu() {
-        testSelectAllOptionMenu();
-
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-
-        onView(withText("Deselect All"))
-                .perform(click());
-
-        onView(withId(R.id.multiChoiceRecyclerView))
-                .check(matches(not(areAllSelected())));
-    }
-
-    /**
-     * #8 testSelectThirdItemOptionMenu
-     *
-     * Find and Click on the option menu item "Select Third Item" and check that the third item is selected properly
-     */
-    @Test
-    public void testSelectThirdItemOptionMenu() {
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-
-        onView(withText("Select Third Item"))
-                .perform(click());
-
-        //Contrary assertion after click
-        onView(withId(R.id.multiChoiceRecyclerView))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(2, click()))
-                .check(matches(not(isSelected())));
-
-    }
-
-    /**
-     * #9 testSingleClickModeOptionMenu
-     *
-     * Find and Click on the option menu item "Single Click Mode" and check that the functionality is activated on the
-     * MultiChoiceRecyclerView
-     */
-    @Test
-    public void testSingleClickModeOptionMenu() {
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-
-        onView(withText("Single Click Mode"))
-                .perform(click());
-
-        onView(withId(R.id.multiChoiceRecyclerView))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()))
-                .check(matches(isSelected()));
-
-        //Check the toolbar as well
-        onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
-                .check(matches(withText(containsString("1"))));
-
-        onView(withId(R.id.multiChoiceRecyclerView))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(1, click()))
-                .check(matches(isSelected()));
-
-        onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
-                .check(matches(withText(containsString("2"))));
-    }
-
-
-    /**
-     * #10 testResultButtonGiveCorrectResultItem
-     *
-     * Should check that all selected items are passed through the next activity and are correct
-     */
-    @Test
-    public void testResultButtonGiveCorrectResultItem(){
-
-        //Select some items
-        onView(withId(R.id.multiChoiceRecyclerView))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0, longClick()))
-                .check(matches(isSelected()));
-        onView(withId(R.id.multiChoiceRecyclerView))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(5, click()))
-                .check(matches(isSelected()));
-        onView(withId(R.id.multiChoiceRecyclerView))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(8, click()))
-                .check(matches(isSelected()));
-
-        //Click on the result button
-        onView(withId(R.id.result))
-                .perform(click());
-
-        onView(allOf(isAssignableFrom(TextView.class), withId(R.id.result)))
-                .check(matches(withText(containsString("0"))));
-        onView(allOf(isAssignableFrom(TextView.class), withId(R.id.result)))
-                .check(matches(withText(containsString("5"))));
-        onView(allOf(isAssignableFrom(TextView.class), withId(R.id.result)))
-                .check(matches(withText(containsString("8"))));
-    }
-
 
     @Override
     protected boolean isSelected(View view) {

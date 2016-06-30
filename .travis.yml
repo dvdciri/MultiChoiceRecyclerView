@@ -26,11 +26,14 @@ before_script:
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
+  - chmod +x deploy.sh
 
 script:
-  - android list target
-  - ./gradlew connectedAndroidTest #instrumental testing
-  - ./gradlew test #unit testing
+  - ./gradlew test --continue
+  - ./gradlew connectedAndroidTest
+  - ./deploy.sh
+   #instrumental testing
+   #unit testing
 
 notifications:
   email:
