@@ -224,6 +224,11 @@ public class SampleToolbarActivityTest extends BaseMultiChoiceActivityTest {
     public void testSingleClickModeOptionMenu() {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         onView(withText("Single Click Mode"))
                 .perform(click());
 
