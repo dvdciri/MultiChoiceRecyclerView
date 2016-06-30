@@ -11,6 +11,9 @@ import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceAdapterLis
  */
 public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.ViewHolder> extends MultiChoiceRecyclerView.Adapter<VH> {
 
+    protected boolean isInMultiChoiceMode = false;
+    protected boolean isInSingleClickMode = false;
+
     private MultiChoiceAdapterListener mMultiChoiceListener;
 
     @Override
@@ -23,12 +26,18 @@ public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.View
         final View mCurrentView = holder.itemView;
 
         if (mMultiChoiceListener != null) {
-            mCurrentView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mMultiChoiceListener.onSingleItemClickListener(mCurrentView, holder.getAdapterPosition());
-                }
-            });
+
+            if (isInMultiChoiceMode || isInSingleClickMode) {
+                mCurrentView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mMultiChoiceListener.onSingleItemClickListener(mCurrentView, holder.getAdapterPosition());
+                    }
+                });
+            } else {
+                if (provideDefaultItemViewClickListener(holder, position) != null)
+                    mCurrentView.setOnClickListener(provideDefaultItemViewClickListener(holder, position));
+            }
 
             mCurrentView.setOnLongClickListener(new View.OnLongClickListener() {
 
@@ -43,12 +52,13 @@ public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.View
         }
     }
 
+
     public void setMultiChoiceListener(MultiChoiceAdapterListener multiChoiceListener) {
         this.mMultiChoiceListener = multiChoiceListener;
     }
 
-    public void performActivation(View view, boolean state){
-        if(view != null){
+    public void performActivation(View view, boolean state) {
+        if (view != null) {
             setActive(view, state);
         }
     }
@@ -64,5 +74,14 @@ public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.View
         } else {
             view.setAlpha(1f);
         }
+    }
+
+    /**
+     * Provide the default behaviour for the item click with multi choice mode disabled
+     *
+     * @return the onClick action to perform when multi choice selection is off
+     */
+    protected View.OnClickListener provideDefaultItemViewClickListener(VH holder, int position) {
+        return null;
     }
 }

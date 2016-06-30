@@ -52,10 +52,18 @@ The integration with Gradle is really quick, you just need the jcenter repositor
             this.mContext = context;
         }
         
-        ...
+         @Override
+         public void onBindViewHolder(MySampleToolbarViewHolder holder, int position) {
+            super.onBindViewHolder(holder, position);
+            
+            ...
+         }
     }
 ```
-Don't forget to call **super.onBindViewHolder(holder, position);** when binging the view holder
+**Attention**
+- Do not forget to call **super.onBindViewHolder(holder, position);** when binging the view holder
+- Do not call View.OnClickListener on the "holder.itemView", override provideDefaultItemViewClickListener(VH holder, int position) method and provide the implementation
+
 ```java
     MyAdapter mySampleToolbarAdapter = new MyAdapter(mList, getApplicationContext());
     mMultiChoiceRecyclerView.setAdapter(mySampleToolbarAdapter);

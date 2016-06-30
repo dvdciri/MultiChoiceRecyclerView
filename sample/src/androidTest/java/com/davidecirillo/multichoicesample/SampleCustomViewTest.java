@@ -164,8 +164,8 @@ public class SampleCustomViewTest extends BaseMultiChoiceActivityTest {
         RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.container);
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
 
-        return relativeLayout != null
-                && ((ColorDrawable) relativeLayout.getBackground()).getColor() == ContextCompat.getColor(mActivity, R.color.colorBackgroundLight)
-                && ((ColorDrawable) imageView.getBackground()).getColor() == ContextCompat.getColor(mActivity, R.color.colorPrimaryDark);
+        return !(relativeLayout == null || imageView == null
+                || relativeLayout.getBackground() == null || imageView.getBackground() == null) && ((ColorDrawable) relativeLayout.getBackground()).getColor() == ContextCompat.getColor(mActivity, R.color.colorBackgroundLight) && ((ColorDrawable) imageView.getBackground()).getColor() == ContextCompat.getColor(mActivity, R.color.colorPrimaryDark);
+
     }
 }

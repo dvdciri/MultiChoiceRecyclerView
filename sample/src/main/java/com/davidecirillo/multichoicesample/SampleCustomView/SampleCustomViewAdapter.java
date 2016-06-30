@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceAdapter;
 import com.davidecirillo.multichoicesample.R;
@@ -65,6 +66,16 @@ class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomViewAdapter
             relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, android.R.color.transparent));
             imageView.setBackgroundColor(ContextCompat.getColor(mContext, android.R.color.transparent));
         }
+    }
+
+    @Override
+    protected View.OnClickListener provideDefaultItemViewClickListener(SampleCustomViewHolder holder, final int position) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Click on item "+position, Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 
     class SampleCustomViewHolder extends RecyclerView.ViewHolder{

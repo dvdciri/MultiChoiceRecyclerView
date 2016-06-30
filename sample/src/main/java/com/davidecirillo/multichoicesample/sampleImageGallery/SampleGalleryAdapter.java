@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceAdapter;
 import com.davidecirillo.multichoicesample.R;
@@ -101,6 +102,16 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
             imageView.startAnimation(deselectAnimation);
             tickImage.setVisibility(View.INVISIBLE);
         }
+    }
+
+    @Override
+    protected View.OnClickListener provideDefaultItemViewClickListener(SampleGalleryViewHolder holder, final int position) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Click on item "+position, Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 
     class SampleGalleryViewHolder extends RecyclerView.ViewHolder{
