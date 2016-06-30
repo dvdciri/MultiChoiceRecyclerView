@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceAdapter;
 import com.davidecirillo.multichoicesample.R;
@@ -53,6 +54,8 @@ class MySampleToolbarAdapter extends MultiChoiceAdapter<MySampleToolbarViewHolde
     public void onBindViewHolder(MySampleToolbarViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         holder.mTextView.setText(mList.get(position));
+
+
     }
 
 
@@ -71,6 +74,16 @@ class MySampleToolbarAdapter extends MultiChoiceAdapter<MySampleToolbarViewHolde
                 relativeLayout.setBackgroundColor(Color.WHITE);
             }
         }
+    }
+
+    @Override
+    protected View.OnClickListener defaultItemViewClickListener(MySampleToolbarViewHolder holder, final int position) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Click on item "+position, Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 
     @Override

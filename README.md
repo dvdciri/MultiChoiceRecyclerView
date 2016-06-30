@@ -6,11 +6,9 @@
 # Multichoice RecylerView
 
 ##Preview
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example0.png" width="210">
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png" width="210">
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="210">
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example4.png" width="210">
-
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example0.png" width="250">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png" width="250">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="250">
 
 ##Description
 This libray make life easy when you have to deal with a multi choice selection on recycler view.
@@ -25,7 +23,7 @@ The integration with Gradle is really quick, you just need the jcenter repositor
     ...
     
     dependencies {
-        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:1.1.3'
+        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:1.1.4'
     }
 ```
 
