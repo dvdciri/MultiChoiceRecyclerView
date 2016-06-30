@@ -37,6 +37,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
+import static android.support.test.espresso.Espresso.closeSoftKeyboard;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -224,6 +225,7 @@ public class SampleToolbarActivityTest extends BaseMultiChoiceActivityTest {
     public void testSingleClickModeOptionMenu() {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
+        closeSoftKeyboard();
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
