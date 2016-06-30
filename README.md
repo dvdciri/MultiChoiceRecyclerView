@@ -2,12 +2,6 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MultiChoiceRecyclerView-green.svg?style=true)](https://android-arsenal.com/details/1/3755)
 
-Develop build:
-[![Build Status](https://travis-ci.org/dvdciri/MultiChoiceRecyclerView.svg?branch=develop)](https://travis-ci.org/dvdciri/MultiChoiceRecyclerView)
-
-Master build:
-[![Build Status](https://travis-ci.org/dvdciri/MultiChoiceRecyclerView.svg?branch=master)](https://travis-ci.org/dvdciri/MultiChoiceRecyclerView)
-
 # Multichoice RecylerView
 
 ##Preview
