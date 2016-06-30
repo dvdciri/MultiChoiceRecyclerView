@@ -69,7 +69,7 @@ class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomViewAdapter
     }
 
     @Override
-    protected View.OnClickListener provideDefaultItemViewClickListener(SampleCustomViewHolder holder, final int position) {
+    protected View.OnClickListener defaultItemViewClickListener(SampleCustomViewHolder holder, final int position) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {

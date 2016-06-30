@@ -35,8 +35,8 @@ public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.View
                     }
                 });
             } else {
-                if (provideDefaultItemViewClickListener(holder, position) != null)
-                    mCurrentView.setOnClickListener(provideDefaultItemViewClickListener(holder, position));
+                if (defaultItemViewClickListener(holder, position) != null)
+                    mCurrentView.setOnClickListener(defaultItemViewClickListener(holder, position));
             }
 
             mCurrentView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -81,7 +81,7 @@ public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.View
      *
      * @return the onClick action to perform when multi choice selection is off
      */
-    protected View.OnClickListener provideDefaultItemViewClickListener(VH holder, int position) {
+    protected View.OnClickListener defaultItemViewClickListener(VH holder, int position) {
         return null;
     }
 }

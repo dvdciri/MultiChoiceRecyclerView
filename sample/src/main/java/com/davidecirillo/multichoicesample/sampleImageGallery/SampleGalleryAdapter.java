@@ -105,7 +105,7 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
     }
 
     @Override
-    protected View.OnClickListener provideDefaultItemViewClickListener(SampleGalleryViewHolder holder, final int position) {
+    protected View.OnClickListener defaultItemViewClickListener(SampleGalleryViewHolder holder, final int position) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {

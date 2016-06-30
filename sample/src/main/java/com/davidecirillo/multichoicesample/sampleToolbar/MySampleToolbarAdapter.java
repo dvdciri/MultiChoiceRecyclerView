@@ -77,7 +77,7 @@ class MySampleToolbarAdapter extends MultiChoiceAdapter<MySampleToolbarViewHolde
     }
 
     @Override
-    protected View.OnClickListener provideDefaultItemViewClickListener(MySampleToolbarViewHolder holder, final int position) {
+    protected View.OnClickListener defaultItemViewClickListener(MySampleToolbarViewHolder holder, final int position) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {

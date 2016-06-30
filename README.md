@@ -62,7 +62,7 @@ The integration with Gradle is really quick, you just need the jcenter repositor
 ```
 **Attention**
 - Do not forget to call **super.onBindViewHolder(holder, position);** when binging the view holder
-- Do not call View.OnClickListener on the "holder.itemView", override provideDefaultItemViewClickListener(VH holder, int position) method and provide the implementation
+- Do not call View.OnClickListener on the "holder.itemView", override **defaultItemViewClickListener(...)** method and provide the implementation that you want
 
 ```java
     MyAdapter mySampleToolbarAdapter = new MyAdapter(mList, getApplicationContext());
