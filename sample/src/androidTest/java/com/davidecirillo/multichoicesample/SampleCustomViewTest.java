@@ -25,6 +25,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -60,6 +61,7 @@ public class SampleCustomViewTest extends BaseMultiChoiceActivityTest {
     @Before
     public void setUp() {
         mActivity = mActivityRule.getActivity();
+        wakeScreen(mActivity);
     }
 
     /**
@@ -159,8 +161,11 @@ public class SampleCustomViewTest extends BaseMultiChoiceActivityTest {
 
     @Override
     protected boolean isSelected(View view) {
-        RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.get_started_relative_layout);
+        RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.container);
+        ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
 
-        return relativeLayout != null && ((ColorDrawable) relativeLayout.getBackground()).getColor() == ContextCompat.getColor(mActivity, R.color.colorPrimaryDark);
+        return relativeLayout != null
+                && ((ColorDrawable) relativeLayout.getBackground()).getColor() == ContextCompat.getColor(mActivity, R.color.colorBackgroundLight)
+                && ((ColorDrawable) imageView.getBackground()).getColor() == ContextCompat.getColor(mActivity, R.color.colorPrimaryDark);
     }
 }

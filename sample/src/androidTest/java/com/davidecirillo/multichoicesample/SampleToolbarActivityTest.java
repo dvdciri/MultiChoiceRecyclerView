@@ -62,6 +62,7 @@ public class SampleToolbarActivityTest extends BaseMultiChoiceActivityTest {
     @Before
     public void setUp() {
         mActivity = mActivityRule.getActivity();
+        wakeScreen(mActivity);
     }
 
     /**

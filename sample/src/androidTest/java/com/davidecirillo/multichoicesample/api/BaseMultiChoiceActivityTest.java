@@ -1,11 +1,16 @@
 package com.davidecirillo.multichoicesample.api;
 
+import android.app.Activity;
+import android.app.KeyguardManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.WindowManager;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+
+import static android.content.Context.KEYGUARD_SERVICE;
 
 /*
         ~Copyright(c)2014 Davide Cirillo
@@ -77,5 +82,23 @@ public abstract class BaseMultiChoiceActivityTest {
                 return false;
             }
         };
+    }
+
+    protected void wakeScreen(final Activity activity){
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                KeyguardManager mKG = (KeyguardManager) activity.getSystemService(KEYGUARD_SERVICE);
+                KeyguardManager.KeyguardLock mLock = mKG.newKeyguardLock(KEYGUARD_SERVICE);
+                mLock.disableKeyguard();
+
+                //turn the screen on
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                        | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                        | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                        | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+                        | WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON);
+            }
+        });
     }
 }
