@@ -29,7 +29,8 @@ before_script:
 
 script:
   - android list target
-  - ./gradlew connectedAndroidTest
+  - ./gradlew connectedAndroidTest #instrumental testing
+  - ./gradlew test #unit testing
 
 notifications:
   email:
