@@ -69,7 +69,7 @@ ext {
     siteUrl = 'https://github.com/dvdciri/Android-Projects-Components/tree/master/MultiChoiceRecyclerView'
     gitUrl = 'https://github.com/dvdciri/Android-Projects-Components/tree/master/MultiChoiceRecyclerView'
 
-    libraryVersion = '1.1.4'
+    libraryVersion = PUBLISH_VERSION
 
     developerId = 'dvd-ciri'
     developerName = 'Davide Cirillo'
@@ -80,6 +80,6 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
-//Enable those just for bintray upload
-//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
-//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
+//Enable those just for bintray upload whenever is needed
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
