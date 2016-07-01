@@ -12,6 +12,9 @@ ext {
     SUPPORT_LIBRARY_VERSION = '23.4.0'
     BUILD_TOOLS = "23.0.3"
     TARGET_SDK = 23
+
+    PUBLISH_ARTIFACT_ID = 'multichoicerecyclerview'
+    PUBLISH_GROUP_ID = 'com.davidecirillo.multichoicerecyclerview'
 }
 
 android {
@@ -52,16 +55,14 @@ dependencies {
 
 }
 
-ext {
+/*ext {
     bintrayRepo = 'maven'
     bintrayName = 'MultiChoiceRecyclerView'
 
-    //publishedGroupId = 'com.davidecirillo.multichoicerecyclerview'
-    PUBLISH_GROUP_ID = 'com.davidecirillo.multichoicerecyclerview'
-    libraryName = 'MultiChoiceRecyclerView'
-    //artifact = 'multichoicerecyclerview'
-    PUBLISH_ARTIFACT_ID = 'multichoicerecyclerview'
+    publishedGroupId = 'com.davidecirillo.multichoicerecyclerview'
 
+    libraryName = 'MultiChoiceRecyclerView'
+    artifact = 'multichoicerecyclerview'
 
     libraryDescription = 'A custom implementation of RecyclerView with a multi-choice selection mode'
 
@@ -77,7 +78,7 @@ ext {
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ["Apache-2.0"]
-}
+}*/
 
 //apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
 //apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'

@@ -14,8 +14,12 @@ test:
     # wait for it to have booted
     - circle-android wait-for-boot
     # run tests  against the emulator.
-    - ./gradlew connectedAndroidTest
+    - ./gradlew connectedAndroidTest -PdisablePreDex
+    # run jUnit tests
+    - ./gradlew test
+    # run install for bintray
+    - ./gradlew install
     # copy the build outputs to artifacts
-    - cp -r multichoicerecyclerview/build/outputs $CIRCLE_ARTIFACTS
+    #- cp -r multichoicerecyclerview/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
-    - cp -r multichoicerecyclerview/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+    #- cp -r multichoicerecyclerview/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
