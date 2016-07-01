@@ -56,9 +56,12 @@ ext {
     bintrayRepo = 'maven'
     bintrayName = 'MultiChoiceRecyclerView'
 
-    publishedGroupId = 'com.davidecirillo.multichoicerecyclerview'
+    //publishedGroupId = 'com.davidecirillo.multichoicerecyclerview'
+    PUBLISH_GROUP_ID = 'com.davidecirillo.multichoicerecyclerview'
     libraryName = 'MultiChoiceRecyclerView'
-    artifact = 'multichoicerecyclerview'
+    //artifact = 'multichoicerecyclerview'
+    PUBLISH_ARTIFACT_ID = 'multichoicerecyclerview'
+
 
     libraryDescription = 'A custom implementation of RecyclerView with a multi-choice selection mode'
 
@@ -76,5 +79,6 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
-apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
+apply from: 'https://raw.githubusercontent.com/afollestad/aidanfollestad.com/master/android-lib-release.gradle'
