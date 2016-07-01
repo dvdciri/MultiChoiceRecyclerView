@@ -2,6 +2,9 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MultiChoiceRecyclerView-green.svg?style=true)](https://android-arsenal.com/details/1/3755)
 
+Develop Build: [![CircleCI](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/develop.svg?style=shield)](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/develop)
+Mester Build: [![CircleCI](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/master.svg?style=shield)](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/master)
+
 # Multichoice RecylerView
 
 ##Preview
