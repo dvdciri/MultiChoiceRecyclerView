@@ -17,8 +17,6 @@ test:
     - ./gradlew connectedAndroidTest -PdisablePreDex
     # run jUnit tests
     - ./gradlew test
-    # run install for bintray
-    - ./gradlew install
     # copy the build outputs to artifacts
     #- cp -r multichoicerecyclerview/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
