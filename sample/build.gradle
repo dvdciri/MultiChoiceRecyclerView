@@ -40,7 +40,7 @@ android {
 
 dependencies {
 
-    compile project(':multichoicerecyclerview')
+    compile project(':library:multichoicerecyclerview')
 
     compile "com.android.support:cardview-v7:${SUPPORT_LIBRARY_VERSION}"
     compile "com.android.support:support-v4:${SUPPORT_LIBRARY_VERSION}"
