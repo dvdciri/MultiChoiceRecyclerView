@@ -80,5 +80,6 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
-apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
+//Enable those just for bintray upload
+//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
