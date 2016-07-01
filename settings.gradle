@@ -1,1 +1,1 @@
-include ':multichoicerecyclerview', ':sample'
+include ':library:multichoicerecyclerview', ':sample'

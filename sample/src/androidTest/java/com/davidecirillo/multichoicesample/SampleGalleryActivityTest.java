@@ -94,7 +94,7 @@ public class SampleGalleryActivityTest extends BaseMultiChoiceActivityTest {
                 .check(matches(isSelected()));
 
         onView(withId(R.id.multiChoiceRecyclerView))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(3, click()))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(5, click()))
                 .check(matches(isSelected()));
     }
 

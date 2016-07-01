@@ -7,24 +7,36 @@ checkstyle {
     showViolations true
 }
 
+ext {
+    PUBLISH_VERSION = '1.1.5'
+    SUPPORT_LIBRARY_VERSION = '23.4.0'
+    BUILD_TOOLS = "23.0.3"
+    TARGET_SDK = 23
+
+    PUBLISH_ARTIFACT_ID = 'multichoicerecyclerview'
+    PUBLISH_GROUP_ID = 'com.davidecirillo.multichoicerecyclerview'
+}
+
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion TARGET_SDK
+    buildToolsVersion BUILD_TOOLS
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 6
-        versionName "1.1.4"
+        targetSdkVersion TARGET_SDK
+        versionCode 7
+        versionName PUBLISH_VERSION
     }
 
     lintOptions {
         // set to true to turn off analysis progress reporting by lint
         quiet true
         // if true, stop the gradle build if errors are found
-        abortOnError true
+        abortOnError false
         // if true, only report errors
         ignoreWarnings true
+
+        checkReleaseBuilds false
     }
 
     buildTypes {
@@ -37,9 +49,9 @@ android {
 
 dependencies {
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:support-v4:23.4.0'
-    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile "com.android.support:appcompat-v7:${SUPPORT_LIBRARY_VERSION}"
+    compile "com.android.support:support-v4:${SUPPORT_LIBRARY_VERSION}"
+    compile "com.android.support:recyclerview-v7:${SUPPORT_LIBRARY_VERSION}"
 
 }
 
@@ -48,6 +60,7 @@ ext {
     bintrayName = 'MultiChoiceRecyclerView'
 
     publishedGroupId = 'com.davidecirillo.multichoicerecyclerview'
+
     libraryName = 'MultiChoiceRecyclerView'
     artifact = 'multichoicerecyclerview'
 
@@ -56,7 +69,7 @@ ext {
     siteUrl = 'https://github.com/dvdciri/Android-Projects-Components/tree/master/MultiChoiceRecyclerView'
     gitUrl = 'https://github.com/dvdciri/Android-Projects-Components/tree/master/MultiChoiceRecyclerView'
 
-    libraryVersion = '1.1.4'
+    libraryVersion = PUBLISH_VERSION
 
     developerId = 'dvd-ciri'
     developerName = 'Davide Cirillo'
@@ -67,5 +80,6 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
+//Enable those just for bintray upload whenever is needed
 apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
 apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
