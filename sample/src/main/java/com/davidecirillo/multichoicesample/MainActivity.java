@@ -2,6 +2,8 @@ package com.davidecirillo.multichoicesample;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.davidecirillo.multichoicesample.sampleCustomView.SampleCustomActivity;
 import com.davidecirillo.multichoicesample.sampleImageGallery.GalleryActivity;
@@ -41,5 +43,22 @@ public class MainActivity extends BaseActivity {
         startActivity(browserIntent);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.contact_me){
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("plain/text");
+            intent.putExtra(Intent.EXTRA_EMAIL, "dvd.ciri@gmail.com");
+
+            startActivity(Intent.createChooser(intent, "Send Email"));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

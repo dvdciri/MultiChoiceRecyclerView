@@ -64,8 +64,9 @@ public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.View
     }
 
     /**
-     * Override this method to customise the active item
+     * Override this method to customize the active item
      *
+     * @param view the view to customize
      * @param state true if the state is active/selected
      */
     protected void setActive(View view, boolean state) {

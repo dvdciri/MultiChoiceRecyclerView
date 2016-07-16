@@ -1,111 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@android:color/white"
-        android:background="@color/colorPrimary">
-
-    </android.support.v7.widget.Toolbar>
+    <include layout="@layout/toolbar" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:padding="10dp"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
-                android:padding="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="@string/description"
                 android:textSize="20sp"
-                android:textStyle="italic"
-                android:text="@string/description"/>
+                android:textStyle="italic" />
 
             <TextView
-                android:layout_marginTop="20dp"
                 android:id="@+id/sampleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Samples"
-                android:textStyle="bold"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
 
             <LinearLayout
-                android:paddingTop="10dp"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_height="wrap_content">
+                android:paddingTop="10dp">
 
                 <Button
-                    style="@android:style/Widget.Material.Button.Colored"
                     android:id="@+id/sample_toolbar"
+                    style="@android:style/Widget.Material.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Toolbar + Controls"/>
+                    android:text="Toolbar + Controls" />
 
                 <Button
-                    style="@android:style/Widget.Material.Button.Colored"
                     android:id="@+id/sample_custom_view"
+                    style="@android:style/Widget.Material.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Custom Selection View"/>
+                    android:text="Custom Selection View" />
 
                 <Button
-                    style="@android:style/Widget.Material.Button.Colored"
                     android:id="@+id/sample_gallery"
+                    style="@android:style/Widget.Material.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Image Gallery"/>
+                    android:text="Image Gallery" />
 
             </LinearLayout>
 
         </LinearLayout>
 
 
-        <RelativeLayout
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/github_button"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:padding="10dp"
+            android:layout_gravity="bottom"
             android:clickable="true"
-            >
-
-            <TextView
-                android:layout_toStartOf="@+id/githubimage"
-                android:layout_toLeftOf="@+id/githubimage"
-                android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_centerVertical="true"
-                android:textSize="16sp"
-                android:textColor="@android:color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="FORK ME ON GITHUB"/>
-
-            <ImageView
-                android:id="@+id/githubimage"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="end"
-                android:layout_width="35dp"
-                android:src="@drawable/github"
-                android:layout_height="35dp" />
-
-        </RelativeLayout>
+            android:tint="@android:color/white"
+            android:src="@drawable/github"
+            app:backgroundTint="@color/colorPrimary"
+            app:borderWidth="0dp"
+            android:layout_margin="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            />
 
 
     </RelativeLayout>
