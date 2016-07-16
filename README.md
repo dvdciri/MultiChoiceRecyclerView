@@ -8,6 +8,11 @@ Mester: [![CircleCI](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tre
 
 # Multichoice RecylerView
 
+##Sample
+<a href='https://play.google.com/store/apps/details?id=com.davidecirillo.multichoicerecyclerview&hl=en_GB&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width='150' alt='Get it on Google Play' src='https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png'/></a>
+
+Donwload the sample app on the Google Play Store and check out all the features
+
 ##Preview
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example0.png" width="210">
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png" width="210">
