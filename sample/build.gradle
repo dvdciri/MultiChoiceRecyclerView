@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
-
 ext {
     PUBLISH_VERSION = '1.1.5'
     SUPPORT_LIBRARY_VERSION = '23.4.0'
@@ -31,9 +30,35 @@ android {
     }
 
     buildTypes {
+        debug{
+            debuggable true;
+        }
         release {
+            debuggable false;
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    signingConfigs {
+        release {
+            def Properties localProps = new Properties()
+            def File localPropsFile = file('../local.properties')
+
+            if (localPropsFile.exists()) {
+                localProps.load(new FileInputStream(localPropsFile))
+            }
+            def Properties keyProps = new Properties()
+            if (localProps['keystore.props.file'] != null) {
+                keyProps.load(new FileInputStream(file(localProps['keystore.props.file'])))
+            } else {
+                println 'Keystore props file is missing'
+            }
+
+            storeFile keyProps["store"] != null ? file(keyProps["store"]) : null
+            keyAlias keyProps["alias"] ?: ""
+            storePassword keyProps["storePass"] ?: ""
+            keyPassword keyProps["pass"] ?: ""
         }
     }
 }
@@ -46,6 +71,7 @@ dependencies {
     compile "com.android.support:support-v4:${SUPPORT_LIBRARY_VERSION}"
     compile "com.android.support:appcompat-v7:${SUPPORT_LIBRARY_VERSION}"
     compile "com.android.support:recyclerview-v7:${SUPPORT_LIBRARY_VERSION}"
+    compile "com.android.support:design:${SUPPORT_LIBRARY_VERSION}"
     compile 'com.jakewharton:butterknife:8.1.0'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
     // RxAndroid - asynchronous operations
