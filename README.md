@@ -13,11 +13,13 @@ Mester: [![CircleCI](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tre
 
 Donwload the sample app on the Google Play Store and check out all the features
 
+*Does your app use MultiChoiceRecyclerView? If you want to be featured on this page drop me a line.*
+
 ##Preview
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example0.png" width="210">
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png" width="210">
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="210">
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example4.png" width="210">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example0.png" width="180">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png" width="180">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="180">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example4.png" width="180">
 
 
 ##Description
@@ -149,22 +151,12 @@ Use the MultiChoiceSelectionListener in order to have a callback whether an acti
 ```
 
 
-###Other Methods
-- public int getAllItemCount()
-- public int getSelectedItemCount()
-- public Collection<Integer> **getSelectedItemList()**
-- public boolean select(int position)
-- public boolean **selectAll()**
-- public boolean deselectAll()
-- public void setRecyclerRowNumber(int rowNumber)
-- public void **setRecyclerColumnNumber(int columnNumber)**
-- public void **setMultiChoiceToolbar(AppCompatActivity appCompatActivity,
-                                      Toolbar toolbar,
-                                      String defaultToolbarTitle,
-                                      String selectionToolbarTitle,
-                                      int selectedPrimaryColor,
-                                      int selectedPrimaryColorDark)**
-- public void **setSingleClickMode(boolean set)**
+###Developed by
+
+**Davide Cirillo**
+- Twitter @DvdCiri
+- GitHub @dvdciri
+- Mail dvd.ciri@gmail.com
 
 
 ##License
