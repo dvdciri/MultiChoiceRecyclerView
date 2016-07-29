@@ -20,7 +20,7 @@ Donwload the sample app on the Google Play Store and check out all the features
 ##Description
 This libray make life easy when you have to deal with a multi choice selection on recycler view.
 
-***
+<br>
 
 ##Implementation
 Add the library and the Jcenter repository to your .gradle file.
@@ -92,8 +92,7 @@ Customize the activation or deactivation just overriding the setActive(View root
     }
 ```
 
-
-***
+<br>
 
 ##Fetures
 - **Multi Choice Toolbar**
@@ -113,7 +112,7 @@ Activate and customise the multi choice toolbar provided by the library (only if
 ```
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example_toolbar.png" width="300">
 
-
+<br>
 - **Single Click Mode**
 Use always single click mode (by default, to activate the multi selection mode you need a long click on the first item)
 ```java
@@ -121,7 +120,7 @@ Use always single click mode (by default, to activate the multi selection mode y
     mMultiChoiceRecyclerView.setSingleClickMode(true);
 ```
 
-
+<br>
 - **Event Callbacks**
 Use the MultiChoiceSelectionListener in order to have a callback whether an action is performed on the recyclerView
 ```java
@@ -148,7 +147,7 @@ Use the MultiChoiceSelectionListener in order to have a callback whether an acti
     });
 ```
 
-***
+<br>
 
 ##Developed by
 
