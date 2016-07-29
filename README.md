@@ -1,10 +1,7 @@
 [ ![Download](https://api.bintray.com/packages/dvd-ciri/maven/MultiChoiceRecyclerView/images/download.svg) ](https://bintray.com/dvd-ciri/maven/MultiChoiceRecyclerView/_latestVersion)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MultiChoiceRecyclerView-green.svg?style=true)](https://android-arsenal.com/details/1/3755)
-
-Develop: [![CircleCI](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/develop.svg?style=shield)](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/develop)
-
-Mester: [![CircleCI](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/master.svg?style=shield)](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/master)
+[![CircleCI](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/master.svg?style=shield)](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/master)
 
 # Multichoice RecylerView
 
@@ -13,20 +10,20 @@ Mester: [![CircleCI](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tre
 
 Donwload the sample app on the Google Play Store and check out all the features
 
-*Does your app use MultiChoiceRecyclerView? If you want to be featured on this page drop me a line.*
-
-##Preview
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example0.png" width="180">
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png" width="180">
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="180">
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example4.png" width="180">
 
+*Does your app use MultiChoiceRecyclerView? If you want to be featured on this page drop me a line.*
 
 ##Description
 This libray make life easy when you have to deal with a multi choice selection on recycler view.
 
+***
+
 ##Implementation
-The integration with Gradle is really quick, you just need the jcenter repository and the library dependecy:
+Add the library and the Jcenter repository to your .gradle file.
 
 ```java
     repositories {
@@ -39,9 +36,7 @@ The integration with Gradle is really quick, you just need the jcenter repositor
     }
 ```
 
-
-##Set Up
-- Add the MultiChoiceRecyclerView to your xml file
+Use the MultiChoiceRecyclerView xml object and connect the view as usual
 ```java
     <com.davidecirillo.multichoicesample.MultiChoiceRecyclerView
         android:id="@+id/multiChoiceRecyclerView"
@@ -49,14 +44,11 @@ The integration with Gradle is really quick, you just need the jcenter repositor
         android:layout_height="match_parent" />
 ```
 
-
-- Instanciate you object and connect the view
 ```java
     MultiChoiceRecyclerView mMultiChoiceRecyclerView = (MultiChoiceRecyclerView) findViewById(R.id.multiChoiceRecyclerView);
 ```
 
-
-- Extend you adapter to the MultiChoiceAdapter and add it to the RecyclerView as per normal usage
+Extend your adapter to the MultiChoiceAdapter and add it to the RecyclerView as per normal usage
 ```java
     public class MyAdapter extends MultiChoiceAdapter<MyViewHolder> {
     
@@ -69,33 +61,39 @@ The integration with Gradle is really quick, you just need the jcenter repositor
          public void onBindViewHolder(MySampleToolbarViewHolder holder, int position) {
             super.onBindViewHolder(holder, position);
             
+            /*
+                Don't use View.OnClickListener on the "holder.itemView", override defaultItemViewClickListener(...) instead
+            */
             ...
          }
     }
 ```
-**N.B.**
-- Do not forget to call **super.onBindViewHolder(holder, position);** when binging the view holder
-- Do not call View.OnClickListener on the "holder.itemView", override **defaultItemViewClickListener(...)** method and provide the implementation that you want
 
 ```java
-    MyAdapter mySampleToolbarAdapter = new MyAdapter(mList, getApplicationContext());
-    mMultiChoiceRecyclerView.setAdapter(mySampleToolbarAdapter);
+    MyAdapter myAdapter = new MyAdapter(mList, context);
+    mMultiChoiceRecyclerView.setAdapter(myAdapter);
 ```
 
-- You can customize the activation or deactivation just overriding the setActive(View view, boolean state) method of the MultiChoiceAdapter
+**N.B.**
+- Do not forget to call **super.onBindViewHolder(holder, position);** when binding the view holder
+
+Customize the activation or deactivation just overriding the setActive(View rootView, boolean state) method of the MultiChoiceAdapter
 ```java
     @Override
-    public void setActive(View view, boolean state) {
+    public void setActive(View rootView, boolean state) {
+        
+        //Use View.findViewById(int id) to look for your view in the rootView
+    
         if(state){
-            //do your changes
+            //Apply your changes
         }else{
-            //reset the changes
+            //Reset your changes
         }
     }
 ```
-You could then use method such as **View.findViewById(int id)** to customize your layout as you need*
 
 
+***
 
 ##Fetures
 - **Multi Choice Toolbar**
@@ -150,8 +148,9 @@ Use the MultiChoiceSelectionListener in order to have a callback whether an acti
     });
 ```
 
+***
 
-###Developed by
+##Developed by
 
 **Davide Cirillo**
 - Twitter @DvdCiri
