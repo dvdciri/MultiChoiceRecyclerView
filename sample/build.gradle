@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
 ext {
-    PUBLISH_VERSION = '1.1.5'
+    PUBLISH_VERSION = '1.1.6'
     SUPPORT_LIBRARY_VERSION = '23.4.0'
     BUILD_TOOLS = "23.0.3"
     TARGET_SDK = 23

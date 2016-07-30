@@ -189,7 +189,6 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
 
     /**
      * Set the number of column with a VERTICAL layout.
-     * <p/>
      * If you call this method, it will override the setRowNumber()
      *
      * @param columnNumber number of column
@@ -202,7 +201,6 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
 
     /**
      * Set the number of row with a HORIZONTAL layout
-     * <p/>
      * If you call this method, it will override the setColumnNumber()
      *
      * @param rowNumber number of row

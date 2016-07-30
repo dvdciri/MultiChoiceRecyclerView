@@ -2,6 +2,7 @@ package com.davidecirillo.multichoicesample.sampleImageGallery;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import com.davidecirillo.multichoicerecyclerview.MultiChoiceAdapter;
 import com.davidecirillo.multichoicesample.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -24,9 +28,29 @@ import butterknife.ButterKnife;
 class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.SampleGalleryViewHolder> {
 
     private final Context mContext;
+    private ArrayList<Integer> imageList;
+
+    private Integer[] images = new Integer[]{
+            R.drawable.image1,
+            R.drawable.image2,
+            R.drawable.image3,
+            R.drawable.image4,
+            R.drawable.image5
+    };
 
     SampleGalleryAdapter(Context mContext) {
         this.mContext = mContext;
+
+        setUpImageList();
+    }
+
+    private void setUpImageList() {
+        imageList = new ArrayList<>();
+        Random r = new Random();
+
+        for (int i = 0; i < getItemCount(); i++) {
+            imageList.add(images[r.nextInt(5)]);
+        }
     }
 
     @Override
@@ -46,10 +70,11 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
         Picasso picasso = Picasso.with(mContext);
 
         picasso
-                .load("https://unsplash.it/200/200?image="+position)
+                .load(imageList.get(position))
                 .error(R.drawable.placeholder)
+                .resize(200, 200)
+                .centerCrop()
                 .into(holder.mImageView);
-
     }
 
 
@@ -63,8 +88,8 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
         ScaleAnimation selectAnimation = new ScaleAnimation(
                 1f, 0.8f,
                 1f, 0.8f,
-                imageView.getWidth()/2,
-                imageView.getHeight()/2
+                imageView.getWidth() / 2,
+                imageView.getHeight() / 2
         );
         selectAnimation.setFillAfter(true);
         selectAnimation.setFillEnabled(true);
@@ -74,19 +99,20 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
         ScaleAnimation deselectAnimation = new ScaleAnimation(
                 0.8f, 1f,
                 0.8f, 1f,
-                imageView.getWidth()/2,
-                imageView.getHeight()/2
+                imageView.getWidth() / 2,
+                imageView.getHeight() / 2
         );
         deselectAnimation.setFillAfter(true);
         deselectAnimation.setFillEnabled(true);
         deselectAnimation.setDuration(100);
 
-        if(state){
+        if (state) {
 
             imageView.startAnimation(selectAnimation);
             selectAnimation.setAnimationListener(new Animation.AnimationListener() {
                 @Override
-                public void onAnimationStart(Animation animation) {}
+                public void onAnimationStart(Animation animation) {
+                }
 
                 @Override
                 public void onAnimationEnd(Animation arg0) {
@@ -94,11 +120,12 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
                 }
 
                 @Override
-                public void onAnimationRepeat(Animation animation) {}
+                public void onAnimationRepeat(Animation animation) {
+                }
             });
 
 
-        }else{
+        } else {
             imageView.startAnimation(deselectAnimation);
             tickImage.setVisibility(View.INVISIBLE);
         }
@@ -109,12 +136,12 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Click on item "+position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Click on item " + position, Toast.LENGTH_SHORT).show();
             }
         };
     }
 
-    class SampleGalleryViewHolder extends RecyclerView.ViewHolder{
+    class SampleGalleryViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.image_view)
         ImageView mImageView;
