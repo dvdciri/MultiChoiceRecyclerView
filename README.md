@@ -32,7 +32,7 @@ Add the library and the Jcenter repository to your .gradle file.
     ...
     
     dependencies {
-        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:1.1.5'
+        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:**latest_version**'
     }
 ```
 
