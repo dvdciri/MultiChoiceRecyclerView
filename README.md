@@ -156,6 +156,7 @@ Use the MultiChoiceSelectionListener in order to have a callback whether an acti
 - GitHub @dvdciri
 - Mail dvd.ciri@gmail.com
 
+If you want to contribute to the project feel free to Fork and create a Pull Request following the general rules for contribution: https://guides.github.com/activities/contributing-to-open-source/
 
 ##License
 ```
