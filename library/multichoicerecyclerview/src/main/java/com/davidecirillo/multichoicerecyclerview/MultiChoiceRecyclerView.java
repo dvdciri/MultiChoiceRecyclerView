@@ -132,7 +132,7 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
             }
 
             if (multiChoiceSelectionListener != null)
-                multiChoiceSelectionListener.OnSelectAll(mSelectedList.size(), mAllList.size());
+                multiChoiceSelectionListener.OnDeselectAll(mSelectedList.size(), mAllList.size());
 
             return true;
         }
