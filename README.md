@@ -18,7 +18,7 @@ Donwload the sample app on the Google Play Store and check out all the features
 *Does your app use MultiChoiceRecyclerView? If you want to be featured on this page drop me a line.*
 
 ##Description
-This libray make life easy when you have to deal with a multi choice selection on recycler view.
+This library make life easy when you have to deal with a multi choice selection on recycler view.
 
 <br>
 
