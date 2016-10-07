@@ -8,8 +8,8 @@ checkstyle {
 }
 
 ext {
-    PUBLISH_VERSION = '1.1.6'
-    SUPPORT_LIBRARY_VERSION = '23.4.0'
+    PUBLISH_VERSION = '1.1.7'
+    SUPPORT_LIBRARY_VERSION = '24.2.1'
     BUILD_TOOLS = "23.0.3"
     TARGET_SDK = 23
 
@@ -24,7 +24,7 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion TARGET_SDK
-        versionCode 7
+        versionCode 8
         versionName PUBLISH_VERSION
     }
 
@@ -44,6 +44,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'com.android.support:support-annotations:23.1.1'
     }
 }
 
@@ -81,5 +87,5 @@ ext {
 }
 
 //Enable those just for bintray upload whenever is needed - keep them commented when pushing
-//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
-//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
