@@ -15,6 +15,29 @@ ext {
 
     PUBLISH_ARTIFACT_ID = 'multichoicerecyclerview'
     PUBLISH_GROUP_ID = 'com.davidecirillo.multichoicerecyclerview'
+
+    bintrayRepo = 'maven'
+    bintrayName = 'MultiChoiceRecyclerView'
+
+    publishedGroupId = 'com.davidecirillo.multichoicerecyclerview'
+
+    libraryName = 'MultiChoiceRecyclerView'
+    artifact = 'multichoicerecyclerview'
+
+    libraryDescription = 'A custom implementation of RecyclerView with a multi-choice selection mode'
+
+    siteUrl = 'https://github.com/dvdciri/Android-Projects-Components/tree/master/MultiChoiceRecyclerView'
+    gitUrl = 'https://github.com/dvdciri/Android-Projects-Components/tree/master/MultiChoiceRecyclerView'
+
+    libraryVersion = PUBLISH_VERSION
+
+    developerId = 'dvd-ciri'
+    developerName = 'Davide Cirillo'
+    developerEmail = 'dvd.ciri@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
 }
 
 android {
@@ -54,36 +77,21 @@ configurations.all {
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
+
     compile "com.android.support:appcompat-v7:${SUPPORT_LIBRARY_VERSION}"
     compile "com.android.support:support-v4:${SUPPORT_LIBRARY_VERSION}"
     compile "com.android.support:recyclerview-v7:${SUPPORT_LIBRARY_VERSION}"
 
-}
-
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'MultiChoiceRecyclerView'
-
-    publishedGroupId = 'com.davidecirillo.multichoicerecyclerview'
-
-    libraryName = 'MultiChoiceRecyclerView'
-    artifact = 'multichoicerecyclerview'
-
-    libraryDescription = 'A custom implementation of RecyclerView with a multi-choice selection mode'
-
-    siteUrl = 'https://github.com/dvdciri/Android-Projects-Components/tree/master/MultiChoiceRecyclerView'
-    gitUrl = 'https://github.com/dvdciri/Android-Projects-Components/tree/master/MultiChoiceRecyclerView'
-
-    libraryVersion = PUBLISH_VERSION
-
-    developerId = 'dvd-ciri'
-    developerName = 'Davide Cirillo'
-    developerEmail = 'dvd.ciri@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+    testCompile 'org.mockito:mockito-core:1.10.19'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.assertj:assertj-core:1.7.0'
+    testCompile('org.robolectric:robolectric:3.0') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    }
 }
 
 //Enable those just for bintray upload whenever is needed - keep them commented when pushing

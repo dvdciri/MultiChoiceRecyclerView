@@ -1,5 +1,6 @@
 package com.davidecirillo.multichoicerecyclerview;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -9,10 +10,12 @@ import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceAdapterLis
 /**
  * Created by davidecirillo on 12/03/16.
  */
-public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.ViewHolder> extends MultiChoiceRecyclerView.Adapter<VH> {
+public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-    protected boolean isInMultiChoiceMode = false;
-    protected boolean isInSingleClickMode = false;
+    public final static String EXCEPTION_MSG_NO_INTERFACE = "An interface must be set in order to make this adapter working";
+
+    boolean isInMultiChoiceMode = false;
+    boolean isInSingleClickMode = false;
 
     private MultiChoiceAdapterListener mMultiChoiceListener;
 
@@ -35,12 +38,12 @@ public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.View
                     }
                 });
             } else {
-                if (defaultItemViewClickListener(holder, position) != null)
+                if (defaultItemViewClickListener(holder, position) != null) {
                     mCurrentView.setOnClickListener(defaultItemViewClickListener(holder, position));
+                }
             }
 
             mCurrentView.setOnLongClickListener(new View.OnLongClickListener() {
-
                 @Override
                 public boolean onLongClick(View v) {
                     mMultiChoiceListener.onSingleItemLongClickListener(mCurrentView, holder.getAdapterPosition());
@@ -49,15 +52,18 @@ public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.View
             });
 
             mMultiChoiceListener.onUpdateItemListener(mCurrentView, holder.getAdapterPosition());
+
+        }else{
+            throw new IllegalStateException(EXCEPTION_MSG_NO_INTERFACE);
         }
     }
 
 
-    public void setMultiChoiceListener(MultiChoiceAdapterListener multiChoiceListener) {
+    void setMultiChoiceListener(MultiChoiceAdapterListener multiChoiceListener) {
         this.mMultiChoiceListener = multiChoiceListener;
     }
 
-    public void performActivation(View view, boolean state) {
+    void performActivation(View view, boolean state) {
         if (view != null) {
             setActive(view, state);
         }
@@ -69,7 +75,7 @@ public abstract class MultiChoiceAdapter<VH extends MultiChoiceRecyclerView.View
      * @param view the view to customize
      * @param state true if the state is active/selected
      */
-    protected void setActive(View view, boolean state) {
+    public void setActive(View view, boolean state) {
         if (state) {
             view.setAlpha(0.25f);
         } else {
