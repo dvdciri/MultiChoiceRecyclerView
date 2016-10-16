@@ -1,4 +1,4 @@
-package com.davidecirillo.multichoicerecyclerview.listeners;
+package com.davidecirillo.multichoicerecyclerview;
 
 /**
  * Created by davidecirillo on 02/06/2016.

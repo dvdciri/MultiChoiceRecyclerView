@@ -4,14 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView;
+import com.davidecirillo.multichoicerecyclerview.MultiChoiceToolbar;
 import com.davidecirillo.multichoicesample.BaseActivity;
 import com.davidecirillo.multichoicesample.R;
 
 import butterknife.BindView;
-
-/**
- * Created by davidecirillo on 27/06/2016.
- */
 
 public class GalleryActivity extends BaseActivity {
 
@@ -33,11 +30,13 @@ public class GalleryActivity extends BaseActivity {
 
         mMultiChoiceRecyclerView.setRecyclerColumnNumber(4);
 
-        mMultiChoiceRecyclerView.setMultiChoiceToolbar(this,
-                toolbar,
-                getString(R.string.app_name),
-                "",
-                R.color.colorPrimaryMulti, R.color.colorPrimaryDarkMulti);
+        MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
+                .setDefaultToolbarTitle(getString(R.string.app_name))
+                .setSelectedToolbarTitle("")
+                .setMulti_primaryColor(R.color.colorPrimaryMulti)
+                .setMulti_primaryColorDark(R.color.colorPrimaryDarkMulti)
+                .build();
+        mMultiChoiceRecyclerView.setMultiChoiceToolbar(multiChoiceToolbar);
 
         SampleGalleryAdapter adapter = new SampleGalleryAdapter(GalleryActivity.this);
         mMultiChoiceRecyclerView.setAdapter(adapter);

@@ -4,15 +4,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceAdapterListener;
 
-
-/**
- * Created by davidecirillo on 12/03/16.
- */
 public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-    public final static String EXCEPTION_MSG_NO_INTERFACE = "An interface must be set in order to make this adapter working";
+    final static String EXCEPTION_MSG_NO_INTERFACE = "An interface must be set in order to make this adapter working";
 
     boolean isInMultiChoiceMode = false;
     boolean isInSingleClickMode = false;

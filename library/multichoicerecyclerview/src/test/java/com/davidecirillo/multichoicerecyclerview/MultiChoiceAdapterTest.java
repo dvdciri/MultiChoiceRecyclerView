@@ -1,17 +1,12 @@
 package com.davidecirillo.multichoicerecyclerview;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
-import com.davidecirillo.multichoicerecyclerview.listeners.MultiChoiceAdapterListener;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.robolectric.RobolectricGradleTestRunner;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
@@ -19,7 +14,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by dci03 on 10/10/2016.

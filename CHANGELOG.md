@@ -1,0 +1,24 @@
+# Change Log
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/)
+and this project adheres to [Semantic Versioning](http://semver.org/).
+
+## [Unreleased]
+### Added
+- Added changelog file
+- Added class MultiChoiceToolbar for wrapping all the multi choice toolbar related fields
+### Changed
+- Method setMultiChoiceToolbar() now accept a MultiChoiceToolbar class with its builder for a simpler construction
+- Internal file structure in order to allow package-protected classes/methods
+- Updated sample with new toolbar implementation
+### Fixed
+### Deleted
+
+## [1.1.7]
+### Fixed
+- Circle CI build failing because of upgrade needed to JDK8
+
+## [1.1.6]
+### Fixed
+- Wrong callback on deselectAll

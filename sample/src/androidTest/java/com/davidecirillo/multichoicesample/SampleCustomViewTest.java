@@ -30,7 +30,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.davidecirillo.multichoicesample.api.BaseMultiChoiceActivityTest;
-import com.davidecirillo.multichoicesample.sampleCustomView.SampleCustomActivity;
+import com.davidecirillo.multichoicesample.SampleCustomView.SampleCustomActivity;
 
 import org.junit.Before;
 import org.junit.Rule;

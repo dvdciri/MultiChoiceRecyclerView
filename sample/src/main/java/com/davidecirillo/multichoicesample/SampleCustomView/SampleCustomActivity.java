@@ -1,9 +1,10 @@
-package com.davidecirillo.multichoicesample.sampleCustomView;
+package com.davidecirillo.multichoicesample.SampleCustomView;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView;
+import com.davidecirillo.multichoicerecyclerview.MultiChoiceToolbar;
 import com.davidecirillo.multichoicesample.BaseActivity;
 import com.davidecirillo.multichoicesample.R;
 
@@ -16,10 +17,6 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
-
-/**
- * Created by davidecirillo on 24/06/2016.
- */
 
 public class SampleCustomActivity extends BaseActivity {
 
@@ -41,11 +38,13 @@ public class SampleCustomActivity extends BaseActivity {
 
         multiChoiceRecyclerView.setRecyclerColumnNumber(1);
 
-        multiChoiceRecyclerView.setMultiChoiceToolbar(this,
-                toolbar,
-                getString(R.string.app_name),
-                "",
-                R.color.colorPrimaryMulti, R.color.colorPrimaryDarkMulti);
+        MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
+                .setDefaultToolbarTitle(getString(R.string.app_name))
+                .setSelectedToolbarTitle("")
+                .setMulti_primaryColor(R.color.colorPrimaryMulti)
+                .setMulti_primaryColorDark(R.color.colorPrimaryDarkMulti)
+                .build();
+        multiChoiceRecyclerView.setMultiChoiceToolbar(multiChoiceToolbar);
 
         getSampleMessageList()
                 .observeOn(AndroidSchedulers.mainThread())
