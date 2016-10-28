@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView;
@@ -64,8 +65,14 @@ public class SampleToolbarActivity extends BaseActivity {
         MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
                 .setDefaultToolbarTitle(toolbarTitle())
                 .setSelectedToolbarTitle("item selected")
-                .setMulti_primaryColor(R.color.colorPrimaryMulti)
-                .setMulti_primaryColorDark(R.color.colorPrimaryDarkMulti)
+                .setMultiPrimaryColor(R.color.colorPrimaryMulti)
+                .setMultiPrimaryColorDark(R.color.colorPrimaryDarkMulti)
+                .setIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onBackPressed();
+                    }
+                })
                 .build();
 
         mMultiChoiceRecyclerView.setMultiChoiceToolbar(multiChoiceToolbar);
@@ -133,4 +140,13 @@ public class SampleToolbarActivity extends BaseActivity {
         return false;
     }
 
+    @Override
+    protected boolean showBackHomeAsUpIndicator() {
+        return true;
+    }
+
+    @Override
+    protected String toolbarTitle() {
+        return "Sample Multi Choice Toolbar";
+    }
 }

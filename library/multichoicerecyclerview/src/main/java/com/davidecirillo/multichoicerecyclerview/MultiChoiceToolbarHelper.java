@@ -11,6 +11,8 @@ import android.view.WindowManager;
 
 class MultiChoiceToolbarHelper {
 
+    private static final String TOOLBAR_ERROR_MESSAGE = "Toolbar not implemented via getSupportActionBar method";
+
     private MultiChoiceToolbar mMultiChoiceToolbar;
     private boolean isMCToolbarVisible = false;
 
@@ -34,7 +36,7 @@ class MultiChoiceToolbarHelper {
 
     private void showMultiSelectionToolbar(int itemNumber) throws Exception {
 
-        AppCompatActivity appCompatActivity = mMultiChoiceToolbar.appCompatActivity;
+        AppCompatActivity appCompatActivity = mMultiChoiceToolbar.mAppCompatActivity;
         ActionBar supportActionBar = appCompatActivity.getSupportActionBar();
 
         if (supportActionBar != null) {
@@ -42,7 +44,7 @@ class MultiChoiceToolbarHelper {
             supportActionBar.setHomeAsUpIndicator(R.drawable.ic_close_white_24dp);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
 
-            int multi_primaryColor = mMultiChoiceToolbar.multi_primaryColor;
+            int multi_primaryColor = mMultiChoiceToolbar.mMultiPrimaryColor;
             if (multi_primaryColor != 0) {
                 supportActionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(appCompatActivity, multi_primaryColor)));
             }
@@ -51,13 +53,13 @@ class MultiChoiceToolbarHelper {
                 Window window = appCompatActivity.getWindow();
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
-                int multi_primaryColorDark = mMultiChoiceToolbar.multi_primaryColorDark;
+                int multi_primaryColorDark = mMultiChoiceToolbar.mMultiPrimaryColorDark;
                 if (multi_primaryColorDark != 0) {
                     window.setStatusBarColor(ContextCompat.getColor(appCompatActivity, multi_primaryColorDark));
                 }
             }
 
-            String selectedToolbarTitle = mMultiChoiceToolbar.selectedToolbarTitle;
+            String selectedToolbarTitle = mMultiChoiceToolbar.mSelectedToolbarTitle;
             if (selectedToolbarTitle != null) {
                 supportActionBar.setTitle(itemNumber + " " + selectedToolbarTitle);
             } else {
@@ -67,7 +69,7 @@ class MultiChoiceToolbarHelper {
             mMultiChoiceToolbar.mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MultiChoiceRecyclerView multiChoiceRecyclerView = mMultiChoiceToolbar.multiChoiceRecyclerView;
+                    MultiChoiceRecyclerView multiChoiceRecyclerView = mMultiChoiceToolbar.mMultiChoiceRecyclerView;
                     if (multiChoiceRecyclerView != null)
                         multiChoiceRecyclerView.deselectAll();
                 }
@@ -75,25 +77,32 @@ class MultiChoiceToolbarHelper {
 
             isMCToolbarVisible = true;
 
-        } else throw new Exception("Toolbar not implemented via getSupportActionBar method");
+        } else throw new Exception(TOOLBAR_ERROR_MESSAGE);
     }
 
     private void showDefaultToolbar() throws Exception {
 
-        AppCompatActivity appCompatActivity = mMultiChoiceToolbar.appCompatActivity;
+        AppCompatActivity appCompatActivity = mMultiChoiceToolbar.mAppCompatActivity;
         ActionBar supportActionBar = appCompatActivity.getSupportActionBar();
         if (supportActionBar != null) {
 
-            supportActionBar.setDisplayHomeAsUpEnabled(false); //Check for default icon value
-            supportActionBar.setBackgroundDrawable(new ColorDrawable(mMultiChoiceToolbar.default_primaryColor));
+            int icon = mMultiChoiceToolbar.mIcon;
+            if (icon != 0) {
+                supportActionBar.setHomeAsUpIndicator(icon);
+                supportActionBar.setDisplayHomeAsUpEnabled(true);
+                mMultiChoiceToolbar.mToolbar.setNavigationOnClickListener(mMultiChoiceToolbar.mIconAction);
+            } else {
+                supportActionBar.setDisplayHomeAsUpEnabled(false);
+            }
+            supportActionBar.setBackgroundDrawable(new ColorDrawable(mMultiChoiceToolbar.mDefaultPrimaryColor));
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Window window = appCompatActivity.getWindow();
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(mMultiChoiceToolbar.default_primaryColorDark);
+                window.setStatusBarColor(mMultiChoiceToolbar.mDefaultPrimaryColorDark);
             }
 
-            String defaultToolbarTitle = mMultiChoiceToolbar.defaultToolbarTitle;
+            String defaultToolbarTitle = mMultiChoiceToolbar.mDefaultToolbarTitle;
             if (defaultToolbarTitle != null) {
                 supportActionBar.setTitle(defaultToolbarTitle);
             } else {
@@ -102,22 +111,22 @@ class MultiChoiceToolbarHelper {
 
             isMCToolbarVisible = false;
 
-        } else throw new Exception("Toolbar not implemented via getSupportActionBar method");
+        } else throw new Exception(TOOLBAR_ERROR_MESSAGE);
     }
 
     private void updateMultiSelectionToolbar(int itemNumber) throws Exception {
 
-        AppCompatActivity appCompatActivity = mMultiChoiceToolbar.appCompatActivity;
+        AppCompatActivity appCompatActivity = mMultiChoiceToolbar.mAppCompatActivity;
         if (appCompatActivity.getSupportActionBar() != null) {
 
-            String selectedToolbarTitle = mMultiChoiceToolbar.selectedToolbarTitle;
+            String selectedToolbarTitle = mMultiChoiceToolbar.mSelectedToolbarTitle;
             if (selectedToolbarTitle != null) {
                 appCompatActivity.getSupportActionBar().setTitle(itemNumber + " " + selectedToolbarTitle);
             } else {
                 appCompatActivity.getSupportActionBar().setTitle(itemNumber);
             }
 
-        } else throw new Exception("Toolbar not implemented via getSupportActionBar method");
+        } else throw new Exception(TOOLBAR_ERROR_MESSAGE);
     }
 
 }

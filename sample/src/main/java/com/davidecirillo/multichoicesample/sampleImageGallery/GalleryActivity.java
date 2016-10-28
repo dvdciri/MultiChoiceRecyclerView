@@ -33,8 +33,8 @@ public class GalleryActivity extends BaseActivity {
         MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
                 .setDefaultToolbarTitle(getString(R.string.app_name))
                 .setSelectedToolbarTitle("")
-                .setMulti_primaryColor(R.color.colorPrimaryMulti)
-                .setMulti_primaryColorDark(R.color.colorPrimaryDarkMulti)
+                .setMultiPrimaryColor(R.color.colorPrimaryMulti)
+                .setMultiPrimaryColorDark(R.color.colorPrimaryDarkMulti)
                 .build();
         mMultiChoiceRecyclerView.setMultiChoiceToolbar(multiChoiceToolbar);
 

@@ -4,96 +4,109 @@ import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.View;
 
 public class MultiChoiceToolbar {
 
-    AppCompatActivity appCompatActivity;
-    MultiChoiceRecyclerView multiChoiceRecyclerView;
+    AppCompatActivity mAppCompatActivity;
+    MultiChoiceRecyclerView mMultiChoiceRecyclerView;
     Toolbar mToolbar;
-    String defaultToolbarTitle;
-    String selectedToolbarTitle;
-    int default_primaryColor = 0;
-    int default_primaryColorDark = 0;
-    int multi_primaryColor = 0;
-    int multi_primaryColorDark = 0;
+    String mDefaultToolbarTitle;
+    String mSelectedToolbarTitle;
+    int mDefaultPrimaryColor = 0;
+    int mDefaultPrimaryColorDark = 0;
+    int mMultiPrimaryColor = 0;
+    int mMultiPrimaryColorDark = 0;
+    int mIcon;
+    View.OnClickListener mIconAction;
 
     private MultiChoiceToolbar(Builder builder) {
-        this.appCompatActivity = builder.appCompatActivity;
+        this.mAppCompatActivity = builder.mAppCompatActivity;
         this.mToolbar = builder.mToolbar;
-        this.defaultToolbarTitle = builder.defaultToolbarTitle.trim();
-        this.selectedToolbarTitle = builder.selectedToolbarTitle.trim();
-        this.default_primaryColor = builder.default_primaryColor;
-        this.default_primaryColorDark = builder.default_primaryColorDark;
-        multi_primaryColor = builder.multi_primaryColor;
-        multi_primaryColorDark = builder.multi_primaryColorDark;
+        this.mDefaultToolbarTitle = builder.mDefaultToolbarTitle.trim();
+        this.mSelectedToolbarTitle = builder.mSelectedToolbarTitle.trim();
+        this.mDefaultPrimaryColor = builder.mDefaultPrimaryColor;
+        this.mDefaultPrimaryColorDark = builder.mDefaultPrimaryColorDark;
+        this.mMultiPrimaryColor = builder.mMultiPrimaryColor;
+        this.mMultiPrimaryColorDark = builder.mMultiPrimaryColorDark;
+        this.mIcon = builder.mIcon;
+        this.mIconAction = builder.mIconAction;
     }
 
     public void setMultiChoiceRecyclerView(MultiChoiceRecyclerView multiChoiceRecyclerView) {
-        this.multiChoiceRecyclerView = multiChoiceRecyclerView;
+        this.mMultiChoiceRecyclerView = multiChoiceRecyclerView;
     }
 
     /**
      * Builder class for MultiChoiceToolbar
      */
     public static class Builder {
-        private AppCompatActivity appCompatActivity;
+        private AppCompatActivity mAppCompatActivity;
         private Toolbar mToolbar;
-        private String defaultToolbarTitle;
-        private String selectedToolbarTitle;
+        private String mDefaultToolbarTitle;
+        private String mSelectedToolbarTitle;
 
         // Colours
-        private int default_primaryColor = 0;
-        private int default_primaryColorDark = 0;
-        private int multi_primaryColor = 0;
-        private int multi_primaryColorDark = 0;
+        private int mDefaultPrimaryColor = 0;
+        private int mDefaultPrimaryColorDark = 0;
+        private int mMultiPrimaryColor = 0;
+        private int mMultiPrimaryColorDark = 0;
+        private int mIcon;
+        private View.OnClickListener mIconAction;
 
         public Builder(AppCompatActivity appCompatActivity,
                        Toolbar toolbar) {
-            this.appCompatActivity = appCompatActivity;
+            this.mAppCompatActivity = appCompatActivity;
             this.mToolbar = toolbar;
         }
 
-        public Builder setDefault_primaryColor(int default_primaryColor) {
-            this.default_primaryColor = default_primaryColor;
+        public Builder setDefaultPrimaryColor(int defaultPrimaryColor) {
+            this.mDefaultPrimaryColor = defaultPrimaryColor;
             return this;
         }
 
         public Builder setDefaultToolbarTitle(String defaultToolbarTitle) {
-            this.defaultToolbarTitle = defaultToolbarTitle;
+            this.mDefaultToolbarTitle = defaultToolbarTitle;
             return this;
         }
 
         public Builder setSelectedToolbarTitle(String selectedToolbarTitle) {
-            this.selectedToolbarTitle = selectedToolbarTitle;
+            this.mSelectedToolbarTitle = selectedToolbarTitle;
             return this;
         }
 
-        public Builder setDefault_primaryColorDark(int default_primaryColorDark) {
-            this.default_primaryColorDark = default_primaryColorDark;
+        public Builder setDefaultPrimaryColorDark(int defaultPrimaryColorDark) {
+            this.mDefaultPrimaryColorDark = defaultPrimaryColorDark;
             return this;
         }
 
-        public Builder setMulti_primaryColor(int multi_primaryColor) {
-            this.multi_primaryColor = multi_primaryColor;
+        public Builder setMultiPrimaryColor(int multiPrimaryColor) {
+            this.mMultiPrimaryColor = multiPrimaryColor;
             return this;
         }
 
-        public Builder setMulti_primaryColorDark(int multi_primaryColorDark) {
-            this.multi_primaryColorDark = multi_primaryColorDark;
+        public Builder setMultiPrimaryColorDark(int multiPrimaryColorDark) {
+            this.mMultiPrimaryColorDark = multiPrimaryColorDark;
+            return this;
+        }
+
+        public Builder setIcon(int icon, View.OnClickListener action){
+            mIcon = icon;
+            mIconAction = action;
             return this;
         }
 
         public MultiChoiceToolbar build() {
-            if (default_primaryColor == 0 || default_primaryColorDark == 0) {
-                default_primaryColor = getDefaultColorFromContext(new int[]{R.attr.colorPrimary});
-                default_primaryColorDark = getDefaultColorFromContext(new int[]{R.attr.colorPrimaryDark});
+            if (mDefaultPrimaryColor == 0 || mDefaultPrimaryColorDark == 0) {
+                mDefaultPrimaryColor = getDefaultColorFromContext(new int[]{R.attr.colorPrimary});
+                mDefaultPrimaryColorDark = getDefaultColorFromContext(new int[]{R.attr.colorPrimaryDark});
             }
             return new MultiChoiceToolbar(this);
         }
 
         private int getDefaultColorFromContext(int[] colorRes) {
             TypedValue typedValue = new TypedValue();
-            TypedArray a = appCompatActivity.obtainStyledAttributes(typedValue.data, colorRes);
+            TypedArray a = mAppCompatActivity.obtainStyledAttributes(typedValue.data, colorRes);
             int color = a.getColor(0, 0);
             a.recycle();
             return color;
