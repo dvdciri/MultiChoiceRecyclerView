@@ -92,6 +92,12 @@ Activate and customise the multi choice toolbar provided by the library (only if
                 .setSelectedToolbarTitle("item selected")
                 .setMulti_primaryColor(R.color.colorPrimaryMulti)
                 .setMulti_primaryColorDark(R.color.colorPrimaryDarkMulti)
+                .setIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onBackPressed();
+                    }
+                })
                 .build();
 
     mMultiChoiceRecyclerView.setMultiChoiceToolbar(multiChoiceToolbar);
