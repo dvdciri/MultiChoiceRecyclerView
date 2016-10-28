@@ -4,7 +4,6 @@
     <string name="description">\"This library helps dealing with multi choice selection using the Android RecyclerView..\"</string>
 
 
-
     <!-- Content Descriptions -->
     <string name="cd_main_toolbar">main_toolbar</string>
 </resources>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <include layout="@layout/toolbar" />
+    <include layout="@layout/toolbar"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
                 android:padding="15dp"
                 android:text="@string/description"
                 android:textSize="20sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"/>
 
             <TextView
                 android:id="@+id/sampleText"
@@ -32,7 +32,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Samples"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,21 +45,21 @@
                     style="@android:style/Widget.Material.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Toolbar + Controls" />
+                    android:text="Toolbar + Controls"/>
 
                 <Button
                     android:id="@+id/sample_custom_view"
                     style="@android:style/Widget.Material.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Custom Selection View" />
+                    android:text="Custom Selection View"/>
 
                 <Button
                     android:id="@+id/sample_gallery"
                     style="@android:style/Widget.Material.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Image Gallery" />
+                    android:text="Image Gallery"/>
 
             </LinearLayout>
 
@@ -70,16 +70,16 @@
             android:id="@+id/github_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:clickable="true"
-            android:tint="@android:color/white"
-            android:src="@drawable/github"
-            app:backgroundTint="@color/colorPrimary"
-            app:borderWidth="0dp"
-            android:layout_margin="20dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_gravity="bottom"
+            android:layout_margin="20dp"
+            android:clickable="true"
+            android:src="@drawable/github"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/colorPrimary"
+            app:borderWidth="0dp"
             />
 
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar android:id="@+id/toolbar"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="?attr/actionBarSize"
-    app:titleTextColor="@android:color/white"
-    android:background="@color/colorPrimary"
-    android:theme="@style/ThemeToolbar"
-    android:contentDescription="@string/cd_main_toolbar"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   android:id="@+id/toolbar"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:background="@color/colorPrimary"
+                                   android:contentDescription="@string/cd_main_toolbar"
+                                   android:minHeight="?attr/actionBarSize"
+                                   android:theme="@style/ThemeToolbar"
+                                   app:titleTextColor="@android:color/white">
 
 </android.support.v7.widget.Toolbar>

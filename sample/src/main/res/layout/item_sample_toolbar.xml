@@ -17,8 +17,8 @@
   -->
 
 <android.support.v7.widget.CardView
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -26,22 +26,22 @@
     >
 
     <RelativeLayout
-        android:padding="7dp"
         android:id="@+id/get_started_relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        android:padding="7dp">
 
         <TextView
             android:id="@+id/Item_category_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:textColor="@android:color/black"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
-            android:gravity="center"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
             />
 
     </RelativeLayout>
