@@ -47,4 +47,8 @@ public class GalleryActivity extends BaseActivity {
         return getString(R.string.image_gallery);
     }
 
+    @Override
+    protected boolean showBackHomeAsUpIndicator() {
+        return true;
+    }
 }

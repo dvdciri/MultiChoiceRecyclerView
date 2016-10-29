@@ -1,4 +1,4 @@
-package com.davidecirillo.multichoicesample.SampleCustomView;
+package com.davidecirillo.multichoicesample.sampleCustomView;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -80,5 +80,10 @@ public class SampleCustomActivity extends BaseActivity {
     @Override
     protected String toolbarTitle() {
         return getString(R.string.custom_selection_view);
+    }
+
+    @Override
+    protected boolean showBackHomeAsUpIndicator() {
+        return true;
     }
 }

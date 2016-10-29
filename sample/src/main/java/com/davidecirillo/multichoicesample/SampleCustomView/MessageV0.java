@@ -1,4 +1,4 @@
-package com.davidecirillo.multichoicesample.SampleCustomView;
+package com.davidecirillo.multichoicesample.sampleCustomView;
 
 /**
  * Created by davidecirillo on 24/06/2016.

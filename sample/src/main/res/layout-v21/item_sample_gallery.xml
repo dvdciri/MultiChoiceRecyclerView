@@ -34,13 +34,12 @@
         android:id="@+id/tick_image"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_alignLeft="@+id/image_view"
         android:layout_alignStart="@+id/image_view"
         android:layout_alignTop="@+id/image_view"
-        android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/ticked_image"
+        android:elevation="5dp"
         android:src="@drawable/ic_check_white_24dp"
         android:visibility="invisible"/>
 

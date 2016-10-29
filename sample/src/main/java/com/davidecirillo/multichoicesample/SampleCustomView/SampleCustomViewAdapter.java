@@ -1,4 +1,4 @@
-package com.davidecirillo.multichoicesample.SampleCustomView;
+package com.davidecirillo.multichoicesample.sampleCustomView;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;

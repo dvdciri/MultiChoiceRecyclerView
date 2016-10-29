@@ -9,4 +9,12 @@
     <string name="toolbar_controls">Toolbar + Controls</string>
     <string name="custom_selection_view">Custom Selection View</string>
     <string name="image_gallery">Image Gallery</string>
+    <string name="samples">Samples</string>
+    <string name="selected_items">Selected Items</string>
+    <string name="summary">Summary</string>
+    <string name="contact_me">Contact Me</string>
+    <string name="select_all">Select All</string>
+    <string name="deselect_all">Deselect All</string>
+    <string name="select_third_item">Select Third Item</string>
+    <string name="single_click_mode">Single Click Mode</string>
 </resources>

@@ -5,7 +5,7 @@ import android.net.Uri;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.davidecirillo.multichoicesample.SampleCustomView.SampleCustomActivity;
+import com.davidecirillo.multichoicesample.sampleCustomView.SampleCustomActivity;
 import com.davidecirillo.multichoicesample.sampleImageGallery.GalleryActivity;
 import com.davidecirillo.multichoicesample.sampleToolbar.SampleToolbarActivity;
 
