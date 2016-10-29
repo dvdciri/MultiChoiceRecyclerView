@@ -39,7 +39,7 @@ public class SampleCustomActivity extends BaseActivity {
         multiChoiceRecyclerView.setRecyclerColumnNumber(1);
 
         MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
-                .setDefaultToolbarTitle(getString(R.string.app_name))
+                .setDefaultToolbarTitle(toolbarTitle())
                 .setSelectedToolbarTitle("")
                 .setMultiPrimaryColor(R.color.colorPrimaryMulti)
                 .setMultiPrimaryColorDark(R.color.colorPrimaryDarkMulti)

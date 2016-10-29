@@ -31,7 +31,7 @@ public class GalleryActivity extends BaseActivity {
         mMultiChoiceRecyclerView.setRecyclerColumnNumber(4);
 
         MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
-                .setDefaultToolbarTitle(getString(R.string.app_name))
+                .setDefaultToolbarTitle(toolbarTitle())
                 .setSelectedToolbarTitle("")
                 .setMultiPrimaryColor(R.color.colorPrimaryMulti)
                 .setMultiPrimaryColorDark(R.color.colorPrimaryDarkMulti)
