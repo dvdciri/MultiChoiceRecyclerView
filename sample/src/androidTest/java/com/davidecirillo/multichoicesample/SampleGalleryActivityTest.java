@@ -153,7 +153,7 @@ public class SampleGalleryActivityTest extends BaseMultiChoiceActivityTest {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
         onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
-                .check(matches(withText(R.string.app_name)));
+                .check(matches(withText(R.string.image_gallery)));
     }
 
     @Override

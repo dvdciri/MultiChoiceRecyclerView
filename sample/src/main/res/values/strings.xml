@@ -6,4 +6,7 @@
 
     <!-- Content Descriptions -->
     <string name="cd_main_toolbar">main_toolbar</string>
+    <string name="toolbar_controls">Toolbar + Controls</string>
+    <string name="custom_selection_view">Custom Selection View</string>
+    <string name="image_gallery">Image Gallery</string>
 </resources>

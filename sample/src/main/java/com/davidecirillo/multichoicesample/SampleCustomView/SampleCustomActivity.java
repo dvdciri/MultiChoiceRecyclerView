@@ -76,4 +76,9 @@ public class SampleCustomActivity extends BaseActivity {
                 })
                 .toList();
     }
+
+    @Override
+    protected String toolbarTitle() {
+        return getString(R.string.custom_selection_view);
+    }
 }

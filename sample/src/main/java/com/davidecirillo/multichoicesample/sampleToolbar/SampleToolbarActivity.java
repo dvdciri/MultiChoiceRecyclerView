@@ -147,6 +147,6 @@ public class SampleToolbarActivity extends BaseActivity {
 
     @Override
     protected String toolbarTitle() {
-        return "Sample Multi Choice Toolbar";
+        return getString(R.string.toolbar_controls);
     }
 }

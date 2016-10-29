@@ -45,21 +45,21 @@
                     style="@android:style/Widget.Material.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Toolbar + Controls"/>
+                    android:text="@string/toolbar_controls"/>
 
                 <Button
                     android:id="@+id/sample_custom_view"
                     style="@android:style/Widget.Material.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Custom Selection View"/>
+                    android:text="@string/custom_selection_view"/>
 
                 <Button
                     android:id="@+id/sample_gallery"
                     style="@android:style/Widget.Material.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Image Gallery"/>
+                    android:text="@string/image_gallery"/>
 
             </LinearLayout>
 

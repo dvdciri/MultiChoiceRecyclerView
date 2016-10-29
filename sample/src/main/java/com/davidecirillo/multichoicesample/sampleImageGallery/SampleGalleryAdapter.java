@@ -150,4 +150,6 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
             ButterKnife.bind(this, itemView);
         }
     }
+
+
 }

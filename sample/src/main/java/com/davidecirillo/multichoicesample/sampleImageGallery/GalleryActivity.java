@@ -42,4 +42,9 @@ public class GalleryActivity extends BaseActivity {
         mMultiChoiceRecyclerView.setAdapter(adapter);
     }
 
+    @Override
+    protected String toolbarTitle() {
+        return getString(R.string.image_gallery);
+    }
+
 }
