@@ -288,19 +288,19 @@ public class SampleToolbarActivityTest extends BaseMultiChoiceActivityTest {
     @Test
     public void testMultiChoiceIconIsVisible() throws Exception {
         onView(allOf(isAssignableFrom(ImageView.class), withParent(isAssignableFrom(Toolbar.class))))
-                .check(matches(isBackIcon()));
+                .check(matches(hasDrawable()));
 
         onView(withId(R.id.multiChoiceRecyclerView))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, longClick()));
 
         onView(allOf(isAssignableFrom(ImageView.class), withParent(isAssignableFrom(Toolbar.class))))
-                .check(matches(not(isBackIcon())));
+                .check(matches(hasDrawable()));
 
         onView(withId(R.id.multiChoiceRecyclerView))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
         onView(allOf(isAssignableFrom(ImageView.class), withParent(isAssignableFrom(Toolbar.class))))
-                .check(matches(isBackIcon()));
+                .check(matches(hasDrawable()));
     }
 
     @Override
@@ -310,7 +310,7 @@ public class SampleToolbarActivityTest extends BaseMultiChoiceActivityTest {
         return !(relativeLayout == null || relativeLayout.getBackground() == null) && ((ColorDrawable) relativeLayout.getBackground()).getColor() == ContextCompat.getColor(mActivity, R.color.colorPrimaryDark);
     }
 
-    private Matcher<View> isBackIcon() {
+    private Matcher<View> hasDrawable() {
         return new TypeSafeMatcher<View>() {
 
             @Override
@@ -322,8 +322,7 @@ public class SampleToolbarActivityTest extends BaseMultiChoiceActivityTest {
             public boolean matchesSafely(View view) {
                 if(view instanceof ImageView){
                     ImageView imageView = (ImageView) view;
-                    return imageView.getDrawable().getConstantState()
-                            == ContextCompat.getDrawable(mActivity, R.drawable.ic_arrow_back_white_24dp).getConstantState();
+                    return imageView.getDrawable() != null;
                 }
                 return false;
             }

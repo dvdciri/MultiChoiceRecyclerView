@@ -2,6 +2,7 @@ package com.davidecirillo.multichoicesample.sampleCustomView;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView;
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceToolbar;
@@ -43,6 +44,12 @@ public class SampleCustomActivity extends BaseActivity {
                 .setSelectedToolbarTitle("")
                 .setMultiPrimaryColor(R.color.colorPrimaryMulti)
                 .setMultiPrimaryColorDark(R.color.colorPrimaryDarkMulti)
+                .setIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onBackPressed();
+                    }
+                })
                 .build();
         multiChoiceRecyclerView.setMultiChoiceToolbar(multiChoiceToolbar);
 
