@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+### Changed
+### Fixed
+### Deleted
+
+## [1.1.8]
+### Added
 - Changelog file
 - Class MultiChoiceToolbar for wrapping all the multi choice toolbar related fields
 - Toolbar icon support for MultiChoiceToolbar (Builder)
@@ -14,8 +20,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Method setMultiChoiceToolbar() now accept a MultiChoiceToolbar class with its builder for a simpler construction
 - Internal file structure in order to allow package-protected classes/methods
 - Updated sample with new toolbar implementation
-### Fixed
-### Deleted
 
 ## [1.1.7]
 ### Fixed
