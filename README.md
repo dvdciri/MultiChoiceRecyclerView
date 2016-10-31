@@ -3,9 +3,9 @@
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MultiChoiceRecyclerView-green.svg?style=true)](https://android-arsenal.com/details/1/3755)
 [![CircleCI](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/master.svg?style=shield)](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/master)
 
-# Multichoice RecylerView
+#Multichoice RecyclerView
 
-##Sample
+###Sample
 <a href='https://play.google.com/store/apps/details?id=com.davidecirillo.multichoicerecyclerview&hl=en_GB&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width='150' alt='Get it on Google Play' src='https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png'/></a>
 
 Donwload the sample app on the Google Play Store and check out all the features
@@ -15,27 +15,16 @@ Donwload the sample app on the Google Play Store and check out all the features
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="180">
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example4.png" width="180">
 
-*Does your app use MultiChoiceRecyclerView? If you want to be featured on this page drop me a line.*
+*Are you using MultiChoiceRecyclerView? If you want to be featured on this page drop me a line.*
 
-##Description
-This library make life easy when you have to deal with a multi choice selection on recycler view.
+###Description
+This library make life easier when you have to deal with a multi choice selection on recycler view.
 
 <br>
+###IMPORTANT
+In the new release v1.1.8 there is an update on the MultiChoiceToolbar feature, check out the changelog and the updated documentation below to find our the changes
 
-##Implementation
-Add the library and the Jcenter repository to your .gradle file.
-
-```java
-    repositories {
-        jcenter()
-    }
-    ...
-    
-    dependencies {
-        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:**latest_version**'
-    }
-```
-
+#Implementation
 Use the MultiChoiceRecyclerView xml object and connect the view as usual
 ```java
     <com.davidecirillo.multichoicesample.MultiChoiceRecyclerView
@@ -51,16 +40,16 @@ Use the MultiChoiceRecyclerView xml object and connect the view as usual
 Extend your adapter to the MultiChoiceAdapter and add it to the RecyclerView as per normal usage
 ```java
     public class MyAdapter extends MultiChoiceAdapter<MyViewHolder> {
-    
+
         public MyAdapter(ArrayList<String> stringList, Context context) {
             this.mList = stringList;
             this.mContext = context;
         }
-        
+
          @Override
          public void onBindViewHolder(MySampleToolbarViewHolder holder, int position) {
             super.onBindViewHolder(holder, position);
-            
+
             /*
                 Don't use View.OnClickListener on the "holder.itemView", override defaultItemViewClickListener(...) instead
             */
@@ -81,9 +70,9 @@ Customize the activation or deactivation just overriding the setActive(View root
 ```java
     @Override
     public void setActive(View rootView, boolean state) {
-        
+
         //Use View.findViewById(int id) to look for your view in the rootView
-    
+
         if(state){
             //Apply your changes
         }else{
@@ -94,23 +83,30 @@ Customize the activation or deactivation just overriding the setActive(View root
 
 <br>
 
-##Fetures
+#Fetures
 - **Multi Choice Toolbar**
 Activate and customise the multi choice toolbar provided by the library (only if using setSupportActionBar with Toolbar)
 ```java
-    mMultiChoiceRecyclerView.setMultiChoiceToolbar(this,
-                toolbar,
-                getString(R.string.app_name),
-                "item selected");
-                
-    //you can set the selected color of the toolbar and status bar as well
-    mMultiChoiceRecyclerView.setMultiChoiceToolbar(this,
-                toolbar,
-                getString(R.string.app_name),
-                "item selected",
-                R.color.colorPrimaryMulti, R.color.colorPrimaryDarkMulti);
+    MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
+                .setDefaultToolbarTitle("Default Toolbar Title")
+                .setSelectedToolbarTitle("item selected")
+                .setMulti_primaryColor(R.color.colorPrimaryMulti)
+                .setMulti_primaryColorDark(R.color.colorPrimaryDarkMulti)
+                .setIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onBackPressed();
+                    }
+                })
+                .build();
+
+    mMultiChoiceRecyclerView.setMultiChoiceToolbar(multiChoiceToolbar);
 ```
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example_toolbar.png" width="300">
+
+You can also set the following:
+- Default toolbar primary color
+- Default toolbar primary color dark
 
 <br>
 - **Single Click Mode**
@@ -127,7 +123,7 @@ Use the MultiChoiceSelectionListener in order to have a callback whether an acti
     mMultiChoiceRecyclerView.setMultiChoiceSelectionListener(new MultiChoiceSelectionListener() {
             @Override
             public void OnItemSelected(int selectedPosition, int itemSelectedCount, int allItemCount) {
-                
+
             }
 
             @Override
@@ -149,7 +145,23 @@ Use the MultiChoiceSelectionListener in order to have a callback whether an acti
 
 <br>
 
-##Developed by
+#Changelog
+[Changelog file](https://github.com/dvdciri/MultiChoiceRecyclerView/edit/master/CHANGELOG.md)
+
+
+#Gradle Dependency
+```java
+    repositories {
+        jcenter()
+    }
+    ...
+
+    dependencies {
+        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:1.1.8'
+    }
+```
+
+#Developed by
 
 **Davide Cirillo**
 - Twitter @DvdCiri
@@ -158,7 +170,7 @@ Use the MultiChoiceSelectionListener in order to have a callback whether an acti
 
 If you want to contribute to the project feel free to Fork and create a Pull Request following the general rules for contribution: https://guides.github.com/activities/contributing-to-open-source/
 
-##License
+#License
 ```
     Copyright (c) 2014 Davide Cirillo
     

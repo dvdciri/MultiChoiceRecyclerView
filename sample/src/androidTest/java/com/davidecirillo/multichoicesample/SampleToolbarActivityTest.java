@@ -25,12 +25,16 @@ import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.davidecirillo.multichoicesample.api.BaseMultiChoiceActivityTest;
 import com.davidecirillo.multichoicesample.sampleToolbar.SampleToolbarActivity;
 
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -43,6 +47,7 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -157,7 +162,7 @@ public class SampleToolbarActivityTest extends BaseMultiChoiceActivityTest {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
         onView(allOf(isAssignableFrom(TextView.class), withParent(isAssignableFrom(Toolbar.class))))
-                .check(matches(withText(R.string.app_name)));
+                .check(matches(withText(R.string.toolbar_controls)));
     }
 
     /**
@@ -275,11 +280,52 @@ public class SampleToolbarActivityTest extends BaseMultiChoiceActivityTest {
                 .check(matches(withText(containsString("8"))));
     }
 
+    /**
+     * #11 testMultiChoiceIconIsVisible
+     *
+     * Test that the state of the toolbar icon is restored after all the items are deselected
+     */
+    @Test
+    public void testMultiChoiceIconIsVisible() throws Exception {
+        onView(allOf(isAssignableFrom(ImageView.class), withParent(isAssignableFrom(Toolbar.class))))
+                .check(matches(hasDrawable()));
+
+        onView(withId(R.id.multiChoiceRecyclerView))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, longClick()));
+
+        onView(allOf(isAssignableFrom(ImageView.class), withParent(isAssignableFrom(Toolbar.class))))
+                .check(matches(hasDrawable()));
+
+        onView(withId(R.id.multiChoiceRecyclerView))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+        onView(allOf(isAssignableFrom(ImageView.class), withParent(isAssignableFrom(Toolbar.class))))
+                .check(matches(hasDrawable()));
+    }
 
     @Override
     protected boolean isSelected(View view) {
         RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.get_started_relative_layout);
 
         return !(relativeLayout == null || relativeLayout.getBackground() == null) && ((ColorDrawable) relativeLayout.getBackground()).getColor() == ContextCompat.getColor(mActivity, R.color.colorPrimaryDark);
+    }
+
+    private Matcher<View> hasDrawable() {
+        return new TypeSafeMatcher<View>() {
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("Icon should be a back icon");
+            }
+
+            @Override
+            public boolean matchesSafely(View view) {
+                if(view instanceof ImageView){
+                    ImageView imageView = (ImageView) view;
+                    return imageView.getDrawable() != null;
+                }
+                return false;
+            }
+        };
     }
 }

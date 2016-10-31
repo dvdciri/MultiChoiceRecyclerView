@@ -63,7 +63,7 @@ class MySampleToolbarAdapter extends MultiChoiceAdapter<MySampleToolbarViewHolde
      * Override this method to implement a custom active/deactive state
      */
     @Override
-    protected void setActive(View view, boolean state) {
+    public void setActive(View view, boolean state) {
 
         RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.get_started_relative_layout);
 

@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/select_all"
-        android:title="Select All"
+        android:title="@string/select_all"
         app:showAsAction="never"
         />
 
     <item
         android:id="@+id/deselect_all"
-        android:title="Deselect All"
+        android:title="@string/deselect_all"
         app:showAsAction="never"
         />
 
     <item
         android:id="@+id/select_3"
-        android:title="Select Third Item"
+        android:title="@string/select_third_item"
         app:showAsAction="never"
         />
 
     <item
         android:id="@+id/single_click_mode"
-        android:title="Single Click Mode"
+        android:title="@string/single_click_mode"
         app:showAsAction="never"
         />
 </menu>

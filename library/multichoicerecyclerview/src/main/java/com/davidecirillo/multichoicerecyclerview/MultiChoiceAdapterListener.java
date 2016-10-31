@@ -1,4 +1,4 @@
-package com.davidecirillo.multichoicerecyclerview.listeners;
+package com.davidecirillo.multichoicerecyclerview;
 
 import android.view.View;
 
@@ -6,7 +6,7 @@ import android.view.View;
  * Created by davidecirillo on 02/06/2016.
  */
 
-public interface MultiChoiceAdapterListener {
+interface MultiChoiceAdapterListener {
 
     void onSingleItemClickListener(View view, int position);
 

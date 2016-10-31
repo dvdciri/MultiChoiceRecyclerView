@@ -2,7 +2,6 @@ package com.davidecirillo.multichoicesample.sampleImageGallery;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +78,7 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
 
 
     @Override
-    protected void setActive(View view, boolean state) {
+    public void setActive(View view, boolean state) {
 
         ImageView imageView = (ImageView) view.findViewById(R.id.image_view);
         final ImageView tickImage = (ImageView) view.findViewById(R.id.tick_image);
@@ -151,4 +150,6 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
             ButterKnife.bind(this, itemView);
         }
     }
+
+
 }

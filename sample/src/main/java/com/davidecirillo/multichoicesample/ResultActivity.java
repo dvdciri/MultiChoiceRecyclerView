@@ -44,7 +44,7 @@ public class ResultActivity extends BaseActivity {
         if(getIntent().hasExtra("selectedItems")) {
             ArrayList<String> selectedItems = (ArrayList<String>) getIntent().getSerializableExtra("selectedItems");
             for (String string : selectedItems) {
-                result.setText(result.getText() + "\n" + string);
+                result.append(String.format("\n%s", string));
             }
         }else
             finish();

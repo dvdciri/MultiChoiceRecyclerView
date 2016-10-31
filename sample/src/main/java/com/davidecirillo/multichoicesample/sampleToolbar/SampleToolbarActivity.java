@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView;
+import com.davidecirillo.multichoicerecyclerview.MultiChoiceToolbar;
 import com.davidecirillo.multichoicesample.BaseActivity;
 import com.davidecirillo.multichoicesample.R;
 import com.davidecirillo.multichoicesample.ResultActivity;
@@ -60,11 +62,20 @@ public class SampleToolbarActivity extends BaseActivity {
     private void setUpMultiChoiceRecyclerView() {
         mMultiChoiceRecyclerView.setRecyclerColumnNumber(3);
 
-        mMultiChoiceRecyclerView.setMultiChoiceToolbar(this,
-                toolbar,
-                getString(R.string.app_name),
-                "item selected",
-                R.color.colorPrimaryMulti, R.color.colorPrimaryDarkMulti);
+        MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
+                .setDefaultToolbarTitle(toolbarTitle())
+                .setSelectedToolbarTitle("item selected")
+                .setMultiPrimaryColor(R.color.colorPrimaryMulti)
+                .setMultiPrimaryColorDark(R.color.colorPrimaryDarkMulti)
+                .setIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onBackPressed();
+                    }
+                })
+                .build();
+
+        mMultiChoiceRecyclerView.setMultiChoiceToolbar(multiChoiceToolbar);
 
         getSampleList()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -129,4 +140,13 @@ public class SampleToolbarActivity extends BaseActivity {
         return false;
     }
 
+    @Override
+    protected boolean showBackHomeAsUpIndicator() {
+        return true;
+    }
+
+    @Override
+    protected String toolbarTitle() {
+        return getString(R.string.toolbar_controls);
+    }
 }

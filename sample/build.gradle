@@ -26,11 +26,12 @@ android {
     }
 
     lintOptions {
-        abortOnError false
+        abortOnError true
+        disable 'Overdraw','UnusedResources','IconLocation','ContentDescription','AppLinksAutoVerifyError','AppLinksAutoVerifyWarning'
     }
 
     buildTypes {
-        debug{
+        debug {
             debuggable true;
         }
         release {

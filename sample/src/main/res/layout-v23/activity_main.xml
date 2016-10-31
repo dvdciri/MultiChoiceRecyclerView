@@ -42,33 +42,24 @@
 
                 <Button
                     android:id="@+id/sample_toolbar"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
+                    style="@android:style/Widget.Material.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorAccent"
-                    android:text="@string/toolbar_controls"
-                    android:textColor="@android:color/white"/>
+                    android:text="@string/toolbar_controls"/>
 
                 <Button
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
                     android:id="@+id/sample_custom_view"
+                    style="@android:style/Widget.Material.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorAccent"
-                    android:text="@string/custom_selection_view"
-                    android:textColor="@android:color/white"/>
+                    android:text="@string/custom_selection_view"/>
 
                 <Button
                     android:id="@+id/sample_gallery"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
+                    style="@android:style/Widget.Material.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorAccent"
-                    android:text="@string/image_gallery"
-                    android:textColor="@android:color/white"/>
+                    android:text="@string/image_gallery"/>
 
             </LinearLayout>
 
@@ -81,7 +72,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_gravity="bottom"
             android:layout_margin="20dp"
             android:clickable="true"

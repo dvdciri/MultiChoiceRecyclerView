@@ -55,14 +55,14 @@ class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomViewAdapter
     }
 
     @Override
-    protected void setActive(View view, boolean state) {
+    public void setActive(View view, boolean state) {
 
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
         RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.container);
-        if(state){
+        if (state) {
             relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorBackgroundLight));
             imageView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
-        }else{
+        } else {
             relativeLayout.setBackgroundColor(ContextCompat.getColor(mContext, android.R.color.transparent));
             imageView.setBackgroundColor(ContextCompat.getColor(mContext, android.R.color.transparent));
         }
@@ -73,12 +73,12 @@ class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomViewAdapter
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Click on item "+position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Click on item " + position, Toast.LENGTH_SHORT).show();
             }
         };
     }
 
-    class SampleCustomViewHolder extends RecyclerView.ViewHolder{
+    class SampleCustomViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.title)
         public TextView title;

@@ -2,8 +2,10 @@ package com.davidecirillo.multichoicesample.sampleCustomView;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView;
+import com.davidecirillo.multichoicerecyclerview.MultiChoiceToolbar;
 import com.davidecirillo.multichoicesample.BaseActivity;
 import com.davidecirillo.multichoicesample.R;
 
@@ -16,10 +18,6 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
-
-/**
- * Created by davidecirillo on 24/06/2016.
- */
 
 public class SampleCustomActivity extends BaseActivity {
 
@@ -41,11 +39,19 @@ public class SampleCustomActivity extends BaseActivity {
 
         multiChoiceRecyclerView.setRecyclerColumnNumber(1);
 
-        multiChoiceRecyclerView.setMultiChoiceToolbar(this,
-                toolbar,
-                getString(R.string.app_name),
-                "",
-                R.color.colorPrimaryMulti, R.color.colorPrimaryDarkMulti);
+        MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
+                .setDefaultToolbarTitle(toolbarTitle())
+                .setSelectedToolbarTitle("")
+                .setMultiPrimaryColor(R.color.colorPrimaryMulti)
+                .setMultiPrimaryColorDark(R.color.colorPrimaryDarkMulti)
+                .setIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onBackPressed();
+                    }
+                })
+                .build();
+        multiChoiceRecyclerView.setMultiChoiceToolbar(multiChoiceToolbar);
 
         getSampleMessageList()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -76,5 +82,15 @@ public class SampleCustomActivity extends BaseActivity {
                     }
                 })
                 .toList();
+    }
+
+    @Override
+    protected String toolbarTitle() {
+        return getString(R.string.custom_selection_view);
+    }
+
+    @Override
+    protected boolean showBackHomeAsUpIndicator() {
+        return true;
     }
 }
