@@ -7,8 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 ### Changed
+- Clean and polish
 ### Fixed
+- Performance improvements
 ### Deleted
+- Removed unnecessary methods like setColumnNumber ad setRowNumber
 
 ## [1.1.8]
 ### Added
