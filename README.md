@@ -146,7 +146,7 @@ Use the MultiChoiceSelectionListener in order to have a callback whether an acti
 <br>
 
 #Changelog
-[Changelog file](https://github.com/dvdciri/MultiChoiceRecyclerView/edit/master/CHANGELOG.md)
+[Changelog file](https://github.com/dvdciri/MultiChoiceRecyclerView/blob/master/CHANGELOG.md)
 
 
 #Gradle Dependency
