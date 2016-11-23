@@ -2,6 +2,7 @@ package com.davidecirillo.multichoicesample.sampleCustomView;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView;
@@ -37,7 +38,7 @@ public class SampleCustomActivity extends BaseActivity {
 
     private void setUpMultiChoiceRecyclerView() {
 
-        multiChoiceRecyclerView.setRecyclerColumnNumber(1);
+        multiChoiceRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
                 .setDefaultToolbarTitle(toolbarTitle())

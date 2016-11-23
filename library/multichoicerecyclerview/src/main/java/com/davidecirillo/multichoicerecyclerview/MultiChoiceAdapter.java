@@ -1,5 +1,6 @@
 package com.davidecirillo.multichoicerecyclerview;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,10 +33,8 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
                         mMultiChoiceListener.onSingleItemClickListener(mCurrentView, holder.getAdapterPosition());
                     }
                 });
-            } else {
-                if (defaultItemViewClickListener(holder, position) != null) {
-                    mCurrentView.setOnClickListener(defaultItemViewClickListener(holder, position));
-                }
+            } else if (defaultItemViewClickListener(holder, position) != null) {
+                mCurrentView.setOnClickListener(defaultItemViewClickListener(holder, position));
             }
 
             mCurrentView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -48,7 +47,7 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
 
             mMultiChoiceListener.onUpdateItemListener(mCurrentView, holder.getAdapterPosition());
 
-        }else{
+        } else {
             throw new IllegalStateException(EXCEPTION_MSG_NO_INTERFACE);
         }
     }
@@ -58,19 +57,13 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
         this.mMultiChoiceListener = multiChoiceListener;
     }
 
-    void performActivation(View view, boolean state) {
-        if (view != null) {
-            setActive(view, state);
-        }
-    }
-
     /**
      * Override this method to customize the active item
      *
-     * @param view the view to customize
+     * @param view  the view to customize
      * @param state true if the state is active/selected
      */
-    public void setActive(View view, boolean state) {
+    public void setActive(@NonNull View view, boolean state) {
         if (state) {
             view.setAlpha(0.25f);
         } else {

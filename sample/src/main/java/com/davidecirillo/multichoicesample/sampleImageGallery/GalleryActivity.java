@@ -2,6 +2,8 @@ package com.davidecirillo.multichoicesample.sampleImageGallery;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView;
@@ -29,7 +31,7 @@ public class GalleryActivity extends BaseActivity {
 
     private void setUpMultiChoiceRecyclerView() {
 
-        mMultiChoiceRecyclerView.setRecyclerColumnNumber(4);
+        mMultiChoiceRecyclerView.setLayoutManager(new GridLayoutManager(this, 4, LinearLayoutManager.VERTICAL, false));
 
         MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
                 .setDefaultToolbarTitle(toolbarTitle())

@@ -61,14 +61,6 @@ public class MultiChoiceAdapterTest {
         verify(mMultiChoiceAdapterListener, times(1)).onUpdateItemListener(mViewHolder.itemView, mViewHolder.getAdapterPosition());
     }
 
-    @Test
-    public void testPerformActionShouldNotCallSetAction() throws Exception {
-        TestAdapter testAdapter = mock(TestAdapter.class);
-        testAdapter.performActivation(null, true);
-
-        verify(testAdapter, never()).setActive(null, true);
-    }
-
     private class TestViewHolder extends RecyclerView.ViewHolder{
         private TestViewHolder(View itemView) {
             super(itemView);

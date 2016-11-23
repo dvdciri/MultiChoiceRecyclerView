@@ -1,6 +1,7 @@
 package com.davidecirillo.multichoicesample.sampleImageGallery;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,7 +79,7 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
 
 
     @Override
-    public void setActive(View view, boolean state) {
+    public void setActive(@NonNull View view, boolean state) {
 
         ImageView imageView = (ImageView) view.findViewById(R.id.image_view);
         final ImageView tickImage = (ImageView) view.findViewById(R.id.tick_image);

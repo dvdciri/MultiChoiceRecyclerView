@@ -20,8 +20,8 @@ package com.davidecirillo.multichoicerecyclerview;
 import android.content.Context;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -30,21 +30,29 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-
 public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoiceAdapterListener {
 
-    private StaggeredGridLayoutManager mStaggeredGridLayoutManager;
+
     private final HashMap<Integer, View> mSelectedList = new HashMap<>();
     private final HashMap<Integer, View> mAllList = new HashMap<>();
     private MultiChoiceAdapter mMultiChoiceAdapter = null;
     private MultiChoiceSelectionListener multiChoiceSelectionListener = null;
 
-    private boolean isInSingleClickMode = false;
-    private boolean isInMultiChoiceMode = false;
     private MultiChoiceToolbarHelper mMultiChoiceToolbarHelper;
+
+    public MultiChoiceRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        init();
+    }
 
     public MultiChoiceRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        init();
+    }
+
+    public MultiChoiceRecyclerView(Context context) {
+        super(context);
+        init();
     }
 
     @Override
@@ -66,14 +74,11 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
             }
     }
 
-
     //region MultiChoiceAdapterListener interface implementation
     @Override
     public void onSingleItemClickListener(View view, int position) {
         //Check if it's in a single mode of if there is at least one item in the selected list, before processing the click
-        if (mSelectedList.size() >= 1 || isInSingleClickMode) {
-            performVibrate();
-
+        if (mSelectedList.size() >= 1 || mMultiChoiceAdapter.isInSingleClickMode) {
             performSingleClick(view, position);
         }
     }
@@ -81,8 +86,6 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
     @Override
     public void onSingleItemLongClickListener(View view, int position) {
         if (mSelectedList.size() == 0) {
-            performVibrate();
-
             performSingleClick(view, position);
         }
     }
@@ -90,11 +93,12 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
 
     @Override
     public void onUpdateItemListener(View view, int position) {
-        if (mMultiChoiceAdapter != null && isInMultiChoiceMode) {
-            if (mSelectedList.containsKey(position))
-                performSelect(view, position, false);
-            else
-                performDeselect(view, position, false);
+        if (mMultiChoiceAdapter != null && mMultiChoiceAdapter.isInMultiChoiceMode) {
+            if (mSelectedList.containsKey(position)) {
+                perform(Action.SELECT, view, position, false, false);
+            } else {
+                perform(Action.DESELECT, view, position, false, false);
+            }
         }
         mAllList.put(position, view);
     }
@@ -106,49 +110,14 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
      * Deselect all the selected items in the adapter
      */
     public boolean deselectAll() {
-        if (mMultiChoiceAdapter != null) {
-
-            performVibrate();
-
-            //select all the the view
-            Iterator it = mAllList.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry<Integer, View> pair = (Map.Entry<Integer, View>) it.next();
-
-                performDeselect(pair.getValue(), pair.getKey(), false);
-            }
-
-            if (multiChoiceSelectionListener != null)
-                multiChoiceSelectionListener.OnDeselectAll(mSelectedList.size(), mAllList.size());
-
-            return true;
-        }
-        return false;
+        return performAll(Action.DESELECT);
     }
-
 
     /**
      * Select all the view in the adapter
      */
     public boolean selectAll() {
-        if (mMultiChoiceAdapter != null) {
-
-            performVibrate();
-
-            //select all the the view
-            Iterator it = mAllList.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry<Integer, View> pair = (Map.Entry<Integer, View>) it.next();
-
-                performSelect(pair.getValue(), pair.getKey(), false);
-            }
-
-            if (multiChoiceSelectionListener != null)
-                multiChoiceSelectionListener.OnSelectAll(mSelectedList.size(), mAllList.size());
-
-            return true;
-        }
-        return false;
+        return performAll(Action.SELECT);
     }
 
 
@@ -158,41 +127,11 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
      * @param position the position of the view in the adapter
      */
     public boolean select(int position) {
-        View v = mAllList.get(position);
         if (mMultiChoiceAdapter != null) {
-
-            performVibrate();
-
-            performSelect(v, position, true);
-
+            perform(Action.SELECT, mAllList.get(position), position, true, true);
             return true;
         }
         return false;
-    }
-
-    /**
-     * Set the number of column with a VERTICAL layout.
-     * If you call this method, it will override the setRowNumber()
-     *
-     * @param columnNumber number of column
-     */
-    public MultiChoiceRecyclerView setRecyclerColumnNumber(int columnNumber) {
-        mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(columnNumber, StaggeredGridLayoutManager.VERTICAL);
-        setLayoutManager(mStaggeredGridLayoutManager);
-        return this;
-    }
-
-
-    /**
-     * Set the number of row with a HORIZONTAL layout
-     * If you call this method, it will override the setColumnNumber()
-     *
-     * @param rowNumber number of row
-     */
-    public MultiChoiceRecyclerView setRecyclerRowNumber(int rowNumber) {
-        mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(rowNumber, StaggeredGridLayoutManager.HORIZONTAL);
-        setLayoutManager(mStaggeredGridLayoutManager);
-        return this;
     }
 
 
@@ -202,20 +141,10 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
      * @param set true if single click sctivated
      */
     public void setSingleClickMode(boolean set) {
-        this.isInSingleClickMode = set;
         mMultiChoiceAdapter.isInSingleClickMode = set;
 
         //Notify adapter that something changed
         mMultiChoiceAdapter.notifyDataSetChanged();
-    }
-
-    /**
-     * Method to get the number of item in the adapter
-     *
-     * @return number of all item in the adapter
-     */
-    public int getAllItemCount() {
-        return mMultiChoiceAdapter.getItemCount();
     }
 
 
@@ -251,45 +180,47 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
      * @return true if the single click mode is active
      */
     public boolean isInSingleClickMode() {
-        return isInSingleClickMode;
+        return mMultiChoiceAdapter.isInSingleClickMode;
     }
 
     //endregion
 
     //region Private methods
 
+    private void init() {
+        if (getLayoutManager() == null) {
+            setLayoutManager(new LinearLayoutManager(getContext(), VERTICAL, false));
+        }
+    }
+
     private void updateToolbarIfInMultiChoiceMode(int number) {
-        if (isInMultiChoiceMode && mMultiChoiceToolbarHelper != null)
+        if (mMultiChoiceAdapter.isInMultiChoiceMode && mMultiChoiceToolbarHelper != null)
             mMultiChoiceToolbarHelper.updateToolbar(number);
     }
 
     private void updateMultiChoiceMode() {
         //every time the multi choice mode is updated and the value change
         // i want to update the adapter in order to refresh the click listeners
-        if (isInMultiChoiceMode != mSelectedList.size() > 0)
-            mMultiChoiceAdapter.notifyDataSetChanged();
+        if (mMultiChoiceAdapter.isInMultiChoiceMode != mSelectedList.size() > 0) {
 
-        //update values
-        isInMultiChoiceMode = mSelectedList.size() > 0;
-        mMultiChoiceAdapter.isInMultiChoiceMode = mSelectedList.size() > 0;
+            mMultiChoiceAdapter.isInMultiChoiceMode = mSelectedList.size() > 0;
+
+            mMultiChoiceAdapter.notifyDataSetChanged();
+        }
     }
 
     private void performSingleClick(View view, int position) {
-
         if (mMultiChoiceAdapter != null) {
             if (mSelectedList.containsKey(position)) {
-
-                performDeselect(view, position, true);
+                perform(Action.DESELECT, view, position, true, true);
             } else {
-
-                performSelect(view, position, true);
+                perform(Action.SELECT, view, position, true, true);
             }
         }
-
     }
 
     /**
-     * Remember to call this method before selecting or deselection something otherwise it wont vibrate
+     * Remember to call this method before selecting or deselection something otherwise it won't vibrate
      */
     private void performVibrate() {
         if (mSelectedList.size() == 0) {
@@ -298,28 +229,63 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
         }
     }
 
-    private void performSelect(View v, int position, boolean withCallback) {
-        mMultiChoiceAdapter.performActivation(v, true);
-        mSelectedList.put(position, v);
+    private void perform(Action action, View v, int position, boolean withCallback, boolean withVibration) {
+        if (withVibration) {
+            performVibrate();
+        }
 
+        if (action == Action.SELECT) {
+            if (v != null) {
+                mMultiChoiceAdapter.setActive(v, true);
+            }
+            mSelectedList.put(position, v);
+
+            if (multiChoiceSelectionListener != null && withCallback) {
+                multiChoiceSelectionListener.OnItemSelected(position, mSelectedList.size(), mAllList.size());
+            }
+        } else {
+            if (v != null) {
+                mMultiChoiceAdapter.setActive(v, false);
+            }
+            mSelectedList.remove(position);
+
+            if (multiChoiceSelectionListener != null && withCallback) {
+                multiChoiceSelectionListener.OnItemDeselected(position, mSelectedList.size(), mAllList.size());
+            }
+        }
         updateToolbarIfInMultiChoiceMode(mSelectedList.size());
 
         updateMultiChoiceMode();
-
-        if (multiChoiceSelectionListener != null && withCallback)
-            multiChoiceSelectionListener.OnItemSelected(position, mSelectedList.size(), mAllList.size());
     }
 
-    private void performDeselect(View v, int position, boolean withCallback) {
-        mMultiChoiceAdapter.performActivation(v, false);
-        mSelectedList.remove(position);
+    private boolean performAll(Action action) {
+        if (mMultiChoiceAdapter != null) {
 
-        updateToolbarIfInMultiChoiceMode(mSelectedList.size());
+            performVibrate();
 
-        updateMultiChoiceMode();
+            //select all the the view
+            Iterator it = mAllList.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<Integer, View> pair = (Map.Entry<Integer, View>) it.next();
 
-        if (multiChoiceSelectionListener != null && withCallback)
-            multiChoiceSelectionListener.OnItemDeselected(position, mSelectedList.size(), mAllList.size());
+                perform(action, pair.getValue(), pair.getKey(), false, true);
+            }
+
+            if (multiChoiceSelectionListener != null) {
+                if (action == Action.SELECT) {
+                    multiChoiceSelectionListener.OnSelectAll(mSelectedList.size(), mAllList.size());
+                } else {
+                    multiChoiceSelectionListener.OnDeselectAll(mSelectedList.size(), mAllList.size());
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    enum Action {
+        SELECT,
+        DESELECT
     }
     //endregion
 
