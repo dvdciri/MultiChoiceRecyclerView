@@ -17,9 +17,12 @@
 
 package com.davidecirillo.multichoicerecyclerview;
 
+import android.Manifest;
 import android.content.Context;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -221,8 +224,10 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
      */
     private void performVibrate() {
         if (mSelectedList.size() == 0) {
-            Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
-            v.vibrate(10);
+            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.VIBRATE) == PermissionChecker.PERMISSION_GRANTED) {
+                Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
+                v.vibrate(10);
+            }
         }
     }
 
@@ -265,7 +270,7 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
             while (it.hasNext()) {
                 Map.Entry<Integer, View> pair = (Map.Entry<Integer, View>) it.next();
 
-                perform(action, pair.getValue(), pair.getKey(), false, true);
+                perform(action, pair.getValue(), pair.getKey(), false, false);
             }
 
             if (multiChoiceSelectionListener != null) {
