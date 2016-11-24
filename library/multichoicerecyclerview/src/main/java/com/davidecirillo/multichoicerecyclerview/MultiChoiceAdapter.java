@@ -13,7 +13,7 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
     boolean isInMultiChoiceMode = false;
     boolean isInSingleClickMode = false;
 
-    private MultiChoiceAdapterListener mMultiChoiceListener;
+    private SelectionListener mMultiChoiceListener;
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -53,7 +53,7 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
     }
 
 
-    void setMultiChoiceListener(MultiChoiceAdapterListener multiChoiceListener) {
+    void setMultiChoiceListener(SelectionListener multiChoiceListener) {
         this.mMultiChoiceListener = multiChoiceListener;
     }
 
@@ -78,5 +78,13 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
      */
     protected View.OnClickListener defaultItemViewClickListener(VH holder, int position) {
         return null;
+    }
+
+    interface SelectionListener {
+        void onSingleItemClickListener(View view, int position);
+
+        void onSingleItemLongClickListener(View view, int position);
+
+        void onUpdateItemListener(View view, int position);
     }
 }

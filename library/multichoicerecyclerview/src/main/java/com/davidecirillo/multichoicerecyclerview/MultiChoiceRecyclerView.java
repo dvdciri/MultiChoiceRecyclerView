@@ -30,7 +30,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoiceAdapterListener {
+public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoiceAdapter.SelectionListener {
 
 
     private final HashMap<Integer, View> mSelectedList = new HashMap<>();
@@ -66,15 +66,12 @@ public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoice
             for (int i = 0; i < mMultiChoiceAdapter.getItemCount(); i++) {
                 mAllList.put(i, null);
             }
-        } else
-            try {
-                throw new MultiChoiceAdapterNotFoundException();
-            } catch (MultiChoiceAdapterNotFoundException e) {
-                e.printStackTrace();
-            }
+        } else {
+            throw new IllegalStateException("The adapter of this RecyclerView is not extending the MultiChoiceAdapter class");
+        }
     }
 
-    //region MultiChoiceAdapterListener interface implementation
+    //region SelectionListener interface implementation
     @Override
     public void onSingleItemClickListener(View view, int position) {
         //Check if it's in a single mode of if there is at least one item in the selected list, before processing the click

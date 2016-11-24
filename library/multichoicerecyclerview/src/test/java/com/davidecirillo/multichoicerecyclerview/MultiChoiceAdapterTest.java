@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -24,12 +23,12 @@ public class MultiChoiceAdapterTest {
     private MultiChoiceAdapter<TestViewHolder> mMultiChoiceAdapter;
 
     @Mock
-    MultiChoiceAdapterListener mMultiChoiceAdapterListener;
+    MultiChoiceAdapter.SelectionListener mMultiChoiceAdapterListener;
 
     @Before
     public void setUp() throws Exception {
 
-        mMultiChoiceAdapterListener = mock(MultiChoiceAdapterListener.class);
+        mMultiChoiceAdapterListener = mock(MultiChoiceAdapter.SelectionListener.class);
 
         mViewHolder = new TestViewHolder(mock(View.class));
 
