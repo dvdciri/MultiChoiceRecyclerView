@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Clean and polish
 ### Fixed
+- Kept order of selected items when retrieved back with "getSelectedItems"
 - Performance improvements
 ### Deleted
 - Removed unnecessary methods like setColumnNumber ad setRowNumber
