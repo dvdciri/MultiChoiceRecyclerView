@@ -29,15 +29,15 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class MultiChoiceRecyclerView extends RecyclerView implements MultiChoiceAdapter.SelectionListener {
 
 
-    private final HashMap<Integer, View> mSelectedList = new HashMap<>();
-    private final HashMap<Integer, View> mAllList = new HashMap<>();
+    private final LinkedHashMap<Integer, View> mSelectedList = new LinkedHashMap<>();
+    private final LinkedHashMap<Integer, View> mAllList = new LinkedHashMap<>();
     private MultiChoiceAdapter mMultiChoiceAdapter = null;
     private MultiChoiceSelectionListener multiChoiceSelectionListener = null;
 
