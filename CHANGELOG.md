@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Kept order of selected items when retrieved back with "getSelectedItems"
 - Performance improvements
 ### Deleted
+- Application tag from library manifest
 - Removed unnecessary methods like setColumnNumber ad setRowNumber
 
 ## [1.1.8]
