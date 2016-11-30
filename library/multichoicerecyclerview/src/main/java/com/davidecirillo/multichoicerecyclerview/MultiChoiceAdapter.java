@@ -26,24 +26,13 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
 
         if (mMultiChoiceListener != null) {
 
-            if (isInMultiChoiceMode || isInSingleClickMode) {
-                mCurrentView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mMultiChoiceListener.onSingleItemClickListener(mCurrentView, holder.getAdapterPosition());
-                    }
-                });
-            } else if (defaultItemViewClickListener(holder, position) != null) {
-                mCurrentView.setOnClickListener(defaultItemViewClickListener(holder, position));
+            if ((isInMultiChoiceMode || isInSingleClickMode) && isSelectableInMultiChoiceMode(position)) {
+                mCurrentView.setOnClickListener(getSingleClickListener(mCurrentView, holder.getAdapterPosition()));
+            } else if (defaultItemViewClickListener(holder, holder.getAdapterPosition()) != null) {
+                mCurrentView.setOnClickListener(defaultItemViewClickListener(holder, holder.getAdapterPosition()));
             }
 
-            mCurrentView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    mMultiChoiceListener.onSingleItemLongClickListener(mCurrentView, holder.getAdapterPosition());
-                    return true;
-                }
-            });
+            mCurrentView.setOnLongClickListener(getLongClickListener(mCurrentView, holder.getAdapterPosition()));
 
             mMultiChoiceListener.onUpdateItemListener(mCurrentView, holder.getAdapterPosition());
 
@@ -52,6 +41,26 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
         }
     }
 
+    @NonNull
+    private View.OnClickListener getSingleClickListener(final View view, final int position) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMultiChoiceListener.onSingleItemClickListener(view, position);
+            }
+        };
+    }
+
+    @NonNull
+    private View.OnLongClickListener getLongClickListener(final View view, final int position) {
+        return new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mMultiChoiceListener.onSingleItemLongClickListener(view, position);
+                return true;
+            }
+        };
+    }
 
     void setMultiChoiceListener(SelectionListener multiChoiceListener) {
         this.mMultiChoiceListener = multiChoiceListener;
@@ -78,6 +87,10 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
      */
     protected View.OnClickListener defaultItemViewClickListener(VH holder, int position) {
         return null;
+    }
+
+    protected boolean isSelectableInMultiChoiceMode(int position) {
+        return true;
     }
 
     interface SelectionListener {
