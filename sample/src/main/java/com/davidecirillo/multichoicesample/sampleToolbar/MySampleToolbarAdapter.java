@@ -55,8 +55,6 @@ class MySampleToolbarAdapter extends MultiChoiceAdapter<MySampleToolbarViewHolde
     public void onBindViewHolder(MySampleToolbarViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         holder.mTextView.setText(mList.get(position));
-
-
     }
 
 
