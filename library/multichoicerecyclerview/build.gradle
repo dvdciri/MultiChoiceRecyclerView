@@ -93,3 +93,10 @@ dependencies {
 //Enable those just for bintray upload whenever is needed - keep them commented when pushing
 //apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
 //apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
+
+/*
+* Steps for uploading a new release
+*
+* ./gradle install
+*./gradle bintrayUpload
+* */
