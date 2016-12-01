@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+### Changed
+### Fixed
+### Deleted
+
+## [1.2.14]
+### Added
 - Possibility to disable some items from the selection mode with the method isSelectableInMultiChoiceMode(int position)
 ### Changed
 - Clean and polish
