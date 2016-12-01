@@ -157,7 +157,7 @@ Use the MultiChoiceSelectionListener in order to have a callback whether an acti
     ...
 
     dependencies {
-        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:1.1.8'
+        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:1.2.14'
     }
 ```
 
