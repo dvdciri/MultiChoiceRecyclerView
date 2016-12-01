@@ -1,11 +1,11 @@
 package com.davidecirillo.multichoicesample.sampleImageGallery;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -36,6 +36,8 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
             R.drawable.image4,
             R.drawable.image5
     };
+    private ScaleAnimation mSelectScaleAnimation;
+    private ScaleAnimation mDeselectScaleAnimation;
 
     SampleGalleryAdapter(Context mContext) {
         this.mContext = mContext;
@@ -78,54 +80,16 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
 
 
     @Override
-    public void setActive(View view, boolean state) {
+    public void setActive(@NonNull View view, boolean state) {
 
         ImageView imageView = (ImageView) view.findViewById(R.id.image_view);
         final ImageView tickImage = (ImageView) view.findViewById(R.id.tick_image);
 
-        //Select animation
-        ScaleAnimation selectAnimation = new ScaleAnimation(
-                1f, 0.8f,
-                1f, 0.8f,
-                imageView.getWidth() / 2,
-                imageView.getHeight() / 2
-        );
-        selectAnimation.setFillAfter(true);
-        selectAnimation.setFillEnabled(true);
-        selectAnimation.setDuration(100);
-
-        //Deselect animation
-        ScaleAnimation deselectAnimation = new ScaleAnimation(
-                0.8f, 1f,
-                0.8f, 1f,
-                imageView.getWidth() / 2,
-                imageView.getHeight() / 2
-        );
-        deselectAnimation.setFillAfter(true);
-        deselectAnimation.setFillEnabled(true);
-        deselectAnimation.setDuration(100);
-
         if (state) {
-
-            imageView.startAnimation(selectAnimation);
-            selectAnimation.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationEnd(Animation arg0) {
-                    tickImage.setVisibility(View.VISIBLE);
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-            });
-
-
+            imageView.startAnimation(getSelectScaleAnimation(view));
+            tickImage.setVisibility(View.VISIBLE);
         } else {
-            imageView.startAnimation(deselectAnimation);
+            imageView.startAnimation(getDeselectScaleAnimation(view));
             tickImage.setVisibility(View.INVISIBLE);
         }
     }
@@ -151,5 +115,33 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
         }
     }
 
+    private ScaleAnimation getSelectScaleAnimation(View view) {
+        if (mSelectScaleAnimation == null) {
+            mSelectScaleAnimation = new ScaleAnimation(
+                    view.getScaleX(), 0.7f,
+                    view.getScaleY(), 0.7f,
+                    view.getWidth() / 2,
+                    view.getHeight() / 2
+            );
+            mSelectScaleAnimation.setFillAfter(true);
+            mSelectScaleAnimation.setFillEnabled(true);
+            mSelectScaleAnimation.setDuration(80);
+        }
+        return mSelectScaleAnimation;
+    }
 
+    private ScaleAnimation getDeselectScaleAnimation(View view) {
+        if (mDeselectScaleAnimation == null) {
+            mDeselectScaleAnimation = new ScaleAnimation(
+                    view.getScaleX(), 1f,
+                    view.getScaleY(), 1f,
+                    view.getWidth() / 2,
+                    view.getHeight() / 2
+            );
+            mDeselectScaleAnimation.setFillAfter(true);
+            mDeselectScaleAnimation.setFillEnabled(true);
+            mDeselectScaleAnimation.setDuration(80);
+        }
+        return mDeselectScaleAnimation;
+    }
 }

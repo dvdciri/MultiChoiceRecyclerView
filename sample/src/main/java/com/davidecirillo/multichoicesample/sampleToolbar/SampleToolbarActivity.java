@@ -3,6 +3,8 @@ package com.davidecirillo.multichoicesample.sampleToolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,7 +62,7 @@ public class SampleToolbarActivity extends BaseActivity {
     }
 
     private void setUpMultiChoiceRecyclerView() {
-        mMultiChoiceRecyclerView.setRecyclerColumnNumber(3);
+        mMultiChoiceRecyclerView.setLayoutManager(new GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false));
 
         MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
                 .setDefaultToolbarTitle(toolbarTitle())
@@ -105,7 +107,7 @@ public class SampleToolbarActivity extends BaseActivity {
                 .map(new Func1<Integer, String>() {
                     @Override
                     public String call(Integer integer) {
-                        return "Test item "+ integer;
+                        return "Test item " + integer;
                     }
                 })
                 .toList();
@@ -120,7 +122,7 @@ public class SampleToolbarActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.select_all:
                 mMultiChoiceRecyclerView.selectAll();
                 return true;
@@ -133,7 +135,8 @@ public class SampleToolbarActivity extends BaseActivity {
             case R.id.single_click_mode:
 
                 mMultiChoiceRecyclerView.setSingleClickMode(!mMultiChoiceRecyclerView.isInSingleClickMode());
-                Toast.makeText(getApplicationContext(), "Always Single Click Mode ["+mMultiChoiceRecyclerView.isInSingleClickMode()+"]", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Always Single Click Mode [" + mMultiChoiceRecyclerView.isInSingleClickMode() + "]", Toast
+                        .LENGTH_SHORT).show();
                 return true;
         }
 

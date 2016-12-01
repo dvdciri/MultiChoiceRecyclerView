@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
 ext {
-    PUBLISH_VERSION = '1.1.6'
+    PUBLISH_VERSION = '1.1.7'
     SUPPORT_LIBRARY_VERSION = '24.2.1'
     BUILD_TOOLS = "23.0.3"
     TARGET_SDK = 23
@@ -17,7 +17,7 @@ android {
         applicationId "com.davidecirillo.multichoicerecyclerview"
         minSdkVersion 15
         targetSdkVersion TARGET_SDK
-        versionCode 2
+        versionCode 3
         versionName PUBLISH_VERSION
 
         multiDexEnabled true

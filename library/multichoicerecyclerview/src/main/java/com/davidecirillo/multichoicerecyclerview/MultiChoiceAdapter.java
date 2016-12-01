@@ -1,5 +1,6 @@
 package com.davidecirillo.multichoicerecyclerview;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
     boolean isInMultiChoiceMode = false;
     boolean isInSingleClickMode = false;
 
-    private MultiChoiceAdapterListener mMultiChoiceListener;
+    private SelectionListener mMultiChoiceListener;
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -25,52 +26,53 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
 
         if (mMultiChoiceListener != null) {
 
-            if (isInMultiChoiceMode || isInSingleClickMode) {
-                mCurrentView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mMultiChoiceListener.onSingleItemClickListener(mCurrentView, holder.getAdapterPosition());
-                    }
-                });
-            } else {
-                if (defaultItemViewClickListener(holder, position) != null) {
-                    mCurrentView.setOnClickListener(defaultItemViewClickListener(holder, position));
-                }
+            if ((isInMultiChoiceMode || isInSingleClickMode) && isSelectableInMultiChoiceMode(position)) {
+                mCurrentView.setOnClickListener(getSingleClickListener(mCurrentView, holder.getAdapterPosition()));
+            } else if (defaultItemViewClickListener(holder, holder.getAdapterPosition()) != null) {
+                mCurrentView.setOnClickListener(defaultItemViewClickListener(holder, holder.getAdapterPosition()));
             }
 
-            mCurrentView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    mMultiChoiceListener.onSingleItemLongClickListener(mCurrentView, holder.getAdapterPosition());
-                    return true;
-                }
-            });
+            mCurrentView.setOnLongClickListener(getLongClickListener(mCurrentView, holder.getAdapterPosition()));
 
             mMultiChoiceListener.onUpdateItemListener(mCurrentView, holder.getAdapterPosition());
 
-        }else{
+        } else {
             throw new IllegalStateException(EXCEPTION_MSG_NO_INTERFACE);
         }
     }
 
-
-    void setMultiChoiceListener(MultiChoiceAdapterListener multiChoiceListener) {
-        this.mMultiChoiceListener = multiChoiceListener;
+    @NonNull
+    private View.OnClickListener getSingleClickListener(final View view, final int position) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMultiChoiceListener.onSingleItemClickListener(view, position);
+            }
+        };
     }
 
-    void performActivation(View view, boolean state) {
-        if (view != null) {
-            setActive(view, state);
-        }
+    @NonNull
+    private View.OnLongClickListener getLongClickListener(final View view, final int position) {
+        return new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mMultiChoiceListener.onSingleItemLongClickListener(view, position);
+                return true;
+            }
+        };
+    }
+
+    void setMultiChoiceListener(SelectionListener multiChoiceListener) {
+        this.mMultiChoiceListener = multiChoiceListener;
     }
 
     /**
      * Override this method to customize the active item
      *
-     * @param view the view to customize
+     * @param view  the view to customize
      * @param state true if the state is active/selected
      */
-    public void setActive(View view, boolean state) {
+    public void setActive(@NonNull View view, boolean state) {
         if (state) {
             view.setAlpha(0.25f);
         } else {
@@ -85,5 +87,17 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
      */
     protected View.OnClickListener defaultItemViewClickListener(VH holder, int position) {
         return null;
+    }
+
+    protected boolean isSelectableInMultiChoiceMode(int position) {
+        return true;
+    }
+
+    interface SelectionListener {
+        void onSingleItemClickListener(View view, int position);
+
+        void onSingleItemLongClickListener(View view, int position);
+
+        void onUpdateItemListener(View view, int position);
     }
 }

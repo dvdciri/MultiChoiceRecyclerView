@@ -19,6 +19,7 @@ package com.davidecirillo.multichoicesample.sampleToolbar;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,8 +55,6 @@ class MySampleToolbarAdapter extends MultiChoiceAdapter<MySampleToolbarViewHolde
     public void onBindViewHolder(MySampleToolbarViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         holder.mTextView.setText(mList.get(position));
-
-
     }
 
 
@@ -63,7 +62,7 @@ class MySampleToolbarAdapter extends MultiChoiceAdapter<MySampleToolbarViewHolde
      * Override this method to implement a custom active/deactive state
      */
     @Override
-    public void setActive(View view, boolean state) {
+    public void setActive(@NonNull View view, boolean state) {
 
         RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.get_started_relative_layout);
 

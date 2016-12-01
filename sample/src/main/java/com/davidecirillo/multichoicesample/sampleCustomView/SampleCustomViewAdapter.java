@@ -1,6 +1,7 @@
 package com.davidecirillo.multichoicesample.sampleCustomView;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -55,7 +56,7 @@ class SampleCustomViewAdapter extends MultiChoiceAdapter<SampleCustomViewAdapter
     }
 
     @Override
-    public void setActive(View view, boolean state) {
+    public void setActive(@NonNull View view, boolean state) {
 
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
         RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.container);
