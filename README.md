@@ -17,7 +17,6 @@ Donwload the sample app on the Google Play Store and check out all the features
 
 *Are you using MultiChoiceRecyclerView? If you want to be featured on this page drop me a line.*
 
-<br>
 ##** IMPORTANT ** MAJOR RELEASE **
 There will be a major release **v2.0.0** in which will be removed the custom **MultiChoiceRecyclerView** class and all the logic  is moved inside the **MultiChoiceAdapter**, that will be the only class needed for the implemetation of the library.
 
