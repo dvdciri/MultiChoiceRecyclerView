@@ -13,11 +13,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.2.14]
 ### Added
 - Possibility to disable some items from the selection mode with the method isSelectableInMultiChoiceMode(int position)
+
 ### Changed
 - Clean and polish
+
 ### Fixed
 - Kept order of selected items when retrieved back with "getSelectedItems"
 - Performance improvements
+
 ### Deleted
 - Application tag from library manifest
 - Removed unnecessary methods like setColumnNumber ad setRowNumber
