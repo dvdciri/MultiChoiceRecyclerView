@@ -17,17 +17,17 @@ Donwload the sample app on the Google Play Store and check out all the features
 
 *Are you using MultiChoiceRecyclerView? If you want to be featured on this page drop me a line.*
 
+<br>
+##** IMPORTANT ** MAJOR RELEASE **
+There will be a major release **v2.0.0** in which will be removed the custom **MultiChoiceRecyclerView** class and all the logic  is moved inside the **MultiChoiceAdapter**, that will be the only class needed for the implemetation of the library.
+
 ###Description
 This library make life easier when you have to deal with a multi choice selection on recycler view.
-
-<br>
-###IMPORTANT
-In the new release v1.1.8 there is an update on the MultiChoiceToolbar feature, check out the changelog and the updated documentation below to find our the changes
 
 #Implementation
 Use the MultiChoiceRecyclerView xml object and connect the view as usual
 ```java
-    <com.davidecirillo.multichoicesample.MultiChoiceRecyclerView
+    <com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView
         android:id="@+id/multiChoiceRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
