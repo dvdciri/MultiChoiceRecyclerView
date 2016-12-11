@@ -69,9 +69,10 @@ class MultiChoiceToolbarHelper {
             mMultiChoiceToolbar.mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MultiChoiceRecyclerView multiChoiceRecyclerView = mMultiChoiceToolbar.mMultiChoiceRecyclerView;
-                    if (multiChoiceRecyclerView != null)
-                        multiChoiceRecyclerView.deselectAll();
+                    MultiChoiceToolbar.Listener listener = mMultiChoiceToolbar.mListener;
+                    if (listener != null) {
+                        listener.onClearButtonPressed();
+                    }
                 }
             });
 

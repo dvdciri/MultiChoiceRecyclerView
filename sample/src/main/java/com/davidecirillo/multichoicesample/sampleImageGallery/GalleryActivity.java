@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView;
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceToolbar;
 import com.davidecirillo.multichoicesample.BaseActivity;
 import com.davidecirillo.multichoicesample.R;
@@ -16,7 +16,7 @@ import butterknife.BindView;
 public class GalleryActivity extends BaseActivity {
 
     @BindView(R.id.multiChoiceRecyclerView)
-    public MultiChoiceRecyclerView mMultiChoiceRecyclerView;
+    public RecyclerView mMultiChoiceRecyclerView;
 
     @Override
     protected int setActivityIdentifier() {
@@ -45,9 +45,10 @@ public class GalleryActivity extends BaseActivity {
                     }
                 })
                 .build();
-        mMultiChoiceRecyclerView.setMultiChoiceToolbar(multiChoiceToolbar);
 
         SampleGalleryAdapter adapter = new SampleGalleryAdapter(GalleryActivity.this);
+        adapter.setMultiChoiceToolbar(multiChoiceToolbar);
+
         mMultiChoiceRecyclerView.setAdapter(adapter);
     }
 

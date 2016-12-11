@@ -23,7 +23,7 @@
             android:text="@string/selected_items"/>
     </LinearLayout>
 
-    <com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/multiChoiceRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

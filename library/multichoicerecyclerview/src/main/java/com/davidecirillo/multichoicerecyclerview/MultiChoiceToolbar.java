@@ -9,7 +9,6 @@ import android.view.View;
 public class MultiChoiceToolbar {
 
     AppCompatActivity mAppCompatActivity;
-    MultiChoiceRecyclerView mMultiChoiceRecyclerView;
     Toolbar mToolbar;
     String mDefaultToolbarTitle;
     String mSelectedToolbarTitle;
@@ -19,6 +18,7 @@ public class MultiChoiceToolbar {
     int mMultiPrimaryColorDark = 0;
     int mIcon;
     View.OnClickListener mIconAction;
+    Listener mListener;
 
     private MultiChoiceToolbar(Builder builder) {
         this.mAppCompatActivity = builder.mAppCompatActivity;
@@ -33,8 +33,8 @@ public class MultiChoiceToolbar {
         this.mIconAction = builder.mIconAction;
     }
 
-    public void setMultiChoiceRecyclerView(MultiChoiceRecyclerView multiChoiceRecyclerView) {
-        this.mMultiChoiceRecyclerView = multiChoiceRecyclerView;
+    void setToolbarListener(Listener listener) {
+        mListener = listener;
     }
 
     /**
@@ -90,7 +90,7 @@ public class MultiChoiceToolbar {
             return this;
         }
 
-        public Builder setIcon(int icon, View.OnClickListener action){
+        public Builder setIcon(int icon, View.OnClickListener action) {
             mIcon = icon;
             mIconAction = action;
             return this;
@@ -111,6 +111,12 @@ public class MultiChoiceToolbar {
             a.recycle();
             return color;
         }
+    }
 
+    /*
+    * Listener
+    * */
+    interface Listener {
+        void onClearButtonPressed();
     }
 }
