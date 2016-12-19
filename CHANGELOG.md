@@ -7,8 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 ### Changed
+- Moved logic related to the MultiChoiceRecyclerView class into the MultiChoiceAdapter
+- Internal improvements getting rid of holding views states
 ### Fixed
 ### Deleted
+- MultiChoiceRecyclerView class
 
 ## [1.2.14]
 ### Added

@@ -8,17 +8,17 @@ import android.view.View;
 
 public class MultiChoiceToolbar {
 
-    AppCompatActivity mAppCompatActivity;
-    Toolbar mToolbar;
-    String mDefaultToolbarTitle;
-    String mSelectedToolbarTitle;
-    int mDefaultPrimaryColor = 0;
-    int mDefaultPrimaryColorDark = 0;
-    int mMultiPrimaryColor = 0;
-    int mMultiPrimaryColorDark = 0;
-    int mIcon;
-    View.OnClickListener mIconAction;
-    Listener mListener;
+    private AppCompatActivity mAppCompatActivity;
+    private Toolbar mToolbar;
+    private String mDefaultToolbarTitle;
+    private String mSelectedToolbarTitle;
+    private int mDefaultPrimaryColor = 0;
+    private int mDefaultPrimaryColorDark = 0;
+    private int mMultiPrimaryColor = 0;
+    private int mMultiPrimaryColorDark = 0;
+    private int mIcon;
+    private View.OnClickListener mIconAction;
+    private Listener mListener;
 
     private MultiChoiceToolbar(Builder builder) {
         this.mAppCompatActivity = builder.mAppCompatActivity;
@@ -113,9 +113,55 @@ public class MultiChoiceToolbar {
         }
     }
 
+    /* Getters */
+
+    public AppCompatActivity getAppCompatActivity() {
+        return mAppCompatActivity;
+    }
+
+    public Toolbar getToolbar() {
+        return mToolbar;
+    }
+
+    public String getDefaultToolbarTitle() {
+        return mDefaultToolbarTitle;
+    }
+
+    public String getSelectedToolbarTitle() {
+        return mSelectedToolbarTitle;
+    }
+
+    public int getDefaultPrimaryColor() {
+        return mDefaultPrimaryColor;
+    }
+
+    public int getDefaultPrimaryColorDark() {
+        return mDefaultPrimaryColorDark;
+    }
+
+    public int getMultiPrimaryColor() {
+        return mMultiPrimaryColor;
+    }
+
+    public int getMultiPrimaryColorDark() {
+        return mMultiPrimaryColorDark;
+    }
+
+    public int getIcon() {
+        return mIcon;
+    }
+
+    public View.OnClickListener getIconAction() {
+        return mIconAction;
+    }
+
+    public Listener getToolbarListener() {
+        return mListener;
+    }
+
     /*
-    * Listener
-    * */
+            * Listener
+            * */
     interface Listener {
         void onClearButtonPressed();
     }

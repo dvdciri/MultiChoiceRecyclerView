@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.davidecirillo.multichoicerecyclerview.MultiChoiceAdapter;
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceToolbar;
 import com.davidecirillo.multichoicesample.BaseActivity;
 import com.davidecirillo.multichoicesample.R;
