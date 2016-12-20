@@ -74,20 +74,19 @@ Customize the activation or deactivation just overriding the setActive(View root
 - **Multi Choice Toolbar**
 Activate and customise the multi choice toolbar provided by the library (only if using setSupportActionBar with Toolbar)
 ```java
-    MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
-                .setDefaultToolbarTitle("Default Toolbar Title")
-                .setSelectedToolbarTitle("item selected")
-                .setMulti_primaryColor(R.color.colorPrimaryMulti)
-                .setMulti_primaryColorDark(R.color.colorPrimaryDarkMulti)
-                .setIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onBackPressed();
-                    }
-                })
-                .build();
+        MultiChoiceToolbar multiChoiceToolbar =
+                    new MultiChoiceToolbar.Builder(SampleToolbarActivity.this, toolbar)
+                            .setTitles(toolbarTitle(), "item selected")
+                            .setMultiChoiceColours(R.color.colorPrimaryMulti, R.color.colorPrimaryDarkMulti)
+                            .setDefaultIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    onBackPressed();
+                                }
+                            })
+                            .build();
 
-    mMultiChoiceAdapter.setMultiChoiceToolbar(multiChoiceToolbar);
+        mMySampleToolbarAdapter.setMultiChoiceToolbar(multiChoiceToolbar);
 ```
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example_toolbar.png" width="300">
 

@@ -33,18 +33,17 @@ public class GalleryActivity extends BaseActivity {
 
         mMultiChoiceRecyclerView.setLayoutManager(new GridLayoutManager(this, 4, LinearLayoutManager.VERTICAL, false));
 
-        MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
-                .setDefaultToolbarTitle(toolbarTitle())
-                .setSelectedToolbarTitle("")
-                .setMultiPrimaryColor(R.color.colorPrimaryMulti)
-                .setMultiPrimaryColorDark(R.color.colorPrimaryDarkMulti)
-                .setIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onBackPressed();
-                    }
-                })
-                .build();
+        MultiChoiceToolbar multiChoiceToolbar =
+                new MultiChoiceToolbar.Builder(GalleryActivity.this, toolbar)
+                        .setTitles(toolbarTitle(), "")
+                        .setMultiChoiceColours(R.color.colorPrimaryMulti, R.color.colorPrimaryDarkMulti)
+                        .setDefaultIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                onBackPressed();
+                            }
+                        })
+                        .build();
 
         SampleGalleryAdapter adapter = new SampleGalleryAdapter(GalleryActivity.this);
         adapter.setMultiChoiceToolbar(multiChoiceToolbar);

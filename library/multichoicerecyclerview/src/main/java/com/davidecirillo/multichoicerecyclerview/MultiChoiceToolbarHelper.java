@@ -14,7 +14,7 @@ import java.util.Locale;
 class MultiChoiceToolbarHelper {
 
     private static final String TOOLBAR_ERROR_MESSAGE = "Toolbar not implemented via getSupportActionBar method";
-    private static final String SELECTED_TOOLBAR_TITILE_FORMAT = "%d %s";
+    private static final String SELECTED_TOOLBAR_TITLE_FORMAT = "%d %s";
     private static final int ZERO = 0;
     private static final int ONE = 1;
 
@@ -97,7 +97,7 @@ class MultiChoiceToolbarHelper {
         if (itemNumber > 0) {
             String selectedToolbarTitle = mMultiChoiceToolbar.getSelectedToolbarTitle();
             if (selectedToolbarTitle != null) {
-                mSupportActionBar.setTitle(String.format(Locale.UK, SELECTED_TOOLBAR_TITILE_FORMAT, itemNumber, selectedToolbarTitle));
+                mSupportActionBar.setTitle(String.format(Locale.UK, SELECTED_TOOLBAR_TITLE_FORMAT, itemNumber, selectedToolbarTitle));
             } else {
                 mSupportActionBar.setTitle(itemNumber);
             }

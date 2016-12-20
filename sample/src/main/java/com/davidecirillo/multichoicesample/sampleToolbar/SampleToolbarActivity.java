@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.davidecirillo.multichoicerecyclerview.MultiChoiceAdapter;
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceToolbar;
 import com.davidecirillo.multichoicesample.BaseActivity;
 import com.davidecirillo.multichoicesample.R;
@@ -91,11 +90,9 @@ public class SampleToolbarActivity extends BaseActivity {
 
         MultiChoiceToolbar multiChoiceToolbar =
                 new MultiChoiceToolbar.Builder(SampleToolbarActivity.this, toolbar)
-                        .setDefaultToolbarTitle(toolbarTitle())
-                        .setSelectedToolbarTitle("item selected")
-                        .setMultiPrimaryColor(R.color.colorPrimaryMulti)
-                        .setMultiPrimaryColorDark(R.color.colorPrimaryDarkMulti)
-                        .setIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
+                        .setTitles(toolbarTitle(), "item selected")
+                        .setMultiChoiceColours(R.color.colorPrimaryMulti, R.color.colorPrimaryDarkMulti)
+                        .setDefaultIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 onBackPressed();
