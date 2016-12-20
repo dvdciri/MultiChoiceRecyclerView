@@ -81,7 +81,7 @@ public class MultiChoiceToolbar {
          * @return Builder so you can chain together setters and build
          */
         public Builder setMultiChoiceColours(int multiPrimaryColor, int multiPrimaryColorDark) {
-            this.mMultiPrimaryColorDark = multiPrimaryColorDark;
+            this.mMultiPrimaryColor = multiPrimaryColor;
             this.mMultiPrimaryColorDark = multiPrimaryColorDark;
             return this;
         }
