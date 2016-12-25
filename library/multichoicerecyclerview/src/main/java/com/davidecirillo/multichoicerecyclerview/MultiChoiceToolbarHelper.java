@@ -16,7 +16,6 @@ class MultiChoiceToolbarHelper {
     private static final String TOOLBAR_ERROR_MESSAGE = "Toolbar not implemented via getSupportActionBar method";
     private static final String SELECTED_TOOLBAR_TITLE_FORMAT = "%d %s";
     private static final int ZERO = 0;
-    private static final int ONE = 1;
 
     private final ActionBar mSupportActionBar;
     private MultiChoiceToolbar mMultiChoiceToolbar;
@@ -35,7 +34,7 @@ class MultiChoiceToolbarHelper {
     void updateToolbar(int itemNumber) throws IllegalStateException {
         if (itemNumber == ZERO) {
             showDefaultToolbar();
-        } else if (itemNumber == ONE) {
+        } else if (itemNumber > ZERO) {
             showMultiChoiceToolbar();
         }
         updateToolbarTitle(itemNumber);
