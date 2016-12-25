@@ -19,6 +19,8 @@ package com.davidecirillo.multichoicesample;
 
 import android.widget.TextView;
 
+import com.davidecirillo.multichoicesample.sampleToolbar.SampleToolbarActivity;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -41,7 +43,7 @@ public class ResultActivity extends BaseActivity {
 
     private void updateList() {
 
-        if(getIntent().hasExtra("selectedItems")) {
+        if(getIntent().hasExtra(SampleToolbarActivity.SELECTED_ITEMS)) {
             ArrayList<String> selectedItems = (ArrayList<String>) getIntent().getSerializableExtra("selectedItems");
             for (String string : selectedItems) {
                 result.append(String.format("\n%s", string));

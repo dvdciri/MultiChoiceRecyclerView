@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView;
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceToolbar;
 import com.davidecirillo.multichoicesample.BaseActivity;
 import com.davidecirillo.multichoicesample.R;
@@ -29,10 +29,12 @@ import rx.schedulers.Schedulers;
 
 public class SampleToolbarActivity extends BaseActivity {
 
+    public static final String SELECTED_ITEMS = "selectedItems";
     @BindView(R.id.multiChoiceRecyclerView)
-    MultiChoiceRecyclerView mMultiChoiceRecyclerView;
+    RecyclerView mMultiChoiceRecyclerView;
 
     private ArrayList<String> stringList;
+    private MySampleToolbarAdapter mMySampleToolbarAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,36 +50,21 @@ public class SampleToolbarActivity extends BaseActivity {
     @OnClick(R.id.result)
     void result() {
 
-        if (stringList != null) {
+        if (stringList != null && mMySampleToolbarAdapter != null) {
 
             ArrayList<String> resultItems = new ArrayList<>();
-            for (int i : mMultiChoiceRecyclerView.getSelectedItemList()) {
+            for (int i : mMySampleToolbarAdapter.getSelectedItemList()) {
                 resultItems.add(stringList.get(i));
             }
 
             Intent intent = new Intent(SampleToolbarActivity.this, ResultActivity.class);
-            intent.putExtra("selectedItems", resultItems);
+            intent.putExtra(SELECTED_ITEMS, resultItems);
             startActivity(intent);
         }
     }
 
     private void setUpMultiChoiceRecyclerView() {
         mMultiChoiceRecyclerView.setLayoutManager(new GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false));
-
-        MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
-                .setDefaultToolbarTitle(toolbarTitle())
-                .setSelectedToolbarTitle("item selected")
-                .setMultiPrimaryColor(R.color.colorPrimaryMulti)
-                .setMultiPrimaryColorDark(R.color.colorPrimaryDarkMulti)
-                .setIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onBackPressed();
-                    }
-                })
-                .build();
-
-        mMultiChoiceRecyclerView.setMultiChoiceToolbar(multiChoiceToolbar);
 
         getSampleList()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -93,12 +80,30 @@ public class SampleToolbarActivity extends BaseActivity {
 
                     @Override
                     public void onNext(List<String> strings) {
-                        stringList = new ArrayList<>(strings);
-
-                        MySampleToolbarAdapter mySampleToolbarAdapter = new MySampleToolbarAdapter(stringList, getApplicationContext());
-                        mMultiChoiceRecyclerView.setAdapter(mySampleToolbarAdapter);
+                        setUpAdapter(strings);
                     }
                 });
+    }
+
+    private void setUpAdapter(List<String> strings) {
+        stringList = new ArrayList<>(strings);
+
+        MultiChoiceToolbar multiChoiceToolbar =
+                new MultiChoiceToolbar.Builder(SampleToolbarActivity.this, toolbar)
+                        .setTitles(toolbarTitle(), "item selected")
+                        .setMultiChoiceColours(R.color.colorPrimaryMulti, R.color.colorPrimaryDarkMulti)
+                        .setDefaultIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                onBackPressed();
+                            }
+                        })
+                        .build();
+
+        mMySampleToolbarAdapter = new MySampleToolbarAdapter(stringList, getApplicationContext());
+        mMySampleToolbarAdapter.setMultiChoiceToolbar(multiChoiceToolbar);
+
+        mMultiChoiceRecyclerView.setAdapter(mMySampleToolbarAdapter);
     }
 
     private Observable<List<String>> getSampleList() {
@@ -122,24 +127,25 @@ public class SampleToolbarActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.select_all:
-                mMultiChoiceRecyclerView.selectAll();
-                return true;
-            case R.id.deselect_all:
-                mMultiChoiceRecyclerView.deselectAll();
-                return true;
-            case R.id.select_3:
-                mMultiChoiceRecyclerView.select(2);
-                return true;
-            case R.id.single_click_mode:
+        if (mMySampleToolbarAdapter != null) {
+            switch (item.getItemId()) {
+                case R.id.select_all:
+                    mMySampleToolbarAdapter.selectAll();
+                    return true;
+                case R.id.deselect_all:
+                    mMySampleToolbarAdapter.deselectAll();
+                    return true;
+                case R.id.select_3:
+                    mMySampleToolbarAdapter.select(2);
+                    return true;
+                case R.id.single_click_mode:
 
-                mMultiChoiceRecyclerView.setSingleClickMode(!mMultiChoiceRecyclerView.isInSingleClickMode());
-                Toast.makeText(getApplicationContext(), "Always Single Click Mode [" + mMultiChoiceRecyclerView.isInSingleClickMode() + "]", Toast
-                        .LENGTH_SHORT).show();
-                return true;
+                    mMySampleToolbarAdapter.setSingleClickMode(!mMySampleToolbarAdapter.isInSingleClickMode());
+                    Toast.makeText(getApplicationContext(), "Always Single Click Mode [" + mMySampleToolbarAdapter.isInSingleClickMode() + "]", Toast
+                            .LENGTH_SHORT).show();
+                    return true;
+            }
         }
-
         return false;
     }
 
