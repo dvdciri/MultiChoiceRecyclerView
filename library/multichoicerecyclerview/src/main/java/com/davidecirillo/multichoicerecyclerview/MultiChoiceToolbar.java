@@ -100,6 +100,14 @@ public class MultiChoiceToolbar {
             return this;
         }
 
+        /**
+         * Set the default icon that will be shown when is not in multi choice mode.
+         * If not set there will be no icon.
+         *
+         * @param icon   The default icon
+         * @param action The default icon action
+         * @return Builder so you can chain together setters and build
+         */
         public Builder setDefaultIcon(int icon, View.OnClickListener action) {
             mIcon = icon;
             mIconAction = action;

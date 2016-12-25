@@ -86,7 +86,7 @@ Activate and customise the multi choice toolbar provided by the library (only if
                             })
                             .build();
 
-        mMySampleToolbarAdapter.setMultiChoiceToolbar(multiChoiceToolbar);
+        mAdapter.setMultiChoiceToolbar(multiChoiceToolbar);
 ```
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example_toolbar.png" width="300">
 
@@ -99,14 +99,14 @@ You can also set the following:
 Use always single click mode (by default, to activate the multi selection mode you need a long click on the first item)
 ```java
     /*Setting single click mode true, the user will be able to select the first item just with a single click*/
-    mMultiChoiceAdapter.setSingleClickMode(true);
+    mAdapter.setSingleClickMode(true);
 ```
 
 <br>
 - **Event Callbacks**
 Use the MultiChoiceAdapter.Listener in order to have a callback on action taken to the items
 ```java
-    mMultiChoiceAdapter.setMultiChoiceSelectionListener(new MultiChoiceAdapter.Listener() {
+    mAdapter.setMultiChoiceSelectionListener(new MultiChoiceAdapter.Listener() {
             @Override
             public void OnItemSelected(int selectedPosition, int itemSelectedCount, int allItemCount) {
 
