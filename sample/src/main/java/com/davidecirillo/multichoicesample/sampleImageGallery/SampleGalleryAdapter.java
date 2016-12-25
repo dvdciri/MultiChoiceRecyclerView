@@ -86,10 +86,12 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
         final ImageView tickImage = (ImageView) view.findViewById(R.id.tick_image);
 
         if (state) {
-            imageView.startAnimation(getSelectScaleAnimation(view));
+            imageView.setScaleX(0.7f);
+            imageView.setScaleY(0.7f);
             tickImage.setVisibility(View.VISIBLE);
         } else {
-            imageView.startAnimation(getDeselectScaleAnimation(view));
+            imageView.setScaleX(1f);
+            imageView.setScaleY(1f);
             tickImage.setVisibility(View.INVISIBLE);
         }
     }
@@ -113,35 +115,5 @@ class SampleGalleryAdapter extends MultiChoiceAdapter<SampleGalleryAdapter.Sampl
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
-    }
-
-    private ScaleAnimation getSelectScaleAnimation(View view) {
-        if (mSelectScaleAnimation == null) {
-            mSelectScaleAnimation = new ScaleAnimation(
-                    view.getScaleX(), 0.7f,
-                    view.getScaleY(), 0.7f,
-                    view.getWidth() / 2,
-                    view.getHeight() / 2
-            );
-            mSelectScaleAnimation.setFillAfter(true);
-            mSelectScaleAnimation.setFillEnabled(true);
-            mSelectScaleAnimation.setDuration(80);
-        }
-        return mSelectScaleAnimation;
-    }
-
-    private ScaleAnimation getDeselectScaleAnimation(View view) {
-        if (mDeselectScaleAnimation == null) {
-            mDeselectScaleAnimation = new ScaleAnimation(
-                    view.getScaleX(), 1f,
-                    view.getScaleY(), 1f,
-                    view.getWidth() / 2,
-                    view.getHeight() / 2
-            );
-            mDeselectScaleAnimation.setFillAfter(true);
-            mDeselectScaleAnimation.setFillEnabled(true);
-            mDeselectScaleAnimation.setDuration(80);
-        }
-        return mDeselectScaleAnimation;
     }
 }
