@@ -24,18 +24,6 @@ There will be a major release **v2.0.0** in which will be removed the custom **M
 This library make life easier when you have to deal with a multi choice selection on recycler view.
 
 #Implementation
-Use the MultiChoiceRecyclerView xml object and connect the view as usual
-```java
-    <com.davidecirillo.multichoicerecyclerview.MultiChoiceRecyclerView
-        android:id="@+id/multiChoiceRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-```
-
-```java
-    MultiChoiceRecyclerView mMultiChoiceRecyclerView = (MultiChoiceRecyclerView) findViewById(R.id.multiChoiceRecyclerView);
-```
-
 Extend your adapter to the MultiChoiceAdapter and add it to the RecyclerView as per normal usage
 ```java
     public class MyAdapter extends MultiChoiceAdapter<MyViewHolder> {
@@ -86,20 +74,19 @@ Customize the activation or deactivation just overriding the setActive(View root
 - **Multi Choice Toolbar**
 Activate and customise the multi choice toolbar provided by the library (only if using setSupportActionBar with Toolbar)
 ```java
-    MultiChoiceToolbar multiChoiceToolbar = new MultiChoiceToolbar.Builder(this, toolbar)
-                .setDefaultToolbarTitle("Default Toolbar Title")
-                .setSelectedToolbarTitle("item selected")
-                .setMulti_primaryColor(R.color.colorPrimaryMulti)
-                .setMulti_primaryColorDark(R.color.colorPrimaryDarkMulti)
-                .setIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onBackPressed();
-                    }
-                })
-                .build();
+        MultiChoiceToolbar multiChoiceToolbar =
+                    new MultiChoiceToolbar.Builder(SampleToolbarActivity.this, toolbar)
+                            .setTitles(toolbarTitle(), "item selected")
+                            .setMultiChoiceColours(R.color.colorPrimaryMulti, R.color.colorPrimaryDarkMulti)
+                            .setDefaultIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    onBackPressed();
+                                }
+                            })
+                            .build();
 
-    mMultiChoiceRecyclerView.setMultiChoiceToolbar(multiChoiceToolbar);
+        mAdapter.setMultiChoiceToolbar(multiChoiceToolbar);
 ```
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example_toolbar.png" width="300">
 
@@ -112,14 +99,14 @@ You can also set the following:
 Use always single click mode (by default, to activate the multi selection mode you need a long click on the first item)
 ```java
     /*Setting single click mode true, the user will be able to select the first item just with a single click*/
-    mMultiChoiceRecyclerView.setSingleClickMode(true);
+    mAdapter.setSingleClickMode(true);
 ```
 
 <br>
 - **Event Callbacks**
-Use the MultiChoiceSelectionListener in order to have a callback whether an action is performed on the recyclerView
+Use the MultiChoiceAdapter.Listener in order to have a callback on action taken to the items
 ```java
-    mMultiChoiceRecyclerView.setMultiChoiceSelectionListener(new MultiChoiceSelectionListener() {
+    mAdapter.setMultiChoiceSelectionListener(new MultiChoiceAdapter.Listener() {
             @Override
             public void OnItemSelected(int selectedPosition, int itemSelectedCount, int allItemCount) {
 
@@ -156,7 +143,7 @@ Use the MultiChoiceSelectionListener in order to have a callback whether an acti
     ...
 
     dependencies {
-        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:1.2.14'
+        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:2.0.0'
     }
 ```
 
