@@ -8,7 +8,7 @@ checkstyle {
 }
 
 ext {
-    PUBLISH_VERSION = '2.0.0'
+    PUBLISH_VERSION = '2.1.0'
     SUPPORT_LIBRARY_VERSION = '24.2.1'
     BUILD_TOOLS = "23.0.3"
     TARGET_SDK = 23
@@ -91,8 +91,8 @@ dependencies {
 
 //##################################################################################################
 //Enable those just for bintray upload whenever is needed - keep them commented when pushing
-//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
-//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
 
 /*
 * Steps for uploading a new release
