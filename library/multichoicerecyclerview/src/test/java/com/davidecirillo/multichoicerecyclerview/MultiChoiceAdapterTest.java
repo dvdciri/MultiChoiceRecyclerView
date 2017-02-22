@@ -17,6 +17,7 @@ import java.util.List;
 import static com.davidecirillo.multichoicerecyclerview.MultiChoiceAdapter.SELECTED_ALPHA;
 import static junit.framework.Assert.assertEquals;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -92,15 +93,15 @@ public class MultiChoiceAdapterTest {
         // Given
         mMultiChoiceAdapter.mIsInMultiChoiceMode = false;
         mMultiChoiceAdapter.mIsInSingleClickMode = false;
-        when(mMockItemList.containsKey(mTestPosition)).thenReturn(true);
-        when(mMockItemList.get(mTestPosition)).thenReturn(MultiChoiceAdapter.State.INACTIVE);
+        when(mMockItemList.containsKey(RecyclerView.NO_POSITION)).thenReturn(true);
+        when(mMockItemList.get(RecyclerView.NO_POSITION)).thenReturn(MultiChoiceAdapter.State.INACTIVE);
 
         // When
-        mMultiChoiceAdapter.onBindViewHolder(mViewHolder, mTestPosition);
+        mMultiChoiceAdapter.onBindViewHolder(mViewHolder, RecyclerView.NO_POSITION);
         mViewHolder.itemView.callOnClick();
 
         // Then
-        verify(mMockItemList, times(0)).put(mTestPosition, MultiChoiceAdapter.State.ACTIVE);
+        verify(mMockItemList, times(0)).put(RecyclerView.NO_POSITION, MultiChoiceAdapter.State.ACTIVE);
         verify(mMockItemView, times(0)).setAlpha(SELECTED_ALPHA);
     }
 
@@ -195,6 +196,8 @@ public class MultiChoiceAdapterTest {
         ArgumentCaptor<View.OnClickListener> clickListenerCapture = ArgumentCaptor.forClass(View.OnClickListener.class);
         mMultiChoiceAdapter.mIsInMultiChoiceMode = false;
         mMultiChoiceAdapter.mIsInSingleClickMode = false;
+        when(mMockItemList.containsKey(RecyclerView.NO_POSITION)).thenReturn(true);
+        when(mMockItemList.get(RecyclerView.NO_POSITION)).thenReturn(MultiChoiceAdapter.State.ACTIVE);
 
         // When
         mMultiChoiceAdapter.onBindViewHolder(mViewHolder, mTestPosition);

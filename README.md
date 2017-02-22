@@ -126,6 +126,25 @@ Use the MultiChoiceAdapter.Listener in order to have a callback on action taken 
     });
 ```
 
+- **Save Activity Instance**
+In order to not lose your current selection when the activity configurations change, you can use those method to let the library handle the `savedInstanceState` for you:
+```java
+        // Override those method from your Activity
+
+        @Override
+        protected void onSaveInstanceState(Bundle outState) {
+            mAdapter.onSaveInstanceState(outState);
+            super.onSaveInstanceState(outState);
+        }
+
+        @Override
+        protected void onRestoreInstanceState(Bundle savedInstanceState) {
+            mAdapter.onRestoreInstanceState(savedInstanceState);
+            super.onRestoreInstanceState(savedInstanceState);
+        }
+```
+It will automatically keep the selection in place when orientation and other config change
+
 <br>
 
 #Changelog

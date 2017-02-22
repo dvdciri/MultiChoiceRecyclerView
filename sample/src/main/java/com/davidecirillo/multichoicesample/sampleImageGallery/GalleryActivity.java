@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.davidecirillo.multichoicerecyclerview.MultiChoiceAdapter;
 import com.davidecirillo.multichoicerecyclerview.MultiChoiceToolbar;
 import com.davidecirillo.multichoicesample.BaseActivity;
 import com.davidecirillo.multichoicesample.R;
@@ -26,7 +27,20 @@ public class GalleryActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setUpMultiChoiceRecyclerView();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        ((MultiChoiceAdapter) mMultiChoiceRecyclerView.getAdapter()).onSaveInstanceState(outState);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        ((MultiChoiceAdapter) mMultiChoiceRecyclerView.getAdapter()).onRestoreInstanceState(savedInstanceState);
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     private void setUpMultiChoiceRecyclerView() {
