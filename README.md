@@ -3,9 +3,9 @@
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MultiChoiceRecyclerView-green.svg?style=true)](https://android-arsenal.com/details/1/3755)
 [![CircleCI](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/master.svg?style=shield)](https://circleci.com/gh/dvdciri/MultiChoiceRecyclerView/tree/master)
 
-#Multichoice RecyclerView
+# Multichoice RecyclerView
 
-###Sample
+## Sample
 <a href='https://play.google.com/store/apps/details?id=com.davidecirillo.multichoicerecyclerview&hl=en_GB&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width='150' alt='Get it on Google Play' src='https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png'/></a>
 
 Donwload the sample app on the Google Play Store and check out all the features
@@ -15,12 +15,34 @@ Donwload the sample app on the Google Play Store and check out all the features
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="180">
 <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example4.png" width="180">
 
-*Are you using MultiChoiceRecyclerView? If you want to be featured on this page drop me a line.*
-
-###Description
+## Description
 This library make life easier when you have to deal with a multi choice selection on recycler view.
 
-#Implementation
+## Developed by
+
+**Davide Cirillo**
+- Twitter @DvdCiri
+- GitHub @dvdciri
+- Mail dvd.ciri@gmail.com
+
+If you want to contribute to the project feel free to Fork and create a Pull Request following the general rules for contribution: https://guides.github.com/activities/contributing-to-open-source/
+
+### Thanks for the contribution!
+- [Simon Hardt](https://github.com/hardysim)
+
+## How to use
+Add the library as dependency
+```java
+    repositories {
+        jcenter()
+    }
+    ...
+
+    dependencies {
+        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:2.1.0'
+    }
+```
+
 Extend your adapter to the MultiChoiceAdapter and add it to the RecyclerView as per normal usage
 ```java
     public class MyAdapter extends MultiChoiceAdapter<MyViewHolder> {
@@ -65,123 +87,22 @@ Customize the activation or deactivation just overriding the setActive(View root
     }
 ```
 
-<br>
+## Features
+[Sample features](https://github.com/dvdciri/MultiChoiceRecyclerView/blob/master/FEATURES.md)
 
-#Fetures
-- **Multi Choice Toolbar**
-Activate and customise the multi choice toolbar provided by the library (only if using setSupportActionBar with Toolbar)
-```java
-        MultiChoiceToolbar multiChoiceToolbar =
-                    new MultiChoiceToolbar.Builder(SampleToolbarActivity.this, toolbar)
-                            .setTitles(toolbarTitle(), "item selected")
-                            .setMultiChoiceColours(R.color.colorPrimaryMulti, R.color.colorPrimaryDarkMulti)
-                            .setDefaultIcon(R.drawable.ic_arrow_back_white_24dp, new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    onBackPressed();
-                                }
-                            })
-                            .build();
-
-        mAdapter.setMultiChoiceToolbar(multiChoiceToolbar);
-```
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example_toolbar.png" width="300">
-
-You can also set the following:
-- Default toolbar primary color
-- Default toolbar primary color dark
-
-<br>
-- **Single Click Mode**
-Use always single click mode (by default, to activate the multi selection mode you need a long click on the first item)
-```java
-    /*Setting single click mode true, the user will be able to select the first item just with a single click*/
-    mAdapter.setSingleClickMode(true);
-```
-
-<br>
-- **Event Callbacks**
-Use the MultiChoiceAdapter.Listener in order to have a callback on action taken to the items
-```java
-    mAdapter.setMultiChoiceSelectionListener(new MultiChoiceAdapter.Listener() {
-            @Override
-            public void OnItemSelected(int selectedPosition, int itemSelectedCount, int allItemCount) {
-
-            }
-
-            @Override
-            public void OnItemDeselected(int deselectedPosition, int itemSelectedCount, int allItemCount) {
-
-            }
-
-            @Override
-            public void OnSelectAll(int itemSelectedCount, int allItemCount) {
-
-            }
-
-            @Override
-            public void OnDeselectAll(int itemSelectedCount, int allItemCount) {
-
-            }
-    });
-```
-
-- **Save Activity Instance**
-In order to not lose your current selection when the activity configurations change, you can use those method to let the library handle the `savedInstanceState` for you:
-```java
-        // Override those method from your Activity
-
-        @Override
-        protected void onSaveInstanceState(Bundle outState) {
-            mAdapter.onSaveInstanceState(outState);
-            super.onSaveInstanceState(outState);
-        }
-
-        @Override
-        protected void onRestoreInstanceState(Bundle savedInstanceState) {
-            mAdapter.onRestoreInstanceState(savedInstanceState);
-            super.onRestoreInstanceState(savedInstanceState);
-        }
-```
-It will automatically keep the selection in place when orientation and other config change
-
-<br>
-
-#Changelog
+## Changelog
 [Changelog file](https://github.com/dvdciri/MultiChoiceRecyclerView/blob/master/CHANGELOG.md)
 
-
-#Gradle Dependency
-```java
-    repositories {
-        jcenter()
-    }
-    ...
-
-    dependencies {
-        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:2.0.0'
-    }
-```
-
-#Developed by
-
-**Davide Cirillo**
-- Twitter @DvdCiri
-- GitHub @dvdciri
-- Mail dvd.ciri@gmail.com
-
-If you want to contribute to the project feel free to Fork and create a Pull Request following the general rules for contribution: https://guides.github.com/activities/contributing-to-open-source/
-
-#License
+## License
 ```
     Copyright (c) 2014 Davide Cirillo
-    
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-    
+
        http://www.apache.org/licenses/LICENSE-2.0
-    
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -189,4 +110,3 @@ If you want to contribute to the project feel free to Fork and create a Pull Req
     limitations under the License.
     Come on, don't tell me you read that.
 ```
-
