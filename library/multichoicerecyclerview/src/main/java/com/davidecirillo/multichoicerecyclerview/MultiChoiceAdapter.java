@@ -76,23 +76,33 @@ public abstract class MultiChoiceAdapter<VH extends RecyclerView.ViewHolder> ext
         performAll(Action.SELECT);
     }
 
-
     /**
-     * Select a view from position in the adapter only if is the multi choice mode or single click choice mode is activated
+     * Select an item from the adapter position
      *
-     * @param position the position of the view in the adapter
-     * @return true if has been selected false otherwise
+     * @param position adapter position of ther view which will be selected
+     * @return True if the view has been selected, False if the view is already selected or is not part of the item list
      */
     public boolean select(int position) {
-        if (mItemList.containsKey(position)) {
-            if (mIsInSingleClickMode || mIsInMultiChoiceMode) {
-                perform(Action.SELECT, position, true, true);
-                return true;
-            }
+            if (mItemList.containsKey(position) && mItemList.get(position) == State.INACTIVE) {
+            perform(Action.SELECT, position, true, true);
+            return true;
         }
         return false;
     }
 
+    /**
+     * Deselect an item from the adapter position
+     *
+     * @param position adapter position of the view which will be deselected
+     * @return True if the view has been deselected, False if the view is already deselected or is not part of the item list
+     */
+    public boolean deselect(int position) {
+        if (mItemList.containsKey(position) && mItemList.get(position) == State.ACTIVE) {
+            perform(Action.DESELECT, position, true, true);
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Set the selection of the RecyclerView to always single click (instead of first long click and then single click)
