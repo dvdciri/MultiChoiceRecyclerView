@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Added possibility to let the library handle the savedInstanceState in order to keep the selection in place when orientation
 and other configuration change
+- Added `deselect(int position)` method to the MultiChoiceAdapter
 
 ### Fixed
 ### Deleted
