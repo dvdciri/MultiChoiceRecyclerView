@@ -97,6 +97,6 @@ dependencies {
 /*
 * Steps for uploading a new release
 *
-* ./gradle install
-*./gradle bintrayUpload
+* ./gradlew install
+* ./gradlew bintrayUpload
 * */
