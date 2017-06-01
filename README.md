@@ -10,10 +10,7 @@
 
 Donwload the sample app on the Google Play Store and check out all the features
 
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example0.png" width="180">
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png" width="180">
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="180">
-<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example4.png" width="180">
+<img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example0.png" width="170"/> <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example1.png" width="170"/> <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example2.png" width="170"/> <img src="https://raw.githubusercontent.com/dvdciri/MultiChoiceRecyclerView/master/example4.png" width="170"/>
 
 ## Description
 This library make life easier when you have to deal with a multi choice selection on recycler view.
