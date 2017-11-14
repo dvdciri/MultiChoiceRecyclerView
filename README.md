@@ -36,7 +36,7 @@ Add the library as dependency
     ...
 
     dependencies {
-        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:2.1.0'
+        compile 'com.davidecirillo.multichoicerecyclerview:multichoicerecyclerview:2.3.0'
     }
 ```
 
